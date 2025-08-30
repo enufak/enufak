@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnUfak! | {% block title %} {% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+    {% include 'components/_navbar.jinja' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>

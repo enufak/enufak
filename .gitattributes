@@ -1,0 +1,5 @@
+*.css linguist-detectable=false
+
+*.jinja linguist-detectable=false
+
+*.html linguist-detectable=false
