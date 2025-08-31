@@ -15,6 +15,5 @@ class TicketForm(forms.ModelForm):
             }),
             'konu': forms.Textarea(attrs={
                 'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none',
-                'placeholder': 'Yaşadığınız problemi detaylıca yazınız...'
             }),
         }
