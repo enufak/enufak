@@ -13,7 +13,7 @@ class Gonderi(models.Model):
 
     baslik = models.CharField(max_length=100)
     yazar = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    kapak_resmi = models.ImageField(upload_to='media/post_resimleri/', blank=True, null=True)  
+    kapak_resmi = models.ImageField(upload_to='post_resimleri/', blank=True, null=True)  
     slug = AutoSlugField(populate_from='baslik', unique=True)
     etiket = models.CharField(max_length=1, choices=ETIKET)
     icerik = RichTextField()

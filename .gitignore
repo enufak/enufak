@@ -5,5 +5,3 @@ CACHE
 .env
 db.sqlite3
 media
-*.jpg
-*.jpeg
