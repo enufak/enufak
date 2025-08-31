@@ -1,0 +1,28 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}{{gonderi.baslik}}{% endblock %}
+
+
+{% block content %}
+<div class="relative isolate overflow-hidden bg-white px-6 py-12 sm:py-16 lg:overflow-visible lg:px-0">
+    <div
+        class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+        <div
+            class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div class="lg:pr-4">
+                <div class="lg:max-w-lg">
+                    <p class="text-base font-semibold text-indigo-500">{{gonderi.get_etiket_display}}</p>
+                    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{gonderi.baslik}}
+                    </h1>
+                    <div class="rounded-lg overflow-hidden" style="padding-top: 15px;">
+                        <img src="{{ gonderi.kapak_resmi.url }}" alt="Kapak resmi" class="w-full h-auto object-cover">
+                    </div>
+                    <div class="mt-6 text-xl text-gray prose prose-indigo">
+                    {{gonderi.icerik|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+{% endblock%}

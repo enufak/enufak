@@ -19,7 +19,7 @@
             karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
         </p>
         <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-            <a href="#"
+            <a href="/uygulama/"
                 class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-blue-300">
                 Hemen başla
                 <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -79,58 +79,25 @@
         </div>
         <br>
         <div class="grid gap-8 lg:grid-cols-3">
+            {% for gonderi in gonderiler %}
             <div class="max-w-sm bg-white rounded-lg shadow-sm">
                 <a>
                     <img style="height: 200px !important;" class="rounded-t-lg w-full"
-                        src="https://bionluk.com/blog/wp-content/uploads/2021/08/Screen-Shot-2022-01-12-at-14.22.33-1250x504.png"
+                        src="{{gonderi.kapak_resmi.url}}"
                         alt="" />
                 </a>
                 <div class="p-5">
                     <span
-                        class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm border border-indigo-400">Girişimcilik</span>
-                    <a href="#">
+                        class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm border border-indigo-400">{{gonderi.get_etiket_display}}</span>
+                    <a href="/blog/{{gonderi.slug}}/">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800">
-                            Düşük bütçeli girişimciler neden freelancer'larla çalışmalı?
+                            {{gonderi.baslik}}
                         </h5>
                     </a>
+                    <span class="text-gray-600 text-sm">{{gonderi.created_at}}</span>
                 </div>
             </div>
-
-
-            <div class="max-w-sm bg-white rounded-lg shadow-sm">
-                <a>
-                    <img style="height: 200px !important;" class="rounded-t-lg w-full"
-                        src="https://bionluk.com/blog/wp-content/uploads/2021/08/Screen-Shot-2022-01-12-at-14.22.33-1250x504.png"
-                        alt="" />
-                </a>
-                <div class="p-5">
-                    <span
-                        class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm border border-indigo-400">Girişimcilik</span>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800">
-                            Düşük bütçeli girişimciler neden freelancer'larla çalışmalı?
-                        </h5>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="max-w-sm bg-white rounded-lg shadow-sm">
-                <a>
-                    <img style="height: 200px !important;" class="rounded-t-lg w-full"
-                        src="https://bionluk.com/blog/wp-content/uploads/2021/08/Screen-Shot-2022-01-12-at-14.22.33-1250x504.png"
-                        alt="" />
-                </a>
-                <div class="p-5">
-                    <span
-                        class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm border border-indigo-400">Girişimcilik</span>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800">
-                            Düşük bütçeli girişimciler neden freelancer'larla çalışmalı?
-                        </h5>
-                    </a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
         <br>
@@ -180,7 +147,8 @@
             </h2>
             <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
                 <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">EnUfak uygulaması, yeteneklerinizi işe dönüştürmenizi veya sorunlarınızı çözecek kişileri hızlı bir şekilde bulabilmenizi amaçlayan bir projedir.</p>
+                    <p class="mb-2 text-gray-500">EnUfak uygulaması, yeteneklerinizi işe dönüştürmenizi veya
+                        sorunlarınızı çözecek kişileri hızlı bir şekilde bulabilmenizi amaçlayan bir projedir.</p>
                 </div>
             </div>
 
@@ -207,7 +175,9 @@
             </h2>
             <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
                 <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">EnUfak'ı geliştirirken belli bir kesimi ele almadık. Her kesimden her kişinin kullanabileceği bir platform olup, ilerleyen süreçde de bu şekilde geliştirilmeye devam edilecektir.</p>
+                    <p class="mb-2 text-gray-500">EnUfak'ı geliştirirken belli bir kesimi ele almadık. Her kesimden her
+                        kişinin kullanabileceği bir platform olup, ilerleyen süreçde de bu şekilde geliştirilmeye devam
+                        edilecektir.</p>
                 </div>
             </div>
 
@@ -235,15 +205,62 @@
             <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
                 <div class="p-5 border border-t-0 border-gray-200">
                     <p class="mb-2 text-gray-500">
-                        "Herkes kendi işini yapabilsin" fikri ile ortaya çıkmıştır. Kenarda köşede duran ve işe çeviremediğiniz bilgileri ihtiyacı olan kişiler ile çalışarak iş haline getirebilirsiniz.
+                        "Herkes kendi işini yapabilsin" fikri ile ortaya çıkmıştır. Kenarda köşede duran ve işe
+                        çeviremediğiniz bilgileri ihtiyacı olan kişiler ile çalışarak iş haline getirebilirsiniz.
                     </p>
                     <p class="mb-2 text-gray-500">
-                        Diğer yandan bakarsak birisine yaptırmanız gereken bir iş var ise, ordan oraya bakıp doğru kişilere ulaşamama sorununa çözüm olarak da bu uygulamayı kullanabilirsiniz.
+                        Diğer yandan bakarsak birisine yaptırmanız gereken bir iş var ise, ordan oraya bakıp doğru
+                        kişilere ulaşamama sorununa çözüm olarak da bu uygulamayı kullanabilirsiniz.
                     </p>
                 </div>
             </div>
         </div>
 
+
+    </div>
+</section>
+
+<section class="bg-white">
+    <div class="px-4 mx-auto max-w-screen-md">
+        <section class="bg-white py-12 sm:py-16">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
+                    <h2 class="text-3xl tracking-tight text-gray-900 sm:text-4xl">
+                    Ekibimizle <span class="font-bold">Tanışın</span>
+                    </h2>
+                </div>
+                <br>
+                <div class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
+                    <div class="flex items-center space-x-4">
+                        <img class="w-16 h-16 rounded-full shadow"
+                            src="https://avatars.githubusercontent.com/u/89014650?s=400&u=4163bd8b43a56758cf577c7b0fb9fd2dfcb9c093&v=4"
+                            alt="Ekin İlter Varlı">
+                        <div>
+                            <h3 class="text-base font-semibold text-gray-900">Ekin İlter VARLI</h3>
+                            <p class="text-sm font-medium text-indigo-600">Lead Developer, CTO</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img class="w-16 h-16 rounded-full shadow"
+                            src="{% static 'images/cinar.jpeg' %}"
+                            alt="Çınar Yağız Karakuş">
+                        <div>
+                            <h3 class="text-base font-semibold text-gray-900">Çınar Yağız KARAKUŞ</h3>
+                            <p class="text-sm font-medium text-indigo-600">Chief Marketing Officer</p>
+                        </div>
+                    </div>
+                </div><br>
+                <a href="/ticket/"
+                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-blue-300">
+                Ekibimize Katıl
+                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+            </a>
+            </div>
+        </section>
 
     </div>
 </section>

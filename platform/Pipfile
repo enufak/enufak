@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
+django-autoslug = "*"
+django-ckeditor = "*"
+pillow = "*"
 
 [dev-packages]
 

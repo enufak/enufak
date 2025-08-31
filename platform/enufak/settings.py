@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-$8*k!)t$+fu)w9g8c^=t4l*j4w=#9ijra3bao2a1yne3p4r5na
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://cd6f461555ed.ngrok-free.app','http://127.0.0.1:8000']
 
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = None
 
 # Application definition
 
@@ -40,6 +43,12 @@ INSTALLED_APPS = [
 
     # 
     'enufak_core',
+    'enufak_blog',
+    'enufak_app',
+
+    #
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -105,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr-tr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
@@ -121,6 +130,21 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Full",
+        "height": 300,
+        "width": "100%",
+        "extraPlugins": ",".join([
+            "image2", 
+        ]),
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
