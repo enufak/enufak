@@ -23,3 +23,6 @@ class Gonderi(models.Model):
         db_table = 'gonderi'
         verbose_name = 'Gönderi'
         verbose_name_plural = 'Gönderiler'
+
+    def __str__(self):
+        return self.baslik
