@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def ticket_olustur(request):
     if request.method == "POST":
         if Ticket.objects.filter(yazar=request.user).exists():
-            messages.error(request, "Zaten bir ticket açtınız. Yeni ticket açamazsınız.")
+            messages.error(request, "Zaten bir destek talebi açtınız. İşleme alınana kadar yeni talep açamazsınız.")
             return redirect("tickets")
         else:
             form = TicketForm(request.POST)
