@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     #
     'ckeditor',
     'ckeditor_uploader',
+    "crispy_forms",
+    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -150,3 +152,9 @@ CKEDITOR_CONFIGS = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/uygulama/'
+LOGIN_URL = '/uygulama/giris-yap/'
+AUTH_USER_MODEL = 'enufak_app.CustomUser'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
