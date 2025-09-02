@@ -4,35 +4,99 @@
 {% block title %}Keşfet{% endblock %}
 
 {% block content %}
-<section class="bg-yellow-500">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-12 z-10 relative">
+<section class="relative bg-yellow-500">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+
+    <div class="relative py-16 px-6 mx-auto max-w-screen-xl text-center">
+        {% if request.user.is_authenticated %}
+        {% else %}
         <a href="/uygulama/giris-yap/"
-            class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-yellow-700 bg-yellow-100 rounded-full">
-            <span class="text-xs bg-yellow-600 rounded-full text-white px-4 py-1.5 me-3">Bilgilendirme</span>
+            class="inline-flex justify-between items-center py-1 px-3 pe-4 mb-7 text-sm text-yellow-800 bg-yellow-100/80 rounded-full shadow-md hover:shadow-lg transition">
+            <span class="text-xs bg-yellow-700 rounded-full text-white px-4 py-1.5 me-3">Bilgilendirme</span>
             <span class="text-sm font-medium">Uygulamayı kullanabilmek için giriş yapmalısın.</span>
-            <svg class="w-2.5 h-2.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="none" viewBox="0 0 6 10">
+            <svg class="w-2.5 h-2.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="m1 9 4-4-4-4" />
             </svg>
         </a>
-        <h1 class="mb-4 text-3xl tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl">
-            Neye <span class="font-bold">ihtiyacın</span> var?
+        {% endif %}
+
+        <h1 class="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow">
+            Neye <span class="underline decoration-yellow-200">ihtiyacın</span> var?
         </h1>
-        <p class="mb-8 text-lg font-normal text-gray-700 lg:text-xl sm:px-16 lg:px-48">
+        <p class="mb-10 text-lg font-medium text-yellow-100 max-w-2xl mx-auto">
             İhtiyacın olanı bulmana sandığından daha yakınsın.
         </p>
+
         <form class="w-full max-w-md mx-auto">
-            <label for="ara" class="mb-2 text-sm font-medium text-gray-900 sr-only">Ara...</label>
             <div class="relative">
-                <input type="email" id="default-email"
-                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                <input type="text" id="ara"
+                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-yellow-600 focus:border-yellow-600"
                     placeholder="Ara..." required />
                 <button type="submit"
-                    class="text-white absolute end-2.5 bottom-2.5 bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-sm px-4 py-2"><i class="bi bi-search"></i></button>
+                    class="text-white absolute end-2.5 bottom-2.5 bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-sm px-4 py-2 transition">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
         </form>
     </div>
 </section>
+
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if request.user.is_authenticated %}
+        <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-2xl tracking-tight text-gray-900 sm:text-3xl">
+            <span>Hoşgeldin, </span>
+            <span class="font-bold">{{ request.user.first_name }}</span>
+            </h2>
+            <p class="mt-2 text-md text-gray-600">Öne çıkan ilanlara göz at.</p>
+        </div><br>
+        {% endif %}
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
+
+                <div class="flex items-center gap-4 mb-4">
+                    <img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg"
+                        alt="John Smith">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">John Smith</h3>
+                        <p class="text-sm text-gray-500">Fullstack Developer</p>
+                    </div>
+                </div>
+
+                <h4 class="text-md font-semibold text-gray-800 mb-2">Web Sitesi Tasarımı</h4>
+                <p class="text-gray-700 text-sm mb-4">
+                    Modern ve responsive bir web sitesi tasarlanacak. UI/UX deneyimi olan aday tercih edilecektir.
+                </p>
+
+                <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
+                    <div class="flex items-center gap-1">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>İstanbul, Türkiye</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="bi bi-briefcase-fill"></i>
+                        <span>3 yıl deneyim</span>
+                    </div>
+                </div>
+
+                <div class="mt-auto flex justify-between items-center">
+                    <span class="text-lg font-bold text-gray-900">$25 / saat</span>
+                    <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg text-sm">Teklif
+                        Ver</a>
+                </div>
+
+            </div>
+
+            <!-- Benzer diğer kartlar buraya eklenebilir -->
+
+        </div>
+    </div>
+</section>
+
+
 
 {% endblock %}

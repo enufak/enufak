@@ -1,0 +1,30 @@
+{% extends 'base.jinja' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Profil Düzenle{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-10 shadow-md rounded-xl p-8">
+    <a href="/uygulama/profil/" 
+   class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 rounded-lg shadow hover:bg-gray-200 transition">
+  <i class="bi bi-arrow-left mr-2"></i>
+  Geri dön
+</a>
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Profilini Düzenle</h1>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <div class="flex justify-end">
+        <button type="submit"
+                class="px-6 py-2 bg-yellow-500 text-white font-medium rounded-lg shadow-md hover:bg-yellow-600 transition">
+          Kaydet
+        </button>
+      </div>
+    </form>
+</div>
+
+{% endblock %}

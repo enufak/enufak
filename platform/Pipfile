@@ -7,9 +7,9 @@ name = "pypi"
 django = "*"
 django-autoslug = "*"
 django-ckeditor = "*"
-pillow = "*"
 django-crispy-forms = "*"
 crispy-tailwind = "*"
+pillow = "*"
 
 [dev-packages]
 

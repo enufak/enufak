@@ -1,0 +1,161 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}Profilim{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="tr" class="bg-gray-50">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sayfası</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</head>
+
+<body class="antialiased text-gray-800">
+
+    <section class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-6">
+            <img class="w-32 h-32 rounded-full border-4 border-yellow-500 shadow-md"
+                src="{% if request.user.avatar %}{{request.user.avatar.url}}{% else %}{% static  'images/blank-profile.jpg' %}{% endif %}"
+                alt="Profil Fotoğrafı">
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold text-gray-900">{{request.user}}</h1>
+                <p class="text-gray-600 mt-1">{{request.user.konum}}</p>
+
+                <div class="flex items-center mt-3">
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5l2.59 6.61H19l-5.2 4.24 2 6.65L10 14.76l-5.8 3.24 2-6.65L1 7.11h6.41z" />
+                    </svg>
+                    <span class="ml-2 text-sm text-gray-700">Onaylı Profil</span>
+                </div>
+
+                <div class="mt-4 flex gap-3">
+                    <a href="/uygulama/profil/duzenle"
+                        class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"><i
+                            class="bi bi-gear-fill"></i> Profili Düzenle</a>
+                    <a class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"><i class="bi bi-plus"></i>
+                        İlan Oluştur</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-6xl mx-auto px-4 mt-6">
+        <ul class="flex flex-wrap text-sm font-medium text-center border-b border-gray-200" id="default-tab"
+            data-tabs-toggle="#default-tab-content" role="tablist">
+            <li class="me-2">
+                <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about"
+                    aria-selected="true"
+                    class="inline-block p-4 text-yellow-600 border-b-2 border-yellow-600">Hakkında</button>
+            </li>
+            <li class="me-2">
+                <button id="services-tab" data-tabs-target="#services" type="button" role="tab" aria-controls="services"
+                    aria-selected="false" class="inline-block p-4 hover:text-yellow-600">İlanlar</button>
+            </li>
+            <li class="me-2">
+                <button id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews"
+                    aria-selected="false" class="inline-block p-4 hover:text-yellow-600">Yorumlar</button>
+            </li>
+        </ul>
+    </div>
+
+    <div id="default-tab-content" class="max-w-6xl mx-auto px-4 mt-6">
+
+        <div class="p-4 bg-white rounded-lg shadow-sm" id="about" role="tabpanel" aria-labelledby="about-tab">
+            <h2 class="text-lg font-semibold mb-2">{{request.user}} kimdir?</h2>
+            <p class="text-gray-700">{{request.user.biyografi}}</p>
+        </div>
+
+        <div class="hidden p-4 bg-white rounded-lg shadow-sm" id="services" role="tabpanel"
+            aria-labelledby="services-tab">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for ilan in ilanlar %}
+                <div class="border rounded-xl p-6 hover:shadow-lg transition bg-white">
+                    <div class="flex items-center mb-4">
+                        {% if ilan.ilan_sahibi.avatar %}
+                        <img src="{{ ilan.ilan_sahibi.avatar.url }}" alt="{{ ilan.ilan_sahibi.first_name }}"
+                            class="w-12 h-12 rounded-full object-cover mr-3">
+                        {% else %}
+                        <div
+                            class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center mr-3 text-white font-bold">
+                            {{ ilan.ilan_sahibi.first_name|slice:":1" }}
+                        </div>
+                        {% endif %}
+                        <div>
+                            <p class="font-semibold text-gray-800">{{ ilan.ilan_sahibi.first_name }}
+                                {{ilan.ilan_sahibi.last_name }}</p>
+                            {% if ilan.konum %}
+                            <p class="text-gray-500 text-sm">{{ ilan.konum }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">{{ ilan.ilan_baslik }}</h3>
+                    <p class="text-gray-600 text-sm mb-4">{{ ilan.ilan_metni|truncatechars:120 }}</p>
+
+                    <p class="text-gray-500 text-sm mb-2"><span class="font-semibold">Konum:</span> {{ilan.konum }}</p>
+                    <p class="text-gray-500 text-sm mb-2"><span class="font-semibold">Deneyim:</span>
+                        {{ilan.is_deneyimi|truncatechars:50 }}</p>
+
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="font-semibold">İstenilen ücret: <span class="text-green-500">100 ₺</span></span>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="hidden p-4 bg-white rounded-lg shadow-sm space-y-4" id="reviews" role="tabpanel"
+            aria-labelledby="reviews-tab">
+            <div class="border rounded-xl p-4 mb-4 hover:shadow-md transition bg-white">
+                <div class="flex items-start">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3 text-white font-bold">
+                        A
+                    </div>
+
+                    <div class="flex-1">
+                        <p class="font-semibold text-gray-800">Ali Y.</p>
+                        <p class="text-gray-600 text-sm mt-1">Çok hızlı teslimat, kaliteli iş. Tavsiye ederim.</p>
+
+                        <p class="text-gray-400 text-xs mt-1">01 Eyl 2025</p>
+                        <div class="flex mt-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+{% endblock %}

@@ -9,4 +9,6 @@ urlpatterns = [
     path('kayit-ol/', kayit, name='kayit_ol'),
     path('giris-yap/', giris, name='giris_yap'),
     path('cikis-yap/', cikis_yap, name='cikis_yap'),
+    path('profil/', profil, name='profil'),
+    path('profil/duzenle/', profil_duzenle, name='profil_duzenle'),
 ]

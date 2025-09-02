@@ -4,6 +4,12 @@
 {% block title %}Giriş Yap{% endblock %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+<script>
+    document.location.href = '/uygulama/'
+</script>
+{% endif %}
+
 <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md mt-20 mx-auto">
     <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Giriş Yap</h2>
     <form method="post" class="space-y-4">
