@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
+from enufak_app.models import Ilan
 
 User = get_user_model()
 
@@ -96,3 +97,42 @@ class ProfilDuzenleForm(UserChangeForm):
                     "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
                     "placeholder": field.label
                 })
+
+
+class IlanEkleForm(forms.ModelForm):
+    class Meta:
+        model = Ilan
+        fields = ["ilan_baslik", "ilan_metni", "konum", "is_deneyimi",'istenilen_ucret']
+        labels = {
+            "ilan_baslik": "İlan Başlığı",
+            "ilan_metni": "İlan Açıklaması",
+            "konum": "Konum",
+            "is_deneyimi": "İş Deneyimi",
+            'istenilen_ucret': 'İstenilen Ücret (₺)',
+        }
+        widgets = {
+            "ilan_baslik": forms.TextInput(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "placeholder": "Örn: Web sitesi tasarımı"
+            }),
+            "ilan_metni": forms.Textarea(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "rows": 5,
+                "placeholder": "İlan ile ilgili detayları buraya yazın..."
+            }),
+            "konum": forms.TextInput(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "placeholder": "Örn: İstanbul"
+            }),
+            "is_deneyimi": forms.Textarea(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "rows": 3,
+                "placeholder": "İş tecrübelerinizi yazın..."
+            }),
+            "istenilen_ucret": forms.NumberInput(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "placeholder": "Örn: 2500",
+                "min": "0",
+                "step": "100"
+            }),
+        }

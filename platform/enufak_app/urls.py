@@ -11,4 +11,5 @@ urlpatterns = [
     path('cikis-yap/', cikis_yap, name='cikis_yap'),
     path('profil/', profil, name='profil'),
     path('profil/duzenle/', profil_duzenle, name='profil_duzenle'),
+    path('ilan-ekle/', ilan_ekle, name='ilan_ekle'),
 ]

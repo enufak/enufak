@@ -37,7 +37,7 @@
                     <a href="/uygulama/profil/duzenle"
                         class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"><i
                             class="bi bi-gear-fill"></i> Profili Düzenle</a>
-                    <a class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"><i class="bi bi-plus"></i>
+                    <a  href="/uygulama/ilan-ekle/" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"><i class="bi bi-plus"></i>
                         İlan Oluştur</a>
                 </div>
             </div>
@@ -73,6 +73,7 @@
         <div class="hidden p-4 bg-white rounded-lg shadow-sm" id="services" role="tabpanel"
             aria-labelledby="services-tab">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% if ilanlar %}
                 {% for ilan in ilanlar %}
                 <div class="border rounded-xl p-6 hover:shadow-lg transition bg-white">
                     <div class="flex items-center mb-4">
@@ -88,9 +89,6 @@
                         <div>
                             <p class="font-semibold text-gray-800">{{ ilan.ilan_sahibi.first_name }}
                                 {{ilan.ilan_sahibi.last_name }}</p>
-                            {% if ilan.konum %}
-                            <p class="text-gray-500 text-sm">{{ ilan.konum }}</p>
-                            {% endif %}
                         </div>
                     </div>
 
@@ -102,11 +100,14 @@
                         {{ilan.is_deneyimi|truncatechars:50 }}</p>
 
                     <div class="flex items-center justify-between mt-4">
-                        <span class="font-semibold">İstenilen ücret: <span class="text-green-500">100 ₺</span></span>
+                        <span class="font-semibold">İstenilen ücret: <span class="text-green-500">{{ilan.istenilen_ucret}} ₺</span></span>
                     </div>
                 </div>
 
                 {% endfor %}
+                {% else %}
+                Henüz onaylanmış bir ilanın yok.
+                {% endif %}
             </div>
         </div>
 

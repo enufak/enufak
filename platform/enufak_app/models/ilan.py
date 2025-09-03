@@ -8,6 +8,8 @@ class Ilan(models.Model):
     ilan_metni = models.TextField(max_length=1000)
     konum = models.CharField(max_length=25, blank=True, null=True)
     is_deneyimi = models.TextField()
+    istenilen_ucret = models.IntegerField()
+    aktif = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'ilan'

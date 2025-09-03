@@ -8,7 +8,7 @@ from enufak_app.models import Ilan
 @login_required
 def profil(request):
     yeni_kullanici = (timezone.now() - request.user.date_joined) <= timedelta(days=5)
-    ilanlar = Ilan.objects.filter(ilan_sahibi=request.user)
+    ilanlar = Ilan.objects.filter(ilan_sahibi=request.user, aktif=True)
 
 
     return render(request, 'app/profil.jinja', context={
