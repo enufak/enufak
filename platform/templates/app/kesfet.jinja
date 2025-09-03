@@ -56,43 +56,44 @@
         {% endif %}
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
+            {% if ilanlar %}
+            {% for ilan in ilanlar %}
             <div class="bg-white rounded-lg shadow p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
 
                 <div class="flex items-center gap-4 mb-4">
-                    <img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg"
+                    <img class="w-12 h-12 rounded-full" src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
                         alt="John Smith">
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-900">John Smith</h3>
-                        <p class="text-sm text-gray-500">Fullstack Developer</p>
+                        <h3 class="text-lg font-semibold text-gray-900">{{ilan.ilan_sahibi}}</h3>
                     </div>
                 </div>
 
-                <h4 class="text-md font-semibold text-gray-800 mb-2">Web Sitesi Tasarımı</h4>
+                <h4 class="text-md font-semibold text-gray-800 mb-2">{{ilan.ilan_baslik}}</h4>
                 <p class="text-gray-700 text-sm mb-4">
-                    Modern ve responsive bir web sitesi tasarlanacak. UI/UX deneyimi olan aday tercih edilecektir.
+                    {{ilan.ilan_metni|truncatechars:250}}
                 </p>
 
                 <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
                     <div class="flex items-center gap-1">
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span>İstanbul, Türkiye</span>
+                        <span>{{ilan.konum}}</span>
                     </div>
                     <div class="flex items-center gap-1">
                         <i class="bi bi-briefcase-fill"></i>
-                        <span>3 yıl deneyim</span>
+                        <span>{{ilan.is_deneyimi}}</span>
                     </div>
                 </div>
 
                 <div class="mt-auto flex justify-between items-center">
-                    <span class="text-lg font-bold text-gray-900">$25 / saat</span>
-                    <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg text-sm">Teklif
-                        Ver</a>
+                    <span class="text-lg font-bold text-gray-900">İstenilen ücret: <span class="text-green-500">{{ilan.istenilen_ucret}} ₺</span></span>
+                    <a href="#" class="text-white bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-lg text-sm">Profili incele</a>
                 </div>
 
             </div>
-
-            <!-- Benzer diğer kartlar buraya eklenebilir -->
-
+            {% endfor %}
+            {% else %}
+            Hiç ilan bulunamadı.
+            {% endif %}
         </div>
     </div>
 </section>

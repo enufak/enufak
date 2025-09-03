@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from enufak_app.models import Ilan
 
 def index(request):
-    return render(request, 'app/kesfet.jinja')
+    ilanlar = Ilan.objects.filter(aktif=True)
+    return render(request, 'app/kesfet.jinja', context={
+        'ilanlar':ilanlar,
+    })
