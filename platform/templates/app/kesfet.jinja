@@ -29,17 +29,52 @@
             İhtiyacın olanı bulmana sandığından daha yakınsın.
         </p>
 
-        <form class="w-full max-w-md mx-auto">
-            <div class="relative">
-                <input type="text" id="ara"
-                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-yellow-600 focus:border-yellow-600"
-                    placeholder="Ara..." required />
-                <button type="submit"
-                    class="text-white absolute end-2.5 bottom-2.5 bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-sm px-4 py-2 transition">
-                    <i class="bi bi-search"></i>
+        <div class="w-full max-w-md mx-auto mt-6">
+        <form method="get" action="{% url 'ilan_ara' %}" class="flex items-center bg-white rounded-lg shadow-md overflow-hidden">
+            <input type="text" name="kelime"
+            class="w-full p-3 text-gray-700 focus:outline-none"
+            placeholder="Ne arıyorsunuz?" />
+            <button type="button" data-modal-target="filtreModal" data-modal-toggle="filtreModal"
+            class="px-4 text-yellow-600 hover:text-yellow-700">
+            <i class="bi bi-funnel"></i>
+            </button>
+            <button type="submit"
+            class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-4">
+            Ara
+            </button>
+        </form>
+        </div>
+
+        <div id="filtreModal" tabindex="-1" aria-hidden="true"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+            <h3 class="text-lg font-semibold mb-4">Filtreler</h3>
+
+            <form method="get" action="{% url 'ilan_ara' %}">
+            <label class="block text-sm font-medium">Konum</label>
+            <input type="text" name="konum" class="w-full p-2 border rounded mb-3">
+
+            <label class="block text-sm font-medium">Min Ücret</label>
+            <input type="number" name="min_ucret" class="w-full p-2 border rounded mb-3">
+
+            <label class="block text-sm font-medium">Max Ücret</label>
+            <input type="number" name="max_ucret" class="w-full p-2 border rounded mb-3">
+
+            <div class="flex justify-end space-x-2 mt-4">
+                <button data-modal-hide="filtreModal" type="button"
+                class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                Vazgeç
+                </button>
+                <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                Uygula
                 </button>
             </div>
-        </form>
+            </form>
+        </div>
+        </div>
+
+
+
     </div>
 </section>
 
@@ -48,10 +83,10 @@
         {% if request.user.is_authenticated %}
         <div class="mx-auto max-w-2xl lg:mx-0">
             <h2 class="text-2xl tracking-tight text-gray-900 sm:text-3xl">
-            <span>Hoşgeldin, </span>
-            <span class="font-bold">{{ request.user.first_name }}</span>
+                <span>Hoşgeldin, </span>
+                <span class="font-bold">{{ request.user.first_name }}</span>
             </h2>
-            <p class="mt-2 text-md text-gray-600">Öne çıkan ilanlara göz at.</p>
+            <p class="mt-2 text-md text-gray-600">En son yayınlanan ilanlara göz at.</p>
         </div><br>
         {% endif %}
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -61,8 +96,9 @@
             <div class="bg-white rounded-lg shadow p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
 
                 <div class="flex items-center gap-4 mb-4">
-                    <img class="w-12 h-12 rounded-full" src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
-                        alt="John Smith">
+                    <img class="w-12 h-12 rounded-full"
+                        src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
+                        alt="">
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900">{{ilan.ilan_sahibi}}</h3>
                     </div>
@@ -85,8 +121,11 @@
                 </div>
 
                 <div class="mt-auto flex justify-between items-center">
-                    <span class="text-lg font-bold text-gray-900">İstenilen ücret: <span class="text-green-500">{{ilan.istenilen_ucret}} ₺</span></span>
-                    <a href="#" class="text-white bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-lg text-sm">Profili incele</a>
+                    <span class="text-lg font-bold text-gray-900">İstenilen ücret: <span
+                            class="text-green-500">{{ilan.istenilen_ucret}} ₺</span></span>
+                    <a href="#"
+                        class="text-white bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-lg text-sm">Profili
+                        incele</a>
                 </div>
 
             </div>
@@ -98,6 +137,22 @@
     </div>
 </section>
 
+<section class="bg-gray-50 py-12">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-2xl text-gray-800 mb-4">Alıcı Talebi <span class="font-bold">Oluştur</span></h2>
+    
+    <p class="text-gray-600 mb-8">
+      İhtiyacını topluluğumuzda duyur. Alıcı talebi oluşturarak alanında yetenekli insanların sana ulaşmasını sağla.
+    </p>
+    
+    <a href=""
+       class="inline-block px-6 py-3 bg-yellow-600 text-white font-medium rounded-lg shadow-md hover:bg-yellow-700 transition">
+      Alıcı Talebi Oluştur
+    </a>
+  </div>
+</section>
+
+{% include 'components/_footer.jinja' %}
 
 
 {% endblock %}
