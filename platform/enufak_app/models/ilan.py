@@ -9,6 +9,7 @@ class Ilan(models.Model):
     konum = models.CharField(max_length=25, blank=True, null=True)
     is_deneyimi = models.TextField()
     istenilen_ucret = models.IntegerField()
+    etiketler = models.CharField(max_length=100, blank=True, null=True)
     aktif = models.BooleanField(default=False)
 
     class Meta:

@@ -102,13 +102,14 @@ class ProfilDuzenleForm(UserChangeForm):
 class IlanEkleForm(forms.ModelForm):
     class Meta:
         model = Ilan
-        fields = ["ilan_baslik", "ilan_metni", "konum", "is_deneyimi",'istenilen_ucret']
+        fields = ["ilan_baslik", "ilan_metni", "konum", "is_deneyimi",'istenilen_ucret','etiketler']
         labels = {
             "ilan_baslik": "İlan Başlığı",
             "ilan_metni": "İlan Açıklaması",
             "konum": "Konum",
             "is_deneyimi": "İş Deneyimi",
             'istenilen_ucret': 'İstenilen Ücret (₺)',
+            'etiketler':'Etiketler'
         }
         widgets = {
             "ilan_baslik": forms.TextInput(attrs={
@@ -134,6 +135,14 @@ class IlanEkleForm(forms.ModelForm):
                 "placeholder": "Örn: 2500",
                 "min": "0",
             }),
+            "etiketler": forms.Textarea(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "rows": 2,
+                "placeholder": "Örnek: bahçe elektronik yazılım sanayi tesisat"
+            }),
+        }
+        help_texts = {
+            'etiketler': 'Lütfen etiket kelimeleri sadece kelime olacak şekilde ayrı ayrı yazınız.',
         }
 
 
