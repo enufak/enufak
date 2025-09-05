@@ -7,3 +7,5 @@ from .profil_duzenle import profil_duzenle
 from .ilan_ekle import ilan_ekle
 from .ara import ilan_arama
 from .kullanici import kullanici
+from .alicitalebiolustur import alici_talebi_olustur
+from .alici_talepleri import alici_talepleri

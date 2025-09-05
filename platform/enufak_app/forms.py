@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import get_user_model
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
-from enufak_app.models import Ilan
+from enufak_app.models import *
 
 User = get_user_model()
 
@@ -133,5 +133,35 @@ class IlanEkleForm(forms.ModelForm):
                 "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
                 "placeholder": "Örn: 2500",
                 "min": "0",
+            }),
+        }
+
+
+class AliciTalebiForm(forms.ModelForm):
+    class Meta:
+        model = AliciTalebi
+        fields = ['baslik', 'metin', 'süre', 'butce']
+        labels = {
+            'baslik': 'Talep Başlığı',
+            'metin': 'Talep Detayları',
+            'süre': 'İstenilen Süre',
+            'butce': 'Bütçe (₺)',
+        }
+        widgets = {
+            'baslik': forms.TextInput(attrs={
+                'class': 'block w-full rounded-lg border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500 p-3',
+                'placeholder': 'Talebin başlığını girin'
+            }),
+            'metin': forms.Textarea(attrs={
+                'class': 'block w-full rounded-lg border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500 p-3',
+                'placeholder': 'Talebin detaylarını buraya yazın',
+                'rows': 5
+            }),
+            'süre': forms.Select(attrs={
+                'class': 'block w-full rounded-lg border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500 p-3'
+            }),
+            'butce': forms.NumberInput(attrs={
+                'class': 'block w-full rounded-lg border-gray-300 shadow-sm focus:ring-yellow-500 focus:border-yellow-500 p-3',
+                'placeholder': 'Bütçenizi girin (₺)'
             }),
         }

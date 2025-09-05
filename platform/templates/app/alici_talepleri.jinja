@@ -1,0 +1,38 @@
+{% extends "base.jinja" %}
+
+{% block title %}Alıcı Talepleri{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-8">
+
+    <h1 class="text-2xl font-bold mb-6">Alıcı Talepleri</h1>
+
+    {% if talepler %}
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for talep in talepler %}
+        <div class="border rounded-lg p-5 hover:shadow-lg transition bg-white flex flex-col justify-between h-full">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ talep.baslik }}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ talep.metin }}</p>
+            </div>
+
+            <div class="flex justify-between items-center mb-4 text-sm text-gray-700">
+                <span class="font-medium text-gray-500">Süre: {{ talep.get_süre_display }}</span>
+                <span class="font-bold text-green-600">₺{{ talep.butce }}</span>
+            </div>
+
+            <a href="/uygulama/@{{talep.yazar.slug}}/"
+                class="mt-auto block text-center py-2 bg-yellow-600 text-white font-medium rounded-lg shadow hover:bg-yellow-700 transition">
+                Mesaj Gönder
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    {% else %}
+    <p class="text-gray-500">Henüz ilgili alıcı talebi yok.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

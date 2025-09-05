@@ -13,6 +13,8 @@ urlpatterns = [
     path('profil/duzenle/', profil_duzenle, name='profil_duzenle'),
     path('ilan-ekle/', ilan_ekle, name='ilan_ekle'),
     path('ara/', ilan_arama, name='ilan_ara'),
+    path('alici-talebi-olustur/', alici_talebi_olustur, name='alici_talebi_olustur'),
+    path('alici-talepleri/', alici_talepleri, name='alici_talepleri'),
 
     #
     path('@<slug:slug>/', kullanici, name='kullanici'),
