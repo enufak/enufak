@@ -133,6 +133,5 @@ class IlanEkleForm(forms.ModelForm):
                 "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
                 "placeholder": "Örn: 2500",
                 "min": "0",
-                "step": "100"
             }),
         }

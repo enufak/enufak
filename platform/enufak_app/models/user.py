@@ -5,6 +5,7 @@ from django.utils import timezone
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+from autoslug import AutoSlugField
 
 
 class CustomUserManager(BaseUserManager):
@@ -33,6 +34,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     biyografi = models.TextField(max_length=300, blank=True, null=True)
 
     date_joined = models.DateTimeField(default=timezone.now)
+
+    slug = AutoSlugField(populate_from='get_full_name', unique=True, always_update=True, null=True, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -64,3 +67,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             img = img.resize((300, 300), Image.LANCZOS) 
 
             img.save(self.avatar.path)
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"

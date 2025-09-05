@@ -6,3 +6,4 @@ from .profil import profil
 from .profil_duzenle import profil_duzenle
 from .ilan_ekle import ilan_ekle
 from .ara import ilan_arama
+from .kullanici import kullanici

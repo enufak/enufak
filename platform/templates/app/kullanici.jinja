@@ -1,22 +1,20 @@
 {% extends 'base.jinja' %}
 {% load static %}
 
-{% block title %}Profilim{% endblock %}
+{% block title %}{{user.get_full_name}} - Profil{% endblock %}
 
 {% block content %}
-
-
 
 <section class="bg-white shadow-md">
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-6">
         <img class="w-32 h-32 rounded-full border-4 border-yellow-500 shadow-md"
-            src="{% if request.user.avatar %}{{request.user.avatar.url}}{% else %}{% static  'images/blank-profile.jpg' %}{% endif %}"
+            src="{% if user.avatar %}{{user.avatar.url}}{% else %}{% static  'images/blank-profile.jpg' %}{% endif %}"
             alt="Profil Fotoğrafı">
         <div class="flex-1">
-            <h1 class="text-2xl font-bold text-gray-900">{{request.user}}</h1>
+            <h1 class="text-2xl font-bold text-gray-900">{{user}}</h1>
             <p class="text-gray-600 mt-1">
-                {% if request.user.konum %}
-                {{request.user.konum}}
+                {% if user.konum %}
+                {{user.konum}}
                 {% else %}
                 Konum belirtilmedi.
                 {% endif %}
@@ -30,12 +28,13 @@
             </div>
 
             <div class="mt-4 flex gap-3">
-                <a href="/uygulama/profil/duzenle"
-                    class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"><i
-                        class="bi bi-gear-fill"></i> Profili Düzenle</a>
-                <a href="/uygulama/ilan-ekle/" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"><i
-                        class="bi bi-plus"></i>
-                    İlan Oluştur</a>
+                <a href=""
+                    class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600">
+                    <i class="bi bi-chat-text"></i>
+                     Mesaj Gönder</a>
+                <a href="/ticket/" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">
+                <i class="bi bi-exclamation-triangle"></i>
+                    Şikayet Et</a>
             </div>
         </div>
     </div>
@@ -63,10 +62,10 @@
 <div id="default-tab-content" class="max-w-6xl mx-auto px-4 mt-6">
 
     <div class="p-4 bg-white rounded-lg shadow-sm" id="about" role="tabpanel" aria-labelledby="about-tab">
-        <h2 class="text-lg font-semibold mb-2">{{request.user}} kimdir?</h2>
+        <h2 class="text-lg font-semibold mb-2">{{user}} kimdir?</h2>
         <p class="text-gray-700">
-            {% if request.user.biyografi %}
-            {{request.user.biyografi}}
+            {% if user.biyografi %}
+            {{user.biyografi}}
             {% else %}
             Biyografi belirtilmedi.
             {% endif %}
@@ -156,8 +155,6 @@
 
     </div>
 </div>
-
-
 
 
 {% endblock %}
