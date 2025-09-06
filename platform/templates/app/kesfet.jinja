@@ -4,7 +4,6 @@
 {% block title %}Keşfet{% endblock %}
 
 {% block content %}
-<!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,7 +29,6 @@
     }
 </style>
 
-<!-- Hero Section -->
 <section class="relative bg-yellow-500 py-16 md:py-24">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
     <div class="relative container mx-auto px-4 md:px-6 text-center">
@@ -55,7 +53,6 @@
             İhtiyacın olanı bulmana sandığından daha yakınsın.
         </p>
 
-        <!-- Arama Kutusu -->
         <div class="max-w-2xl mx-auto mt-8">
             <form method="get" action="{% url 'ilan_ara' %}"
                 class="flex items-center bg-white rounded-xl shadow-lg overflow-hidden border border-yellow-300">
@@ -80,7 +77,6 @@
             </form>
         </div>
 
-        <!-- Popüler Arama Terimleri -->
         <div class="mt-6 flex flex-wrap justify-center items-center gap-2">
             <span class="text-yellow-100 text-sm font-medium">Popüler aramalar:</span>
             <a href="{% url 'ilan_ara' %}?kelime=Grafiker"
@@ -102,11 +98,9 @@
         </div>
     </div>
 
-    <!-- Dekoratif Öğe -->
     <div class="absolute bottom-0 left-0 right-0 h-8 bg-yellow-500 rounded-t-3xl"></div>
 </section>
 
-<!-- Filtre Modal -->
 <div id="filtreModal" tabindex="-1" aria-hidden="true"
     class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
@@ -175,7 +169,6 @@
     </div>
 </div>
 
-<!-- İlanlar Bölümü -->
 <section class="py-12 bg-gray-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         {% if request.user.is_authenticated %}
@@ -214,7 +207,7 @@
                 <div class="flex items-center gap-4 mb-4">
                     <div class="relative">
                         <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
-                            src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
+                            src="{% if ilan.ilan_sahibi.avatar %}{{ ilan.ilan_sahibi.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
                             alt="{{ ilan.ilan_sahibi }}">
                         <span
                             class="absolute -bottom-1 -right-1 bg-yellow-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
@@ -223,7 +216,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900">
-                            {{ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi}}</h3>
+                            {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <i class="fas fa-check-circle text-yellow-500 me-1"></i>
                             <span>Doğrulanmış Kullanıcı</span>
@@ -231,29 +224,29 @@
                     </div>
                 </div>
 
-                <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ilan.ilan_baslik}}</h4>
+                <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ ilan.ilan_baslik }}</h4>
                 <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {{ilan.ilan_metni|truncatechars:120}}
+                    {{ ilan.ilan_metni|truncatechars:120 }}
                 </p>
 
                 <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
                     <div class="flex items-center gap-1">
                         <i class="fas fa-map-marker-alt text-yellow-500"></i>
-                        <span>{{ilan.konum}}</span>
+                        <span>{{ ilan.konum }}</span>
                     </div>
                     <div class="flex items-center gap-1">
                         <i class="fas fa-briefcase text-yellow-500"></i>
-                        <span>{{ilan.is_deneyimi}}</span>
+                        <span>{{ ilan.is_deneyimi }}</span>
                     </div>
                 </div>
 
                 <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
                     <div>
                         <span class="text-xs text-gray-500">İstenilen Ücret:</span>
-                        <span class="text-lg font-bold text-green-600">{{ilan.istenilen_ucret}} ₺</span>
+                        <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
                     </div>
-                    <a href="/uygulama/@{{ilan.ilan_sahibi.slug}}"
-                        class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
+                    <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}"
+                    class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
                         <span>İncele</span>
                         <i class="fas fa-arrow-right text-lg ml-1"></i>
                     </a>
@@ -262,23 +255,33 @@
             {% endfor %}
         </div>
 
-        <!-- Sayfalama -->
         <div class="mt-10 flex justify-center">
             <nav class="flex items-center gap-1">
-                <a href="#" class="px-3 py-2 rounded-lg bg-yellow-500 text-white font-medium">
-                    1
-                </a>
-                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
-                    2
-                </a>
-                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
-                    3
-                </a>
-                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
+                {% if ilanlar.has_previous %}
+                    <a href="?sayfa={{ ilanlar.previous_page_number }}"
+                    class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                {% endif %}
+
+                {% for num in ilanlar.paginator.page_range %}
+                    {% if ilanlar.number == num %}
+                        <span class="px-3 py-2 rounded-lg bg-yellow-500 text-white font-medium">{{ num }}</span>
+                    {% else %}
+                        <a href="?sayfa={{ num }}"
+                        class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if ilanlar.has_next %}
+                    <a href="?sayfa={{ ilanlar.next_page_number }}"
+                    class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                {% endif %}
             </nav>
         </div>
+
         {% else %}
         <div class="text-center py-12">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-4">
@@ -292,7 +295,6 @@
     </div>
 </section>
 
-<!-- Alıcı Talebi Bölümü -->
 <section class="py-12 bg-white">
     <div class="container mx-auto px-4 md:px-6">
         <div class="bg-yellow-500 rounded-2xl shadow-lg overflow-hidden">
@@ -326,7 +328,6 @@
     </div>
 </section>
 
-<!-- Kategoriler Bölümü -->
 <section class="py-12 bg-gray-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
@@ -385,19 +386,16 @@
 {% include 'components/_footer.jinja' %}
 
 <script>
-    // Font Awesome yüklenmesini kontrol et
     document.addEventListener('DOMContentLoaded', function () {
         const icons = document.querySelectorAll('i');
         icons.forEach(icon => {
             if (getComputedStyle(icon, ':before').content === '""') {
                 console.log('Font Awesome yüklenmedi');
-                // Yedek ikon gösterimi
                 if (icon.classList.contains('fa-search')) {
                     icon.textContent = '🔍';
                 } else if (icon.classList.contains('fa-filter')) {
                     icon.textContent = '⚙️';
                 }
-                // Diğer ikonlar için benzer yedekler eklenebilir
             }
         });
     });
