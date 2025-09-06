@@ -11,7 +11,7 @@
             {% if dm.from_user == request.user %}
                 {% with user=dm.to_user %}
                     <li class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-                        onclick="sohbetAc({{ user.id }})">
+                        onclick="sohbetAc({{ dm.id }})">
                         <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
                              class="w-12 h-12 rounded-full mr-4 object-cover" 
                              alt="{{ user.get_full_name }}">
@@ -29,7 +29,7 @@
             {% else %}
                 {% with user=dm.from_user %}
                     <li class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-                        onclick="sohbetAc({{ user.id }})">
+                        onclick="sohbetAc({{ dm.id }})">
                         <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
                              class="w-12 h-12 rounded-full mr-4 object-cover" 
                              alt="{{ user.get_full_name }}">
@@ -52,8 +52,8 @@
 </div>
 
 <script>
-function sohbetAc(userId) {
-    window.location.href = "/mesajlar/" + userId + "/";
+function sohbetAc(dmID) {
+    window.location.href = "/mesajlar/" + dmID + "/";
 }
 </script>
 {% endblock %}

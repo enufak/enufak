@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c2e81a71d370250274d04f65d9e5576b32caca92be76c25460c87de88e81ddac"
+            "sha256": "4e332846c206617d730acb1f69b647f7a7b8466acc847831be1b712a4c6a2743"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -189,6 +189,15 @@
             "markers": "python_version >= '3.9'",
             "version": "==11.3.0"
         },
+        "shortuuid": {
+            "hashes": [
+                "sha256:3bb9cf07f606260584b1df46399c0b87dd84773e7b25912b7e391e30797c5e72",
+                "sha256:a482a497300b49b4953e15108a7913244e1bb0d41f9d332f5e9925dba33a3c5a"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.6'",
+            "version": "==1.0.13"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272",
@@ -197,13 +206,12 @@
             "markers": "python_version >= '3.8'",
             "version": "==0.5.3"
         },
-        "tzdata": {
+        "uuid": {
             "hashes": [
-                "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8",
-                "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"
+                "sha256:1f87cc004ac5120466f36c5beae48b4c48cc411968eed0eaecd3da82aa96193f"
             ],
-            "markers": "python_version >= '2'",
-            "version": "==2025.2"
+            "index": "pypi",
+            "version": "==1.30"
         }
     },
     "develop": {}

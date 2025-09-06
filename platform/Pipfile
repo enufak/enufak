@@ -10,6 +10,8 @@ django-ckeditor = "*"
 django-crispy-forms = "*"
 crispy-tailwind = "*"
 pillow = "*"
+uuid = "*"
+shortuuid = "*"
 
 [dev-packages]
 
