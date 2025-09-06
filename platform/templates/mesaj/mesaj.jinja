@@ -10,7 +10,7 @@
     <div class="flex items-center p-4 bg-gray-100 border-b border-gray-300 flex-shrink-0">
         <img src="{% if other_user.avatar %}{{ other_user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
              alt="Profil" class="w-10 h-10 rounded-full object-cover mr-3">
-        <span class="font-semibold">{{ other_user.get_full_name }}</span>
+        <span class="font-semibold"><a href="/uygulama/@{{other_user.slug}}">{{ other_user.get_full_name }}</a></span>
     </div>
 
     <div id="messages" class="flex-1 p-4 overflow-y-auto bg-white">

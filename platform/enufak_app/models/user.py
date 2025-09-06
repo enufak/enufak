@@ -35,7 +35,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     date_joined = models.DateTimeField(default=timezone.now)
 
-    slug = AutoSlugField(populate_from='get_full_name', unique=True, always_update=True, null=True, blank=True)
+    slug = AutoSlugField(populate_from='first_name', unique=True, always_update=True, null=True, blank=True)
+    is_name_visible = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -46,9 +47,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         db_table = 'user'
         verbose_name = 'Kullanıcı'
         verbose_name_plural = 'Kullanıcılar'
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -69,4 +67,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             img.save(self.avatar.path)
 
     def get_full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        if self.is_name_visible:
+            return f'{self.first_name} {self.last_name}'
+        else:
+            if self.last_name:
+                return f'{self.first_name} {self.last_name[0]}***'
+            return self.first_name
+        
+    def __str__(self):
+        return self.get_full_name()

@@ -47,7 +47,7 @@ class GirisForm(forms.Form):
 class ProfilDuzenleForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "konum", "biyografi", "avatar")
+        fields = ("first_name", "last_name", "email", "konum", "biyografi", "avatar",'is_name_visible')
         labels = {
             "first_name": "Ad",
             "last_name": "Soyad",
@@ -55,6 +55,7 @@ class ProfilDuzenleForm(UserChangeForm):
             "konum": "Konum",
             "biyografi": "Biyografi",
             "avatar": "Profil Fotoğrafı",
+            'is_name_visible': 'İsim Görünürlüğü',
         }
         help_texts = {
             "first_name": "Adınızı giriniz.",
@@ -63,6 +64,7 @@ class ProfilDuzenleForm(UserChangeForm):
             "konum": "Bulunduğunuz şehir veya ülkeyi yazabilirsiniz.",
             "biyografi": "Kendinizi kısaca tanıtın (max 300 karakter).",
             "avatar": "Profil fotoğrafınızı yükleyin (opsiyonel).",
+            'is_name_visible': 'Kapalı olduğu takdirde isminiz "Ahmet B***" gibi görünür.'
         }
 
     def __init__(self, *args, **kwargs):
