@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'enufak_core',
     'enufak_blog',
     'enufak_app',
+    'enufak_mesaj',
 
     #
     'ckeditor',

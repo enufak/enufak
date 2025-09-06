@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('enufak_core.urls')),
     path('blog/', include('enufak_blog.urls')),
     path('uygulama/', include('enufak_app.urls')),
+    path('mesajlar/', include('enufak_mesaj.urls')),
 
     path("ckeditor/", include("ckeditor_uploader.urls")),
 ]

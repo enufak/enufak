@@ -1,0 +1,59 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}Mesajlarım{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-12 bg-white rounded-xl shadow-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Mesajlarım</h1>
+    <ul id="dm-listesi" class="space-y-4">
+        {% for dm in dmler %}
+            {% if dm.from_user == request.user %}
+                {% with user=dm.to_user %}
+                    <li class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+                        onclick="sohbetAc({{ user.id }})">
+                        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
+                             class="w-12 h-12 rounded-full mr-4 object-cover" 
+                             alt="{{ user.get_full_name }}">
+                        <div>
+                            <p class="text-gray-900 font-medium">{{ user.get_full_name }}</p>
+                            <p class="text-gray-500 text-sm truncate w-64">
+                                Mesajlara devam etmek için tıkla.
+                            </p>
+                            <span class="ml-auto text-xs text-gray-400">
+                            {{ dm.created_at|date:"H:i" }}
+                        </span>
+                        </div>
+                    </li>
+                {% endwith %}
+            {% else %}
+                {% with user=dm.from_user %}
+                    <li class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+                        onclick="sohbetAc({{ user.id }})">
+                        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
+                             class="w-12 h-12 rounded-full mr-4 object-cover" 
+                             alt="{{ user.get_full_name }}">
+                        <div>
+                            <p class="text-gray-900 font-medium">{{ user.get_full_name }}</p>
+                            <p class="text-gray-500 text-sm truncate w-64">
+                                Mesajlara devam etmek için tıkla.
+                            </p>
+                            <span class="ml-auto text-xs text-gray-400">
+                            {{ dm.created_at|date:"H:i" }}
+                        </span>
+                        </div>
+                    </li>
+                {% endwith %}
+            {% endif %}
+        {% empty %}
+            <li class="text-gray-500">Henüz mesajınız yok.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+function sohbetAc(userId) {
+    window.location.href = "/mesajlar/" + userId + "/";
+}
+</script>
+{% endblock %}
