@@ -10,6 +10,15 @@ def index(request):
     page_number = request.GET.get('sayfa')
     ilanlar = paginator.get_page(page_number)
 
+    kategori_sayilari = {
+        'egitim': ilan_liste.filter(kategori='egitim').count(),
+        'teknoloji': ilan_liste.filter(kategori='teknoloji').count(),
+        'eglence': ilan_liste.filter(kategori='eglence').count(),
+        'moda': ilan_liste.filter(kategori='moda').count(),
+    }
+
+
     return render(request, 'app/kesfet.jinja', context={
         'ilanlar':ilanlar,
+        'kategori_sayilari':kategori_sayilari,
     })

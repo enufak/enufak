@@ -7,6 +7,7 @@ def ilan_arama(request):
     konum = request.GET.get("konum", "")
     min_ucret = request.GET.get("min_ucret")
     max_ucret = request.GET.get("max_ucret")
+    secili_kategori = request.GET.get("kategori")
 
     ilanlar = Ilan.objects.filter(aktif=True)
 
@@ -23,11 +24,16 @@ def ilan_arama(request):
     if max_ucret:
         ilanlar = ilanlar.filter(istenilen_ucret__lte=max_ucret)
 
+    if secili_kategori:
+        ilanlar = ilanlar.filter(kategori=secili_kategori)
+
     context = {
         "ilanlar": ilanlar,
         "kelime": kelime,
         "konum": konum,
         "min_ucret": min_ucret,
         "max_ucret": max_ucret,
+        "kategoriler": Ilan.KATEGORI_SECENEKLERI,
+        "secili_kategori": secili_kategori,
     }
     return render(request, "app/ara.jinja", context)

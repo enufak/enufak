@@ -3,6 +3,17 @@ from enufak_app.models import CustomUser
 
 
 class Ilan(models.Model):
+    KATEGORI_SECENEKLERI = [
+        ('teknoloji', 'Teknoloji'),
+        ('sanat', 'Sanat'),
+        ('tamir', 'Tamir'),
+        ('eglence', 'Eğlence'),
+        ('egitim', 'Eğitim'),
+        ('saglik', 'Sağlık'),
+        ('moda', 'Moda'),
+        ('diger', 'Diğer'),
+    ]
+
     ilan_sahibi = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
     ilan_baslik = models.CharField(max_length=150)
     ilan_metni = models.TextField(max_length=1000)
@@ -11,6 +22,8 @@ class Ilan(models.Model):
     istenilen_ucret = models.IntegerField()
     etiketler = models.CharField(max_length=100, blank=True, null=True)
     aktif = models.BooleanField(default=False)
+
+    kategori = models.CharField(max_length=20, choices=KATEGORI_SECENEKLERI, default='diger', blank=True, null=True)
 
     class Meta:
         db_table = 'ilan'
