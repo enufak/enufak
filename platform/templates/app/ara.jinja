@@ -112,39 +112,6 @@
         {% endfor %}
     </div>
 
-    {% if ilanlar.has_other_pages %}
-    <div class="mt-10 flex justify-center">
-        <nav class="flex items-center space-x-2">
-            {% if ilanlar.has_previous %}
-            <a href="?page={{ ilanlar.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-                class="px-3 py-1.5 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">
-                &laquo; Önceki
-            </a>
-            {% endif %}
-            
-            {% for i in ilanlar.paginator.page_range %}
-                {% if ilanlar.number == i %}
-                <span class="px-3 py-1.5 rounded border border-yellow-500 bg-yellow-500 text-white">
-                    {{ i }}
-                </span>
-                {% else %}
-                <a href="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-                    class="px-3 py-1.5 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">
-                    {{ i }}
-                </a>
-                {% endif %}
-            {% endfor %}
-            
-            {% if ilanlar.has_next %}
-            <a href="?page={{ ilanlar.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-                class="px-3 py-1.5 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">
-                Sonraki &raquo;
-            </a>
-            {% endif %}
-        </nav>
-    </div>
-    {% endif %}
-
     {% else %}
     <div class="text-center py-16 bg-white rounded-xl border border-gray-200">
         <svg class="mx-auto h-16 w-16 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
