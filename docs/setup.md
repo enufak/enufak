@@ -45,11 +45,3 @@ ve işlem tamam.
 
 ### Frontend Düzenlemeleri
 Django altyapısı ile beraber jinja şablon motorunu kullanıyoruz. platform altındaki templates dizini içerisinden şablonları düzenleyebilirsiniz.
-
-Sandvicdev 1223
-deneme 1234
-1
-f2
-3
-4
-f
