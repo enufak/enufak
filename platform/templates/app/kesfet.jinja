@@ -4,155 +4,402 @@
 {% block title %}Keşfet{% endblock %}
 
 {% block content %}
-<section class="relative bg-yellow-500">
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .popular-search {
+        font-weight: normal !important;
+        text-decoration: none !important;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="relative bg-yellow-500 py-16 md:py-24">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-    
-    <div class="relative py-16 px-6 mx-auto max-w-screen-xl text-center">
-        {% if request.user.is_authenticated %}
-        {% else %}
-        <a href="/uygulama/giris-yap/"
-            class="inline-flex justify-between items-center py-1 px-3 pe-4 mb-7 text-sm text-yellow-800 bg-yellow-100/80 rounded-full shadow-md hover:shadow-lg transition">
-            <span class="text-xs bg-yellow-700 rounded-full text-white px-4 py-1.5 me-3">Bilgilendirme</span>
-            <span class="text-sm font-medium">Uygulamayı kullanabilmek için giriş yapmalısın.</span>
-            <svg class="w-2.5 h-2.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 9 4-4-4-4" />
-            </svg>
-        </a>
+    <div class="relative container mx-auto px-4 md:px-6 text-center">
+        {% if not request.user.is_authenticated %}
+        <div class="flex justify-center mb-6">
+            <a href="/uygulama/giris-yap/"
+                class="inline-flex items-center py-2 px-4 pe-5 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-yellow-800 font-medium">
+                <span class="bg-yellow-500 text-white text-xs px-3 py-1 rounded-full me-2">Bilgilendirme</span>
+                <span class="text-sm">Uygulamayı kullanabilmek için giriş yapmalısın</span>
+                <svg class="w-3 h-3 ms-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+            </a>
+        </div>
         {% endif %}
 
-        <h1 class="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow">
-            Neye <span class="underline decoration-yellow-200">ihtiyacın</span> var?
+        <h1 class="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md">
+            Neye <span class="text-yellow-900 underline decoration-yellow-200 decoration-3">ihtiyacın</span> var?
         </h1>
-        <p class="mb-10 text-lg font-medium text-yellow-100 max-w-2xl mx-auto">
+        <p class="mb-8 text-lg md:text-xl font-medium text-yellow-100 max-w-2xl mx-auto">
             İhtiyacın olanı bulmana sandığından daha yakınsın.
         </p>
 
-        <div class="w-full max-w-md mx-auto mt-6">
-        <form method="get" action="{% url 'ilan_ara' %}" class="flex items-center bg-white rounded-lg shadow-md overflow-hidden">
-            <input type="text" name="kelime"
-            class="w-full p-3 text-gray-700 focus:outline-none"
-            placeholder="Ne arıyorsunuz?" />
-            <button type="button" data-modal-target="filtreModal" data-modal-toggle="filtreModal"
-            class="px-4 text-yellow-600 hover:text-yellow-700">
-            <i class="bi bi-funnel"></i>
-            </button>
-            <button type="submit"
-            class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-4">
-            Ara
-            </button>
-        </form>
-        </div>
-
-        <div id="filtreModal" tabindex="-1" aria-hidden="true"
-        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-sm">
-            <h3 class="text-lg font-semibold mb-4">Filtreler</h3>
-
-            <form method="get" action="{% url 'ilan_ara' %}">
-            <label class="block text-sm font-medium">Konum</label>
-            <input type="text" name="konum" class="w-full p-2 border rounded mb-3">
-
-            <label class="block text-sm font-medium">Min Ücret</label>
-            <input type="number" name="min_ucret" class="w-full p-2 border rounded mb-3">
-
-            <label class="block text-sm font-medium">Max Ücret</label>
-            <input type="number" name="max_ucret" class="w-full p-2 border rounded mb-3">
-
-            <div class="flex justify-end space-x-2 mt-4">
-                <button data-modal-hide="filtreModal" type="button"
-                class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-                Vazgeç
+        <!-- Arama Kutusu -->
+        <div class="max-w-2xl mx-auto mt-8">
+            <form method="get" action="{% url 'ilan_ara' %}"
+                class="flex items-center bg-white rounded-xl shadow-lg overflow-hidden border border-yellow-300">
+                <div class="flex-grow relative">
+                    <input type="text" name="kelime"
+                        class="w-full p-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded-l-xl"
+                        placeholder="Ne arıyorsunuz? Örn: Grafiker, Web Tasarım..." />
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+                <button type="button" data-modal-target="filtreModal" data-modal-toggle="filtreModal"
+                    class="px-4 py-4 text-yellow-600 hover:text-yellow-700 transition-colors">
+                    <i class="fas fa-filter text-lg"></i>
                 </button>
-                <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
-                Uygula
+                <div class="h-6 border-l border-gray-200"></div>
+                <button type="submit"
+                    class="bg-yellow-600 hover:bg-yellow-700 text-white px-5 py-4 transition-colors flex items-center">
+                    <span class="me-2">Ara</span>
+                    <i class="fas fa-arrow-right"></i>
                 </button>
-            </div>
             </form>
         </div>
+
+        <!-- Popüler Arama Terimleri -->
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-2">
+            <span class="text-yellow-100 text-sm font-medium">Popüler aramalar:</span>
+            <a href="{% url 'ilan_ara' %}?kelime=Grafiker"
+                class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
+                Grafiker
+            </a>
+            <a href="{% url 'ilan_ara' %}?kelime=Web Tasarım"
+                class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
+                Web Tasarım
+            </a>
+            <a href="{% url 'ilan_ara' %}?kelime=SEO"
+                class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
+                SEO
+            </a>
+            <a href="{% url 'ilan_ara' %}?kelime=Mobil Uygulama"
+                class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
+                Mobil Uygulama
+            </a>
         </div>
-
-
-
     </div>
+
+    <!-- Dekoratif Öğe -->
+    <div class="absolute bottom-0 left-0 right-0 h-8 bg-yellow-500 rounded-t-3xl"></div>
 </section>
 
-<section class="py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Filtre Modal -->
+<div id="filtreModal" tabindex="-1" aria-hidden="true"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+        <div class="flex items-center justify-between p-5 border-b">
+            <h3 class="text-xl font-semibold text-gray-900">Filtreleme Seçenekleri</h3>
+            <button type="button" data-modal-hide="filtreModal"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <form method="get" action="{% url 'ilan_ara' %}" class="p-5">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Konum</label>
+                <div class="relative">
+                    <input type="text" name="konum"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400">
+                    <i class="fas fa-map-marker-alt absolute right-3 top-3.5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Min Ücret (₺)</label>
+                    <input type="number" name="min_ucret"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Max Ücret (₺)</label>
+                    <input type="number" name="max_ucret"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                <select name="kategori"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400">
+                    <option value="">Tüm Kategoriler</option>
+                    <option value="1">Grafik Tasarım</option>
+                    <option value="2">Web Geliştirme</option>
+                    <option value="3">Mobil Uygulama</option>
+                    <option value="4">SEO</option>
+                    <option value="5">İçerik Yazarlığı</option>
+                </select>
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button type="button" data-modal-hide="filtreModal"
+                    class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors">
+                    Vazgeç
+                </button>
+                <div class="flex gap-2">
+                    <button type="reset"
+                        class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors">
+                        Sıfırla
+                    </button>
+                    <button type="submit"
+                        class="px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors flex items-center">
+                        <i class="fas fa-filter me-2"></i>
+                        Filtrele
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- İlanlar Bölümü -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         {% if request.user.is_authenticated %}
-        <div class="mx-auto max-w-2xl lg:mx-0">
-            <h2 class="text-2xl tracking-tight text-gray-900 sm:text-3xl">
-                <span>Hoşgeldin, </span>
-                <span class="font-bold">{{ request.user.first_name }}</span>
+        <div class="mb-10">
+            <h2 class="text-3xl font-bold text-gray-900">
+                Hoşgeldin, <span class="text-yellow-600">{{ request.user.first_name }}</span>
             </h2>
-            <p class="mt-2 text-md text-gray-600">En son yayınlanan ilanlara göz at.</p>
-        </div><br>
+            <p class="mt-2 text-gray-600">En son yayınlanan ilanlara göz at.</p>
+        </div>
         {% endif %}
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-            {% if ilanlar %}
+        <div class="flex flex-wrap gap-4 mb-6">
+            <button class="px-4 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium flex items-center">
+                <i class="fas fa-bolt me-2"></i>
+                Tümü
+            </button>
+            <button
+                class="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50">
+                En Yeni
+            </button>
+            <button
+                class="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50">
+                Popüler
+            </button>
+            <button
+                class="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-50">
+                Yakınlarımdaki
+            </button>
+        </div>
+
+        {% if ilanlar %}
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {% for ilan in ilanlar %}
-            <div class="bg-white rounded-lg shadow p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
-
+            <div
+                class="bg-white rounded-2xl shadow-sm p-6 flex flex-col hover:shadow-md transition-all duration-300 border border-gray-100 group">
                 <div class="flex items-center gap-4 mb-4">
-                    <img class="w-12 h-12 rounded-full"
-                        src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
-                        alt="">
+                    <div class="relative">
+                        <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
+                            src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
+                            alt="{{ ilan.ilan_sahibi }}">
+                        <span
+                            class="absolute -bottom-1 -right-1 bg-yellow-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-xs"></i>
+                        </span>
+                    </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-900">{{ilan.ilan_sahibi}}</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">
+                            {{ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi}}</h3>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <i class="fas fa-check-circle text-yellow-500 me-1"></i>
+                            <span>Doğrulanmış Kullanıcı</span>
+                        </div>
                     </div>
                 </div>
 
-                <h4 class="text-md font-semibold text-gray-800 mb-2">{{ilan.ilan_baslik}}</h4>
-                <p class="text-gray-700 text-sm mb-4">
-                    {{ilan.ilan_metni|truncatechars:250}}
+                <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ilan.ilan_baslik}}</h4>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {{ilan.ilan_metni|truncatechars:120}}
                 </p>
 
                 <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
                     <div class="flex items-center gap-1">
-                        <i class="bi bi-geo-alt-fill"></i>
+                        <i class="fas fa-map-marker-alt text-yellow-500"></i>
                         <span>{{ilan.konum}}</span>
                     </div>
                     <div class="flex items-center gap-1">
-                        <i class="bi bi-briefcase-fill"></i>
+                        <i class="fas fa-briefcase text-yellow-500"></i>
                         <span>{{ilan.is_deneyimi}}</span>
                     </div>
                 </div>
 
-                <div class="mt-auto flex justify-between items-center">
-                    <span class="text-lg font-bold text-gray-900">İstenilen ücret: <span
-                            class="text-green-500">{{ilan.istenilen_ucret}} ₺</span></span>
+                <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-gray-500">İstenilen Ücret:</span>
+                        <span class="text-lg font-bold text-green-600">{{ilan.istenilen_ucret}} ₺</span>
+                    </div>
                     <a href="/uygulama/@{{ilan.ilan_sahibi.slug}}"
-                        class="text-white bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-lg text-sm">Profili
-                        incele</a>
+                        class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
+                        <span>İncele</span>
+                        <i class="fas fa-arrow-right text-lg ml-1"></i>
+                    </a>
                 </div>
-
             </div>
             {% endfor %}
-            {% else %}
-            Hiç ilan bulunamadı.
-            {% endif %}
+        </div>
+
+        <!-- Sayfalama -->
+        <div class="mt-10 flex justify-center">
+            <nav class="flex items-center gap-1">
+                <a href="#" class="px-3 py-2 rounded-lg bg-yellow-500 text-white font-medium">
+                    1
+                </a>
+                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
+                    2
+                </a>
+                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
+                    3
+                </a>
+                <a href="#" class="px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </nav>
+        </div>
+        {% else %}
+        <div class="text-center py-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-4">
+                <i class="fas fa-inbox text-3xl text-yellow-600"></i>
+            </div>
+            <h3 class="text-xl font-medium text-gray-900 mb-2">Henüz ilan bulunmuyor</h3>
+            <p class="text-gray-600 max-w-md mx-auto">Şu anda gösterilecek ilan bulunamadı. Biraz sonra tekrar kontrol
+                etmeyi unutma.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Alıcı Talebi Bölümü -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="bg-yellow-500 rounded-2xl shadow-lg overflow-hidden">
+            <div class="md:flex items-center">
+                <div class="p-8 md:p-12 md:w-2/3">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Alıcı Talebi <span
+                            class="text-yellow-900">Oluştur</span></h2>
+                    <p class="text-yellow-100 mb-6 max-w-md">
+                        İhtiyacını topluluğumuzda duyur. Alıcı talebi oluşturarak alanında yetenekli insanların sana
+                        ulaşmasını sağla.
+                    </p>
+                    <a href="/uygulama/alici-talebi-olustur/"
+                        class="inline-flex items-center px-5 py-3 bg-white text-yellow-700 font-medium rounded-lg shadow-md hover:bg-gray-50 transition">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        Alıcı Talebi Oluştur
+                    </a>
+                </div>
+                <div class="hidden md:block md:w-1/3">
+                    <div class="relative h-full">
+                        <div class="absolute -top-4 -left-4 w-32 h-32 bg-yellow-300 rounded-full opacity-20"></div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-200 rounded-full opacity-30"></div>
+                        <div class="relative p-6 flex justify-center items-center h-full">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
+                                <i class="fas fa-bullhorn text-5xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="bg-gray-50 py-12">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-2xl text-gray-800 mb-4">Alıcı Talebi <span class="font-bold">Oluştur</span></h2>
-    
-    <p class="text-gray-600 mb-8">
-      İhtiyacını topluluğumuzda duyur. Alıcı talebi oluşturarak alanında yetenekli insanların sana ulaşmasını sağla.
-    </p>
-    
-    <a href="/uygulama/alici-talebi-olustur/"
-       class="inline-block px-6 py-3 bg-yellow-600 text-white font-medium rounded-lg shadow-md hover:bg-yellow-700 transition">
-      Alıcı Talebi Oluştur
-    </a>
-  </div>
+<!-- Kategoriler Bölümü -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-900">Popüler <span class="text-yellow-600">Kategoriler</span></h2>
+            <p class="mt-2 text-gray-600">Farklı kategorilerdeki hizmetleri keşfet</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <a href="{% url 'ilan_ara' %}?kategori=1"
+                class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                <div
+                    class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
+                    <i class="fas fa-palette text-2xl text-yellow-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Grafik Tasarım</h3>
+                <p class="text-sm text-gray-500">124 ilan</p>
+            </a>
+            <a href="{% url 'ilan_ara' %}?kategori=2"
+                class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                <div
+                    class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
+                    <i class="fas fa-code text-2xl text-yellow-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Web Geliştirme</h3>
+                <p class="text-sm text-gray-500">98 ilan</p>
+            </a>
+            <a href="{% url 'ilan_ara' %}?kategori=3"
+                class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                <div
+                    class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
+                    <i class="fas fa-mobile-alt text-2xl text-yellow-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">Mobil Uygulama</h3>
+                <p class="text-sm text-gray-500">76 ilan</p>
+            </a>
+            <a href="{% url 'ilan_ara' %}?kategori=4"
+                class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                <div
+                    class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
+                    <i class="fas fa-chart-line text-2xl text-yellow-600"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-1">SEO</h3>
+                <p class="text-sm text-gray-500">53 ilan</p>
+            </a>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="#" class="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-medium">
+                <span>Tüm kategorileri görüntüle</span>
+                <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
 </section>
 
 {% include 'components/_footer.jinja' %}
 
-
+<script>
+    // Font Awesome yüklenmesini kontrol et
+    document.addEventListener('DOMContentLoaded', function () {
+        const icons = document.querySelectorAll('i');
+        icons.forEach(icon => {
+            if (getComputedStyle(icon, ':before').content === '""') {
+                console.log('Font Awesome yüklenmedi');
+                // Yedek ikon gösterimi
+                if (icon.classList.contains('fa-search')) {
+                    icon.textContent = '🔍';
+                } else if (icon.classList.contains('fa-filter')) {
+                    icon.textContent = '⚙️';
+                }
+                // Diğer ikonlar için benzer yedekler eklenebilir
+            }
+        });
+    });
+</script>
 {% endblock %}

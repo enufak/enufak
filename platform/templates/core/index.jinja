@@ -1,309 +1,232 @@
 {% extends "base.jinja" %}
 {% load static %}
 
-{% block title %}İşleri çözmenin en kolay yolu.{% endblock %}
+{% block title %}İşleri çözmenin en kolay yolu. | EnUfak{% endblock %}
 
 {% block content %}
-<section class="bg-white">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
 
-        <h1 class="text-5xl font-extrabold" style="padding-bottom: 10px;">
-            İşleri çözmenin
-            <span class="bg-clip-text text-transparent"
-                style="background-image: linear-gradient(to right, #ffc71d, #ffde7a);">
-                en kolay
-            </span> yolu.
-        </h1>
-        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48">
-            İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe dönüştürebilir,
-            karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
-        </p>
-        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-            <a href="/uygulama/"
-                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-blue-300">
-                Hemen başla
-                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
+<!-- Styles & Fonts -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<section class="bg-white">
-    <div class="py-8 px-4 mx-auto max-w-screen-md lg:py-16">
-        <h2 class="text-4xl text-gray-900 mb-8 text-center">Peki, neden <span class="font-bold">EnUfak?</span></h2>
+<style>
+    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .gradient-text {
+        background: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: gradient 3s ease infinite;
+    }
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+    .btn-primary { background: linear-gradient(to right, #f59e0b, #fbbf24); transition: all 0.3s ease; }
+    .btn-primary:hover { background: linear-gradient(to right, #d97706, #f59e0b); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(245,158,11,0.25); }
+</style>
 
-        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-6 mb-8">
-            <a href="#"
-                class="bg-yellow-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2">
-                Verimlilik
-            </a>
-            <h2 class="text-gray-900 text-2xl md:text-2xl font-extrabold mb-2">Potansiyelini harcama!</h2>
-            <p class="text-md font-normal text-gray-500 mb-6">İyi derecede bildiğin fakat bi köşede tuttuğun bilgi ve
-                tecrübelerini işe dönüştür. Bi bakmışsın yeni kapılar açmışlar.</p>
-        </div>
+<body class="bg-gray-50">
 
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-6">
-                <a href="#"
-                    class="bg-yellow-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2">
-                    Tasarruf
-                </a>
-                <h2 class="text-gray-900 text-2xl font-extrabold mb-2">Gereksiz vakit kaybetme!</h2>
-                <p class="text-md font-normal text-gray-500 mb-4">Yaşadığın sorunla alakalı ordan oraya koşturmana artık
-                    gerek yok. Aradığın çözüm sandığından daha yakında.</p>
-            </div>
-
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-6">
-                <a href="#"
-                    class="bg-yellow-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2">
-                    İletişim
-                </a>
-                <h2 class="text-gray-900 text-2xl font-extrabold mb-2">İki taraflı kolay iletişim.</h2>
-                <p class="text-md font-normal text-gray-500 mb-4">Platform içerisindeki mesajlaşma özelliği sayesinde
-                    daha rahat anlaşabilir ve işi bitirebilirsiniz.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-yellow-400" style="padding: 25px;">
-    <div class="max-w-screen-xl mx-auto px-4 lg:px-6">
-        <div class="mx-auto max-w-screen-md text-center mb-12">
-            <h2 class="text-3xl tracking-tight text-gray-800 mb-4">
-                EnUfak <span class="font-extrabold ">Topluluk</span>
-            </h2>
-        </div>
-        <br>
-        <div class="grid gap-8 lg:grid-cols-3">
-            {% for gonderi in gonderiler %}
-            <div class="max-w-sm bg-white rounded-lg shadow-sm">
-                <a>
-                    <img style="height: 200px !important;" class="rounded-t-lg w-full"
-                        src="{{gonderi.kapak_resmi.url}}"
-                        alt="" />
-                </a>
-                <div class="p-5">
-                    <span
-                        class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm border border-indigo-400">{{gonderi.get_etiket_display}}</span>
-                    <a href="/blog/{{gonderi.slug}}/">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800">
-                            {{gonderi.baslik}}
-                        </h5>
+<!-- Hero Section -->
+<section class="bg-white py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    İşleri çözmenin <span class="gradient-text">en kolay</span> yolu.
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe dönüştürebilir,
+                    karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="/uygulama/" class="btn-primary text-white font-medium py-3 px-6 rounded-lg text-center">
+                        Hemen Başla <i class="fas fa-arrow-right ml-2"></i>
                     </a>
-                    <span class="text-gray-600 text-sm">{{gonderi.created_at}}</span>
+                    <a href="#nasil-calisir" class="bg-white text-gray-800 border border-gray-300 font-medium py-3 px-6 rounded-lg text-center hover:bg-gray-50 transition">
+                        Nasıl Çalışır? <i class="fas fa-question-circle ml-2"></i>
+                    </a>
                 </div>
             </div>
-            {% endfor %}
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="absolute -top-6 -left-6 w-64 h-64 bg-yellow-100 rounded-full opacity-50 animate-pulse"></div>
+                    <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-yellow-200 rounded-full opacity-30 animate-pulse delay-500"></div>
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                         alt="EnUfak İş Çözümleri" class="relative z-10 rounded-xl shadow-lg w-full max-w-md">
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <br>
-        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-            <a href="/blog/"
-                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-700 rounded-lg bg-yellow-400 border border-gray-700">
-                Tüm Yazılar
-                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
+<!-- Features Section -->
+<section class="py-16 bg-gray-50" id="nasil-calisir">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Neden <span class="text-yellow-500">EnUfak</span>?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">İşlerinizi kolaylaştırmak için tasarlanmış özelliklerimizle tanışın</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-bolt text-yellow-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Hızlı Çözüm</h3>
+                <p class="text-gray-600">İhtiyacınız olan hizmete hızlıca ulaşın, sorunlarınızı minimum zamanda çözün.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Güvenli Ödeme</h3>
+                <p class="text-gray-600">Ödemeleriniz güvende, işiniz tamamlandıktan sonra ödeme yaparsınız.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-users text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Kaliteli İnsanlar</h3>
+                <p class="text-gray-600">Alanında uzman, değerlendirilmiş ve güvenilir kişilerle çalışın.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">EnUfak Nasıl <span class="text-yellow-500">Çalışır</span>?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Sadece 3 adımda ihtiyacınız olan hizmeti bulun veya hizmet verin</p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center">
+            <div class="flex-1 text-center">
+                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-3xl font-bold text-yellow-600">1</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">İhtiyacını Belirt</h3>
+                <p class="text-gray-600">Yapılmasını istediğin işi detaylı bir şekilde açıkla ve bütçeni belirle.</p>
+            </div>
+            
+            <div class="flex-1 text-center">
+                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-3xl font-bold text-yellow-600">2</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Teklifleri Değerlendir</h3>
+                <p class="text-gray-600">Gelen teklifleri inceleyerek sana en uygun olan çalışanı seç.</p>
+            </div>
+            
+            <div class="flex-1 text-center">
+                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-3xl font-bold text-yellow-600">3</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">İşi Tamamla</h3>
+                <p class="text-gray-600">İş tamamlandıktan sonra ödemeni yap ve değerlendirmeni yap.</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="/uygulama/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg">
+                Hemen Deneyin <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
     </div>
 </section>
 
-<section class="bg-white">
-    <div class="py-8 px-4 mx-auto max-w-screen-md lg:py-16">
-        <div class="mx-auto max-w-screen-md text-center mb-12">
-            <h2 class="text-3xl tracking-tight text-gray-800 mb-4">
-                Sıkça Sorulan <span class="font-extrabold ">Sorular</span>
-            </h2>
+<!-- Testimonials Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kullanıcı <span class="text-yellow-500">Yorumları</span></h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">EnUfak kullanıcılarının deneyimleri</p>
         </div>
-
-        <div id="accordion-open" data-accordion="open">
-            <h2 id="accordion-open-heading-1">
-                <button type="button" aria-expanded="true"
-                    class="flex items-center aria-expanded:bg-yellow-300 aria-expanded:text-gray-800 justify-between w-full p-5 hover:bg-yellow-300 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl gap-3"
-                    data-accordion-target="#accordion-open-body-1" aria-expanded="true"
-                    aria-controls="accordion-open-body-1">
-                    <span class="flex items-center">
-                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        EnUfak ne işe yarar?
-                    </span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5 5 1 1 5" />
-                    </svg>
-                </button>
-            </h2>
-            <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-                <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">EnUfak uygulaması, yeteneklerinizi işe dönüştürmenizi veya
-                        sorunlarınızı çözecek kişileri hızlı bir şekilde bulabilmenizi amaçlayan bir projedir.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center font-bold text-yellow-800">AE</div>
+                    <div class="ml-4">
+                        <h4 class="font-semibold text-gray-800">Ahmet E.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
                 </div>
+                <p class="text-gray-600">"Web sitemi yaptırmak için birçok yer gezdim. EnUfak'ta hem uygun fiyata hem de istediğim kalitede hizmet aldım."</p>
             </div>
-
-            <h2 id="accordion-open-heading-2">
-                <button type="button"
-                    class="flex items-center aria-expanded:bg-yellow-300 aria-expanded:text-gray-800 justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 gap-3 hover:bg-yellow-300"
-                    data-accordion-target="#accordion-open-body-2" aria-expanded="false"
-                    aria-controls="accordion-open-body-2">
-                    <span class="flex items-center">
-                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        EnUfak'ı kimler kullanabilir?
-                    </span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5 5 1 1 5" />
-                    </svg>
-                </button>
-            </h2>
-            <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
-                <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">EnUfak'ı geliştirirken belli bir kesimi ele almadık. Her kesimden her
-                        kişinin kullanabileceği bir platform olup, ilerleyen süreçde de bu şekilde geliştirilmeye devam
-                        edilecektir.</p>
+            
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800">ZY</div>
+                    <div class="ml-4">
+                        <h4 class="font-semibold text-gray-800">Zeynep Y.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
                 </div>
+                <p class="text-gray-600">"İçerik yazarlığı konusunda yardıma ihtiyacım vardı. Bulduğum çözüm ortağı harika iş çıkardı, teşekkürler EnUfak!"</p>
             </div>
-
-            <h2 id="accordion-open-heading-3">
-                <button type="button"
-                    class="flex items-center aria-expanded:bg-yellow-300 aria-expanded:text-gray-800 justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 gap-3 hover:bg-yellow-300"
-                    data-accordion-target="#accordion-open-body-3" aria-expanded="false"
-                    aria-controls="accordion-open-body-3">
-                    <span class="flex items-center">
-                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Böyle bir uygulama neden var?
-                    </span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5 5 1 1 5" />
-                    </svg>
-                </button>
-            </h2>
-            <div id="accordion-open-body-3" class="hidden" aria-labelledby="accordion-open-heading-3">
-                <div class="p-5 border border-t-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">
-                        "Herkes kendi işini yapabilsin" fikri ile ortaya çıkmıştır. Kenarda köşede duran ve işe
-                        çeviremediğiniz bilgileri ihtiyacı olan kişiler ile çalışarak iş haline getirebilirsiniz.
-                    </p>
-                    <p class="mb-2 text-gray-500">
-                        Diğer yandan bakarsak birisine yaptırmanız gereken bir iş var ise, ordan oraya bakıp doğru
-                        kişilere ulaşamama sorununa çözüm olarak da bu uygulamayı kullanabilirsiniz.
-                    </p>
+            
+            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-800">MK</div>
+                    <div class="ml-4">
+                        <h4 class="font-semibold text-gray-800">Mehmet K.</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <h2 id="accordion-open-heading-4">
-                <button type="button"
-                    class="flex items-center aria-expanded:bg-yellow-300 aria-expanded:text-gray-800 justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 gap-3 hover:bg-yellow-300"
-                    data-accordion-target="#accordion-open-body-4" aria-expanded="false"
-                    aria-controls="accordion-open-body-4">
-                    <span class="flex items-center">
-                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        EnUfak bir freelancer platformu mu?
-                    </span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5 5 1 1 5" />
-                    </svg>
-                </button>
-            </h2>
-            <div id="accordion-open-body-4" class="hidden" aria-labelledby="accordion-open-heading-4">
-                <div class="p-5 border border-t-0 border-gray-200">
-                    <p class="mb-2 text-gray-500">
-                        İlk bakışta EnUfak, freelancer platformlarına benzer gözükse de temel olarak farklı bir amaç için çıkmıştır.
-                        EnUfak'da "herhangi biri"nin de iş yapabilmesi hedeflenmiştir. Ayrıca freelance platformlarda bulunmayan 
-                        iş türleri de yapılabildiği için bu konuda freelance platformlardan ayrılmaktadır.
-                    </p>
-                </div>
+                <p class="text-gray-600">"Logo tasarımı için birkaç kişiyle görüştüm ancak istediğim sonucu alamadım. EnUfak sayesinde aradığım tasarımı buldum."</p>
             </div>
         </div>
-
-
     </div>
 </section>
 
-<section class="bg-white">
-    <div class="px-4 mx-auto max-w-screen-md">
-        <section class="bg-white py-12 sm:py-16">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
-                    <h2 class="text-3xl tracking-tight text-gray-900 sm:text-4xl">
-                    Ekibimizle <span class="font-bold">Tanışın</span>
-                    </h2>
-                </div>
-                <br>
-                <div class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
-                    <div class="flex items-center space-x-4">
-                        <img class="w-16 h-16 rounded-full shadow"
-                            src="https://avatars.githubusercontent.com/u/89014650?s=400&u=4163bd8b43a56758cf577c7b0fb9fd2dfcb9c093&v=4"
-                            alt="Ekin İlter Varlı">
-                        <div>
-                            <h3 class="text-base font-semibold text-gray-900">Ekin İlter VARLI</h3>
-                            <p class="text-sm font-medium text-indigo-600">Lead Developer, CTO</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <img class="w-16 h-16 rounded-full shadow"
-                            src="{% static 'images/cinar.jpeg' %}"
-                            alt="Çınar Yağız Karakuş">
-                        <div>
-                            <h3 class="text-base font-semibold text-gray-900">Çınar Yağız KARAKUŞ</h3>
-                            <p class="text-sm font-medium text-indigo-600">Chief Marketing Officer</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <img class="w-16 h-16 rounded-full shadow"
-                            src="https://avatars.githubusercontent.com/u/195111973?v=4"
-                            alt="Ekin İlter Varlı">
-                        <div>
-                            <h3 class="text-base font-semibold text-gray-900">Yağız YILDIZDAĞ</h3>
-                            <p class="text-sm font-medium text-indigo-600">Front-End Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-                <a href="/ticket/"
-                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-blue-300">
-                Ekibimize Katıl
-                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
+<!-- CTA Section -->
+<section class="py-16 bg-yellow-500">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Hemen Üye Ol, İşini Hallet!</h2>
+        <p class="text-lg text-white mb-8 opacity-90">Binlerce kullanıcıya katıl ve ihtiyacın olan hizmeti bul veya yeteneklerini paraya dönüştür.</p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="/uygulama/kayit-ol/" class="bg-white text-yellow-600 font-medium py-3 px-8 rounded-lg hover:bg-gray-100 transition">
+                Ücretsiz Kaydol <i class="fas fa-user-plus ml-2"></i>
             </a>
-            </div>
-        </section>
-
+            <a href="/uygulama/giris-yap/" class="bg-yellow-700 text-white font-medium py-3 px-8 rounded-lg hover:bg-yellow-800 transition">
+                Giriş Yap <i class="fas fa-sign-in-alt ml-2"></i>
+            </a>
+        </div>
     </div>
 </section>
 
 {% include 'components/_footer.jinja' %}
+
+
+<!-- JS Animations -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, observerOptions);
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+});
+</script>
+
+</body>
 
 {% endblock %}

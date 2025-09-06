@@ -1,18 +1,56 @@
 {% load static %}
-<footer class="bg-white rounded-lg shadow-sm m-4">
-    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{% static 'images/logo.png' %}" class="h-20 w-auto" alt="Logo" />
-            </a>
-            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
-                <li>
-                    <a href="/ticket/" class="hover:underline me-4 md:me-6">Bir Sorunun Mu Var?</a>
-                </li>
-            </ul>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">EnUfak</h3>
+                    <p class="text-gray-400">İşleri çözmenin en kolay yolu. Becerilerinizi işe dönüştürün veya sorunlarınızı çözdürün.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Hızlı Erişim</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/hizmetler/" class="text-gray-400 hover:text-yellow-400 transition">Hizmetler</a></li>
+                        <li><a href="/nasil-calisir/" class="text-gray-400 hover:text-yellow-400 transition">Nasıl Çalışır?</a></li>
+                        <li><a href="/blog/" class="text-gray-400 hover:text-yellow-400 transition">Blog</a></li>
+                        <li><a href="/sss/" class="text-gray-400 hover:text-yellow-400 transition">SSS</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Destek</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/yardim/" class="text-gray-400 hover:text-yellow-400 transition">Yardım Merkezi</a></li>
+                        <li><a href="/iletisim/" class="text-gray-400 hover:text-yellow-400 transition">İletişim</a></li>
+                        <li><a href="/gizlilik/" class="text-gray-400 hover:text-yellow-400 transition">Gizlilik Politikası</a></li>
+                        <li><a href="/kullanim-kosullari/" class="text-gray-400 hover:text-yellow-400 transition">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Bizi Takip Edin</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition"><i class="fab fa-linkedin-in text-lg"></i></a>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-gray-400 mb-2">Mobil Uygulamalarımız</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="bg-gray-700 hover:bg-gray-600 transition rounded px-3 py-1 text-sm flex items-center">
+                                <i class="fab fa-apple mr-1"></i> App Store
+                            </a>
+                            <a href="#" class="bg-gray-700 hover:bg-gray-600 transition rounded px-3 py-1 text-sm flex items-center">
+                                <i class="fab fa-google-play mr-1"></i> Play Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2025 EnUfak. Tüm hakları saklıdır.</p>
+            </div>
         </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center">© 2025 <a href="/"
-                class="hover:underline">EnUfak™</a>. Tüm hakları saklıdır.</span>
-    </div>
-</footer>
+    </footer>
