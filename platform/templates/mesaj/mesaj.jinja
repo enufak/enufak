@@ -30,38 +30,38 @@
 <script>
 const dmId = {{ dm.id }};
 const messagesContainer = document.getElementById('messages');
+let lastId = 0;
 
 function fetchMessages() {
-    fetch(`/mesajlar/${dmId}/messages/`)
+    fetch(`/mesajlar/${dmId}/messages-long/?last_id=${lastId}`)
         .then(res => res.json())
         .then(data => {
-            messagesContainer.innerHTML = '';
-            data.forEach(msg => {
-                const div = document.createElement('div');
-                div.classList.add('my-2', 'flex');
-
-                // Kendi mesajınsa sağa, diğer mesajsa sola hizala
-                if (msg.sender === '{{ request.user.get_full_name }}') {
-                    div.classList.add('justify-end');
-                    div.innerHTML = `<div class="bg-indigo-600 text-white px-4 py-2 rounded-xl rounded-br-none max-w-xs break-words">${msg.text}</div>`;
-                } else {
-                    div.classList.add('justify-start');
-                    div.innerHTML = `<div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-xl rounded-bl-none max-w-xs break-words">${msg.text}</div>`;
-                }
-
-                messagesContainer.appendChild(div);
-            });
-
-            // Otomatik scroll en alta
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            if (data.length) {
+                data.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.classList.add('my-2', 'flex');
+                    if (msg.sender === '{{ request.user.get_full_name }}') {
+                        div.classList.add('justify-end');
+                        div.innerHTML = `<div class="bg-indigo-600 text-white px-4 py-2 rounded-xl rounded-br-none max-w-xs break-words">${msg.text}</div>`;
+                    } else {
+                        div.classList.add('justify-start');
+                        div.innerHTML = `<div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-xl rounded-bl-none max-w-xs break-words">${msg.text}</div>`;
+                    }
+                    messagesContainer.appendChild(div);
+                    lastId = msg.id;
+                });
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+            fetchMessages();
+        })
+        .catch(err => {
+            console.error(err);
+            setTimeout(fetchMessages, 2000);
         });
 }
 
-// Her 2 saniyede bir mesajları çek
-setInterval(fetchMessages, 2000);
 fetchMessages();
 
-// Mesaj gönderme
 const form = document.querySelector('form');
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -76,7 +76,6 @@ form.addEventListener('submit', e => {
     }).then(res => res.json())
       .then(data => {
           input.value = '';
-          fetchMessages(); // Yeni mesajı hemen ekle
       });
 });
 </script>

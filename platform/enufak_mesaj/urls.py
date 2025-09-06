@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:id>/', dm, name='dm'),
     path('<int:id>/messages/', dm_messages, name='dm_messages'),
     path('<int:id>/send/', send_message, name='send_message'),
+    path('<int:id>/messages-long/', dm_messages_longpoll, name='dm_messages_long'), 
 ]
