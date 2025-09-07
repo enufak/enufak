@@ -8,53 +8,35 @@
             </a>
 
             <!-- Desktop Menü -->
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center space-x-6">
                 {% if request.user.is_authenticated %}
-                    <!-- Kullanıcı giriş yapmışsa buraya içerik gelecek -->
+                    <a href="/uygulama/profil/" class="text-gray-700 hover:text-yellow-500 font-medium transition duration-150">Profil</a>
+                    <a href="/uygulama/cikis-yap/" class="text-gray-700 hover:text-red-500 font-medium transition duration-150">Çıkış</a>
                 {% else %}
                     <a href="/uygulama/kesfet/" class="text-gray-700 hover:text-yellow-500 font-medium transition duration-150">Keşfet</a>
                     <a href="/uygulama/giris-yap/" class="text-gray-700 hover:text-yellow-500 font-medium transition duration-150">Giriş Yap</a>
-                    <a href="/uygulama/kayit-ol/" class="bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg">Kayıt Ol</a>
+                    <a href="/uygulama/kayit-ol/" class="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg">Kayıt Ol</a>
                 {% endif %}
             </div>
-
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <button type="button" class="text-gray-700 hover:text-yellow-500 focus:outline-none focus:text-yellow-500" aria-label="Menü" id="mobile-menu-button">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menü (açılır kapanır) -->
-        <div class="hidden md:hidden bg-white pt-2 pb-3 space-y-1 shadow-lg rounded-lg mt-2" id="mobile-menu">
-            {% if request.user.is_authenticated %}
-                <!-- Kullanıcı giriş yapmışsa buraya içerik gelecek -->
-            {% else %}
-                <a href="/uygulama/kesfet/" class="block pl-3 pr-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md">Keşfet</a>
-                <a href="/uygulama/giris-yap/" class="block pl-3 pr-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md">Giriş Yap</a>
-                <a href="/uygulama/kayit-ol/" class="block ml-3 mr-3 mt-2 bg-yellow-400 hover:bg-yellow-500 text-white text-center font-medium py-2 px-4 rounded-lg transition duration-300">Kayıt Ol</a>
-            {% endif %}
-        </div>
     </div>
 </nav>
 
 <script>
-    // Mobil menü toggle işlevi
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Dışarı tıklandığında menüyü kapat
-    document.addEventListener('click', function(event) {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuButton = document.getElementById('mobile-menu-button');
-        
-        if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-        }
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dışarı tıklandığında menüyü kapat
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    }
+});
 </script>

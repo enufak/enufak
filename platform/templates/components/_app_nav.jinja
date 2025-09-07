@@ -1,10 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Başlığı</title>
     <script>
         // Tema kontrolü için JavaScript
         document.addEventListener('DOMContentLoaded', function() {
@@ -229,7 +224,6 @@
                 <div class="flex items-center">
                     <!-- Mobil menü butonu -->
                     <button id="mobile-menu-button" class="mobile-only mr-3 text-primary focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
                     </button>
                     
                     <!-- Logo -->
@@ -253,29 +247,7 @@
                 </div>
             </div>
 
-            <!-- Mobil menü -->
-            <div class="mobile-menu hidden" id="mobile-menu">
-                <div class="pt-2 pb-3 space-y-1">
-                    <a href="/uygulama/profil/" class="block dropdown-item rounded-md">
-                        <i class="fas fa-user mr-3 w-5 text-center"></i> Profilim
-                    </a>
-                    <a href="/uygulama/alici-talepleri/" class="block dropdown-item rounded-md">
-                        <i class="fas fa-list-alt mr-3 w-5 text-center"></i> Alıcı Talepleri
-                    </a>
-                    <a href="/mesajlar/" class="block dropdown-item rounded-md">
-                        <i class="fas fa-envelope mr-3 w-5 text-center"></i> Mesajlarım
-                    </a>
-                    <a href="/uygulama/profil/duzenle/" class="block dropdown-item rounded-md">
-                        <i class="fas fa-cog mr-3 w-5 text-center"></i> Ayarlar
-                    </a>
-                    <a href="/ticket/" class="block dropdown-item rounded-md">
-                        <i class="fas fa-question-circle mr-3 w-5 text-center"></i> Destek
-                    </a>
-                    <a href="/uygulama/cikis-yap/" class="block dropdown-item rounded-md text-red-600">
-                        <i class="fas fa-sign-out-alt mr-3 w-5 text-center"></i> Çıkış Yap
-                    </a>
-                </div>
-            </div>
+      
         </nav>
 
         <!-- Kullanıcı dropdown menüsü (masaüstü) - Animasyonlu -->
