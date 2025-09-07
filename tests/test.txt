@@ -1,5 +1,0 @@
-This is an example.
-SandvicDev
-. 
-.
-Lorem ipsum dolor sit amet!!

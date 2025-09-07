@@ -106,13 +106,14 @@ class ProfilDuzenleForm(UserChangeForm):
 class IlanEkleForm(forms.ModelForm):
     class Meta:
         model = Ilan
-        fields = ["ilan_baslik", "ilan_metni", "konum", "is_deneyimi",'istenilen_ucret','etiketler']
+        fields = ["ilan_baslik", "ilan_metni", "konum", "is_deneyimi",'istenilen_ucret','kategori','etiketler']
         labels = {
             "ilan_baslik": "İlan Başlığı",
             "ilan_metni": "İlan Açıklaması",
             "konum": "Konum",
             "is_deneyimi": "İş Deneyimi",
             'istenilen_ucret': 'İstenilen Ücret (₺)',
+            'kategori': 'Kategori',
             'etiketler':'Etiketler'
         }
         widgets = {
