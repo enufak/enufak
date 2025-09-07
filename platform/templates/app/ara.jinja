@@ -80,37 +80,59 @@
 
     {% if ilanlar %}
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {% for ilan in ilanlar %}
-        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-            <div class="p-6 flex-grow">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-semibold text-gray-900 line-clamp-2">
-                        {{ ilan.ilan_baslik }}
-                    </h3>
-                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                        ₺{{ ilan.istenilen_ucret }}
-                    </span>
+            {% for ilan in ilanlar %}
+            <div
+                class="bg-white rounded-2xl shadow-sm p-6 flex flex-col hover:shadow-md transition-all duration-300 border border-gray-100 group">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="relative">
+                        <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
+                            src="{% if ilan.ilan_sahibi.avatar %}{{ ilan.ilan_sahibi.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
+                            alt="{{ ilan.ilan_sahibi }}">
+                        <span
+                            class="absolute -bottom-1 -right-1 bg-yellow-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                            <i class="fas fa-star text-xs"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">
+                            {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <i class="fas fa-check-circle text-yellow-500 me-1"></i>
+                            <span>Doğrulanmış Kullanıcı</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <p class="text-gray-600 mb-4 line-clamp-3">{{ ilan.ilan_metni }}</p>
-                
-                <div class="flex items-center text-gray-500 text-sm mb-4">
-                    <svg class="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                    </svg>
-                    <span>{{ ilan.konum }}</span>
+
+                <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ ilan.ilan_baslik }}</h4>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {{ ilan.ilan_metni|truncatechars:120 }}
+                </p>
+
+                <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-map-marker-alt text-yellow-500"></i>
+                        <span>{{ ilan.konum }}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-briefcase text-yellow-500"></i>
+                        <span>{{ ilan.is_deneyimi }}</span>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-gray-500">İstenilen Ücret:</span>
+                        <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
+                    </div>
+                    <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}"
+                    class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
+                        <span>İncele</span>
+                        <i class="fas fa-arrow-right text-lg ml-1"></i>
+                    </a>
                 </div>
             </div>
-            
-            <div class="px-6 pb-4">
-                <a href="/uygulama/@{{ilan.ilan_sahibi.slug}}/"
-                    class="w-full block text-center py-2.5 px-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition font-medium">
-                    Profili Görüntüle
-                </a>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
 
     {% else %}
     <div class="text-center py-16 bg-white rounded-xl border border-gray-200">
