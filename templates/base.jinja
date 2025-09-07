@@ -43,12 +43,14 @@
     </style>
 </head>
 
-<body class="">
+<body class="{{body_class|default:''}}">
+    {% if not body_class == 'error-page'%}
     {% if request.user.is_authenticated %}
     {% include 'components/_app_nav.jinja' %}
     {% else %}
     {% include 'components/_navbar.jinja' %}
     {% endif %}
+    {% endif%}
 
     {% if messages %}
     <div class="fixed top-5 right-5 space-y-2 z-50">

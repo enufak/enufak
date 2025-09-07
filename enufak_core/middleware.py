@@ -10,6 +10,6 @@ class Force404Middleware:
         response = self.get_response(request)
 
         if response.status_code == 404:
-            return render(request, '404.jinja', status=404)
+            return render(request, '404.jinja',{'body_class':'error-page'}, status=404)
         
         return response
