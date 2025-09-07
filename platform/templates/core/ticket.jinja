@@ -2,70 +2,226 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
 {% block title %}Destek Talebi Oluştur{% endblock %}
 
 {% block content %}
-<section class="bg-white">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+<section class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
+    <div class="max-w-5xl mx-auto px-4">
         {% if messages %}
-        <div class="max-w-2xl mx-auto mt-4 space-y-2">
+        <div class="mb-8 space-y-3">
             {% for message in messages %}
-            <div
-                class="p-4 rounded-lg text-white {% if message.tags == 'error' %} bg-red-500 {% elif message.tags == 'success' %} bg-green-500 {% else %} bg-blue-500 {% endif %}">
-                {{ message }}
+            <div class="p-4 rounded-xl text-white flex items-center justify-between shadow-lg
+                {% if message.tags == 'error' %} bg-red-500 
+                {% elif message.tags == 'success' %} bg-green-500 
+                {% else %} bg-blue-500 {% endif %}">
+                <div class="flex items-center">
+                    <i class="fas {% if message.tags == 'error' %} fa-exclamation-circle 
+                        {% elif message.tags == 'success' %} fa-check-circle 
+                        {% else %} fa-info-circle {% endif %} mr-3 text-lg"></i>
+                    <span>{{ message }}</span>
+                </div>
+                <button type="button" class="text-white hover:text-gray-200 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             {% endfor %}
         </div>
         {% endif %}
 
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Ana Form -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex-1">
+                <!-- Form Başlık -->
+                <div class="bg-yellow-500 px-8 py-6 rounded-t-2xl flex items-center">
+                    <div class="h-12 w-12 rounded-lg bg-yellow-400 bg-opacity-20 flex items-center justify-center mr-4">
+                        <i class="fas fa-headset text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">Destek Talebi Oluştur</h1>
+                        <p class="text-yellow-100 mt-1">Sorunlarınızı ve fikirlerinizi bizimle paylaşın</p>
+                    </div>
+                </div>
 
-        <form method="post" class="bg-white p-6 rounded-lg shadow">
-            {% csrf_token %}
-            <div class="space-y-12">
-                <div class="border-b border-gray-200 pb-12">
-                    <h2 class="text-3xl text-gray-900">Destek Talebi <span class="font-bold">Oluştur</span></h2>
-                    <p class="mt-1 text-sm text-gray-600">Fikirlerini ve yaşadığın problemleri buradan bizimle
-                        paylaşabilirsin.</p>
+                <form method="post" class="p-8">
+                    {% csrf_token %}
 
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
-                            <label for="id_tur" class="text-sm font-medium text-gray-900">Talep Türü</label>
-                            <div class="mt-2">
-                                <div class="items-center pl-3">
-                                    {{ form.tur }}
+                    <div class="space-y-8">
+                        <!-- Talep Türü -->
+                        <div class="form-group">
+                            <label for="id_tur" class="block text-sm font-medium text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-tag text-yellow-500 mr-2"></i>Talep Türü
+                            </label>
+                            <div class="mt-1 relative">
+                                <div
+                                    class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                    <i class="fas fa-list"></i>
                                 </div>
+                                {{ form.tur }}
                             </div>
                         </div>
 
-                        <div class="sm:col-span-3">
-                            <label for="id_baslik" class="text-sm font-medium text-gray-900">Başlık</label>
-                            <div class="mt-2">
-                                <div class="flex items-center pl-3">
-                                    {{ form.baslik }}
+                        <!-- Başlık -->
+                        <div class="form-group">
+                            <label for="id_baslik"
+                                class="block text-sm font-medium text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-heading text-yellow-500 mr-2"></i>Başlık
+                            </label>
+                            <div class="mt-1 relative">
+                                <div
+                                    class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                    <i class="fas fa-pencil-alt text-sm"></i>
                                 </div>
+                                {{ form.baslik }}
                             </div>
+                            <p class="mt-2 text-sm text-gray-500">Talebinizi kısa ve net bir şekilde özetleyin</p>
                         </div>
 
-                        <div class="sm:col-span-6">
-                            <label for="id_konu" class="block text-sm font-medium text-gray-900">Konu</label>
-                            <div class="mt-2">
+                        <!-- Konu -->
+                        <div class="form-group">
+                            <label for="id_konu" class="block text-sm font-medium text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-align-left text-yellow-500 mr-2"></i>Detaylı Açıklama
+                            </label>
+                            <div class="mt-1">
                                 {{ form.konu }}
                             </div>
-                            <p class="mt-3 text-sm text-gray-600">Lütfen detaylı ve açıklayıcı şekilde yazmaya özen
-                                gösterin.</p>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="text-sm text-gray-500">Lütfen detaylı ve açıklayıcı şekilde yazın</p>
+                                <span class="text-xs text-gray-400">En az 50 karakter</span>
+                            </div>
                         </div>
                     </div>
 
-                </div>
+                    <!-- Butonlar -->
+                    <div class="mt-10 flex items-center justify-between pt-8 border-t border-gray-200">
+                        <button type="submit"
+                            class="px-6 py-3.5 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-xl shadow-lg transition flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>Gönder
+                        </button>
+
+                    </div>
+                </form>
             </div>
 
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="submit"
-                    class="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-500 focus:ring-2 focus:ring-indigo-600">Gönder</button>
+            <!-- Yardım ve İpuçları -->
+            <div class="lg:w-96 space-y-6">
+                <!-- Yardım Kutusu -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Destek Talebi İpuçları
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Başlık kısa, açıklayıcı ve anlaşılır olsun</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Probleminizi mümkün olduğunca detaylı anlatın</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Görsel eklemek için destek@example.com'a mail
+                                atın</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Talep türünü doğru seçmeye özen gösterin</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- İstatistikler -->
+                <div class="bg-yellow-500 rounded-2xl shadow-xl p-6 text-white">
+                    <h3 class="text-lg font-semibold flex items-center mb-4">
+                        <i class="fas fa-chart-line mr-2"></i>Destek İstatistikleri
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm">Ortalama Yanıt Süresi</span>
+                                <span class="font-semibold">2.4 saat</span>
+                            </div>
+                            <div class="h-2 bg-yellow-400 bg-opacity-30 rounded-full overflow-hidden">
+                                <div class="h-full bg-white rounded-full w-3/4"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm">Çözülme Oranı</span>
+                                <span class="font-semibold">94%</span>
+                            </div>
+                            <div class="h-2 bg-yellow-400 bg-opacity-30 rounded-full overflow-hidden">
+                                <div class="h-full bg-white rounded-full w-11/12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hızlı Yardım -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                        <i class="fas fa-question-circle text-yellow-500 mr-2"></i>Hızlı Yardım
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4">Sıkça sorulan sorulara göz atın</p>
+                    <div class="space-y-2">
+                        <a href="#"
+                            class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition">
+                            <span class="text-sm text-gray-700">Hesap ayarlarımı nasıl değiştiririm?</span>
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                        </a>
+                        <a href="#"
+                            class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition">
+                            <span class="text-sm text-gray-700">Ödeme yöntemimi nasıl güncellerim?</span>
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                        </a>
+                        <a href="#"
+                            class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition">
+                            <span class="text-sm text-gray-700">Şifremi unuttum ne yapmalıyım?</span>
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </section>
+
+<style>
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+        border-radius: 0.75rem;
+        border: 1px solid #E5E7EB;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .form-group select:focus,
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #EAB308;
+        box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.15);
+    }
+
+    .form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+    }
+</style>
+
 
 {% endblock %}
