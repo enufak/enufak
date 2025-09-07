@@ -3,8 +3,327 @@
 
 {% block title %}Sıkça Sorulan Sorular{% endblock %}
 
-
 {% block content %}
-hello world
 
+<head>
+    <style>
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.3);
+        }
+        
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background-color: #fefce8;
+            border-radius: 0.5rem;
+            border-left: 4px solid #eab308;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">
+                        <i class="fas fa-question-circle text-yellow-500 mr-3"></i>Sıkça Sorulan Sorular
+                    </h1>
+                    <p class="text-gray-600 mt-2">Yardım merkezimizde aradığınız tüm cevapları bulabilirsiniz</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Arama Kutusu -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input type="text" id="faq-search" placeholder="Sorunuzu arayın..."
+                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 search-box">
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 mt-4">
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Hesap Ayarları</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Ödeme İşlemleri</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Teknik Destek</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Güvenlik</span>
+            </div>
+        </div>
+
+        <!-- SSS Kategorileri -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer">
+                <div class="h-16 w-16 mx-auto bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-user-circle text-yellow-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800 mb-2">Hesap & Profil</h3>
+                <p class="text-gray-600 text-sm">Hesap ayarları, güvenlik ve profil düzenleme ile ilgili sorular</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer">
+                <div class="h-16 w-16 mx-auto bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-credit-card text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800 mb-2">Ödeme İşlemleri</h3>
+                <p class="text-gray-600 text-sm">Ödeme yöntemleri, faturalandırma ve iadeler ile ilgili sorular</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition cursor-pointer">
+                <div class="h-16 w-16 mx-auto bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-tools text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800 mb-2">Teknik Destek</h3>
+                <p class="text-gray-600 text-sm">Teknik sorunlar, hata mesajları ve sistem gereksinimleri</p>
+            </div>
+        </div>
+
+        <!-- Sonuç Bulunamadı Mesajı -->
+        <div id="no-results" class="no-results mb-6">
+            <div class="text-yellow-600 text-5xl mb-4">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Aradığınız soru bulunamadı</h3>
+            <p class="text-gray-600 mb-4">Lütfen farklı kelimelerle tekrar deneyin veya aşağıdaki iletişim kanallarından bize ulaşın.</p>
+            
+        </div>
+
+        <!-- SSS Listesi -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="border-b border-gray-200 p-6 bg-gray-50">
+                <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-question-circle text-yellow-500 mr-2"></i>En Çok Sorulan Sorular
+                </h2>
+            </div>
+
+            <!-- SSS Öğeleri -->
+            <div id="faq-container" class="divide-y divide-gray-200">
+                <!-- SSS 1 -->
+                <div class="faq-item">
+                    <div class="flex justify-between items-center p-6 cursor-pointer faq-question">
+                        <h3 class="font-medium text-gray-800">Hesabımı nasıl doğrularım?</h3>
+                        <span class="faq-toggle text-yellow-500">
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-600">
+                            <p>Hesap doğrulama işlemi için aşağıdaki adımları izleyebilirsiniz:</p>
+                            <ol class="list-decimal pl-5 mt-3 space-y-2">
+                                <li>Profil sayfanıza gidin</li>
+                                <li>"Hesap Doğrulama" sekmesine tıklayın</li>
+                                <li>E-posta adresinize gelen doğrulama linkine tıklayın</li>
+                                <li>Telefon numaranıza gelen SMS kodunu ilgili alana girin</li>
+                            </ol>
+                            <p class="mt-3">Doğrulama işlemi tamamlandığında hesabınızın güvenliği artırılacaktır.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSS 2 -->
+                <div class="faq-item">
+                    <div class="flex justify-between items-center p-6 cursor-pointer faq-question">
+                        <h3 class="font-medium text-gray-800">Ödeme yöntemimi nasıl eklerim?</h3>
+                        <span class="faq-toggle text-yellow-500">
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-600">
+                            <p>Yeni bir ödeme yöntemi eklemek için:</p>
+                            <ul class="list-disc pl-5 mt-3 space-y-2">
+                                <li>Hesabım > Ödeme Yöntemleri bölümüne gidin</li>
+                                <li>"Yöntem Ekle" butonuna tıklayın</li>
+                                <li>Kredi kartı, banka kartı veya dijital cüzdan seçeneklerinden birini seçin</li>
+                                <li>Gerekli bilgileri güvenli bir şekilde girin</li>
+                                <li>Kaydet butonuna tıklayın</li>
+                            </ul>
+                            <p class="mt-3 text-sm bg-yellow-50 p-3 rounded-lg border border-yellow-100">
+                                <i class="fas fa-info-circle text-yellow-500 mr-1"></i>
+                                Ödeme yöntemi ekledikten sonra küçük bir doğrulama ücreti alınabilir (iade edilir).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSS 3 -->
+                <div class="faq-item">
+                    <div class="flex justify-between items-center p-6 cursor-pointer faq-question">
+                        <h3 class="font-medium text-gray-800">Şifremi unuttum ne yapmalıyım?</h3>
+                        <span class="faq-toggle text-yellow-500">
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-600">
+                            <p>Şifrenizi unutmanız durumunda:</p>
+                            <ol class="list-decimal pl-5 mt-3 space-y-2">
+                                <li>Giriş sayfasındaki "Şifremi Unuttum" linkine tıklayın</li>
+                                <li>Kayıtlı e-posta adresinizi girin</li>
+                                <li>E-posta adresinize gelen şifre sıfırlama linkine tıklayın</li>
+                                <li>Yeni şifrenizi belirleyin ve kaydedin</li>
+                            </ol>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                                <h4 class="font-medium text-blue-800 flex items-center">
+                                    <i class="fas fa-lightbulb mr-2"></i>İpucu
+                                </h4>
+                                <p class="text-blue-700 mt-1 text-sm">Şifrenizi güvenli tutmak için en az 8 karakter,
+                                    bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter kullanın.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSS 4 -->
+                <div class="faq-item">
+                    <div class="flex justify-between items-center p-6 cursor-pointer faq-question">
+                        <h3 class="font-medium text-gray-800">İki faktörlü kimlik doğrulama nasıl etkinleştirilir?</h3>
+                        <span class="faq-toggle text-yellow-500">
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-600">
+                            <p>İki faktörlü kimlik doğrulama (2FA) hesap güvenliğinizi önemli ölçüde artırır.
+                                Etkinleştirmek için:</p>
+                            <ol class="list-decimal pl-5 mt-3 space-y-2">
+                                <li>Hesap Ayarları > Güvenlik bölümüne gidin</li>
+                                <li>"İki Faktörlü Kimlik Doğrulama" seçeneğini bulun</li>
+                                <li>Telefon numaranızı veya kimlik doğrulama uygulamanızı bağlayın</li>
+                                <li>Size gösterilen kodu girin veya uygulamadaki kodu taratın</li>
+                                <li>Yedek kurtarma kodlarınızı güvenli bir yere kaydedin</li>
+                            </ol>
+                            <p class="mt-3">Artık her giriş yaptığınızda ek bir güvenlik kodu girmeniz gerekecektir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSS 5 -->
+                <div class="faq-item">
+                    <div class="flex justify-between items-center p-6 cursor-pointer faq-question">
+                        <h3 class="font-medium text-gray-800">Aboneliğimi nasıl iptal ederim?</h3>
+                        <span class="faq-toggle text-yellow-500">
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="px-6 pb-6 text-gray-600">
+                            <p>Aboneliğinizi iptal etmek için aşağıdaki adımları izleyin:</p>
+                            <ol class="list-decimal pl-5 mt-3 space-y-2">
+                                <li>Hesabım > Abonelikler bölümüne gidin</li>
+                                <li>İptal etmek istediğiniz aboneliği seçin</li>
+                                <li>"Aboneliği Yönet" butonuna tıklayın</li>
+                                <li>"İptal Et" seçeneğini belirleyin</li>
+                                <li>İptal nedeninizi seçin ve onaylayın</li>
+                            </ol>
+                            <p class="mt-3 text-sm bg-gray-50 p-3 rounded-lg border border-gray-200">
+                                <i class="fas fa-exclamation-circle text-gray-500 mr-1"></i>
+                                Aboneliğiniz iptal edilse bile, ödediğiniz dönemin sonuna kadar hizmetten yararlanmaya
+                                devam edebilirsiniz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ek Yardım -->
+        <div class="mt-10 bg-yellow-500 rounded-xl shadow-md p-8 text-center text-white">
+            <h2 class="text-2xl font-bold mb-4">Hala yardıma mı ihtiyacınız var?</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Sorunuzun cevabını bulamadıysanız, destek ekibimizle doğrudan iletişime
+                geçebilirsiniz.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#"
+                    class="px-6 py-3 bg-white text-yellow-600 font-medium rounded-lg shadow hover:bg-gray-100 transition">
+                    <i class="fas fa-envelope mr-2"></i>E-posta Gönder
+                </a>
+                <a href="#"
+                    class="px-6 py-3 bg-yellow-700 text-white font-medium rounded-lg shadow hover:bg-yellow-800 transition">
+                    <i class="fas fa-comments mr-2"></i>Canlı Destek
+                </a>
+            </div>
+        </div>
+    </main>
+
+    {% include 'components/_footer.jinja' %}
+
+    <script>
+        // SSS açılıp kapanması
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Arama fonksiyonu
+        document.getElementById('faq-search').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('no-results');
+            let foundResults = false;
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    foundResults = true;
+                    // Arama terimi vurgulama
+                    if (searchTerm.length > 2) {
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const highlightedQuestion = question.replace(regex, match => `<span class="bg-yellow-200">${match}</span>`);
+                        item.querySelector('.faq-question h3').innerHTML = highlightedQuestion;
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Sonuç bulunamadı mesajını göster/gizle
+            if (!foundResults && searchTerm.length > 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+            
+            // Arama kutusu boşsa tüm sonuçları göster
+            if (searchTerm.length === 0) {
+                faqItems.forEach(item => {
+                    item.style.display = 'block';
+                    // Vurgulamaları temizle
+                    const originalText = item.querySelector('.faq-question h3').textContent;
+                    item.querySelector('.faq-question h3').innerHTML = originalText;
+                });
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
 {% endblock %}
