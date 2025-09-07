@@ -15,6 +15,8 @@ urlpatterns = [
     path('ara/', ilan_arama, name='ilan_ara'),
     path('alici-talebi-olustur/', alici_talebi_olustur, name='alici_talebi_olustur'),
     path('alici-talepleri/', alici_talepleri, name='alici_talepleri'),
+    path('ilan-duzenle/<int:id>/', ilan_duzenle, name='ilan_duzenle'),
+    path('ilan-sil/<int:id>/', ilan_sil, name='ilan_sil'),
 
     #
     path('@<slug:slug>/', kullanici, name='kullanici'),

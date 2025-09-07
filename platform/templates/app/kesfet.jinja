@@ -224,11 +224,11 @@
                 <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
                     <div class="flex items-center gap-1">
                         <i class="fas fa-map-marker-alt text-yellow-500"></i>
-                        <span>{{ ilan.konum }}</span>
+                        <span>{{ ilan.konum|default:"Konum belirtilmedi." }}</span>
                     </div>
                     <div class="flex items-center gap-1">
                         <i class="fas fa-briefcase text-yellow-500"></i>
-                        <span>{{ ilan.is_deneyimi }}</span>
+                        <span>{{ ilan.is_deneyimi|default:"İş deneyimi belirtilmedi." }}</span>
                     </div>
                 </div>
 
