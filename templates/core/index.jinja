@@ -10,7 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+    }
+
     .gradient-text {
         background: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
         -webkit-background-clip: text;
@@ -18,207 +22,264 @@
         background-size: 200% auto;
         animation: gradient 3s ease infinite;
     }
+
     @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
-    .card-hover { transition: all 0.3s ease; }
-    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-    .btn-primary { background: linear-gradient(to right, #f59e0b, #fbbf24); transition: all 0.3s ease; }
-    .btn-primary:hover { background: linear-gradient(to right, #d97706, #f59e0b); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(245,158,11,0.25); }
+
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #f59e0b, #fbbf24);
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(to right, #d97706, #f59e0b);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
 </style>
 
 <body class="bg-gray-50">
 
-<section class="bg-white py-16 md:py-24">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                    İşleri çözmenin <span class="gradient-text">en kolay</span> yolu.
-                </h1>
-                <p class="text-lg text-gray-600 mb-8">
-                    İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe dönüştürebilir,
-                    karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="/uygulama/" class="btn-primary text-white font-medium py-3 px-6 rounded-lg text-center">
-                        Hemen Başla <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                    <a href="#nasil-calisir" class="bg-white text-gray-800 border border-gray-300 font-medium py-3 px-6 rounded-lg text-center hover:bg-gray-50 transition">
-                        Nasıl Çalışır? <i class="fas fa-question-circle ml-2"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative">
-                    <div class="absolute -top-6 -left-6 w-64 h-64 bg-yellow-100 rounded-full opacity-50 animate-pulse"></div>
-                    <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-yellow-200 rounded-full opacity-30 animate-pulse delay-500"></div>
-                    <img src="" 
-                         alt="" class="relative z-10 rounded-xl shadow-lg w-full max-w-md">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Neden <span class="text-yellow-500">EnUfak</span>?</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">İşlerinizi kolaylaştırmak için tasarlanmış özelliklerimizle tanışın</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-bolt text-yellow-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Hızlı Çözüm</h3>
-                <p class="text-gray-600">İhtiyacınız olan hizmete hızlıca ulaşın, sorunlarınızı minimum zamanda çözün.</p>
-            </div>
-            
-            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-comments text-blue-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Kolay İletişim</h3>
-                <p class="text-gray-600">Platform içerisindeki mesajlaşma özelliği ile daha rahat anlaşabilir ve işe başlayabilirsiniz.</p>
-            </div>
-            
-            <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-users text-green-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Güçlü Topluluk</h3>
-                <p class="text-gray-600">Güçlü topluluk sayesinde herhangi bir konuya çözüm bulabilirsiniz.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-white" id="nasil-calisir">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">EnUfak Nasıl <span class="text-yellow-500">Çalışır</span>?</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Sadece 3 adımda ihtiyacınız olan hizmeti bulun veya hizmet verin</p>
-        </div>
-        
-        <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center">
-            <div class="flex-1 text-center">
-                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span class="text-3xl font-bold text-yellow-600">1</span>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">İhtiyacını Belirt</h3>
-                <p class="text-gray-600">Yapılmasını istediğin işi detaylı bir şekilde açıkla ve bütçeni belirle.</p>
-            </div>
-            
-            <div class="flex-1 text-center">
-                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span class="text-3xl font-bold text-yellow-600">2</span>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Teklifleri Değerlendir</h3>
-                <p class="text-gray-600">Gelen teklifleri inceleyerek sana en uygun olan çalışanı seç.</p>
-            </div>
-            
-            <div class="flex-1 text-center">
-                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span class="text-3xl font-bold text-yellow-600">3</span>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">İşe Başla</h3>
-                <p class="text-gray-600">Anlaştığın kişi ile iletişimde kalarak işinin temellerini atmaya hazırsın.</p>
-            </div>
-        </div>
-        
-        <div class="text-center mt-12">
-            <a href="/uygulama/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg">
-                Hemen Deneyin <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kullanıcı <span class="text-yellow-500">Yorumları</span></h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">EnUfak kullanıcılarının deneyimleri</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center font-bold text-yellow-800">AE</div>
-                    <div class="ml-4">
-                        <h4 class="font-semibold text-gray-800">Ahmet E.</h4>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+    <section class="bg-white py-16 md:py-24">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                        İşleri çözmenin <span class="gradient-text">en kolay</span> yolu.
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe
+                        dönüştürebilir,
+                        karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="/uygulama/"
+                            class="btn-primary text-white font-medium py-3 px-6 rounded-lg text-center">
+                            Hemen Başla <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#nasil-calisir"
+                            class="bg-white text-gray-800 border border-gray-300 font-medium py-3 px-6 rounded-lg text-center hover:bg-gray-50 transition">
+                            Nasıl Çalışır? <i class="fas fa-question-circle ml-2"></i>
+                        </a>
                     </div>
                 </div>
-                <p class="text-gray-600">"Web sitemi yaptırmak için birçok yer gezdim. EnUfak'ta hem uygun fiyata hem de istediğim kalitede hizmet aldım."</p>
-            </div>
-            
-            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800">ZY</div>
-                    <div class="ml-4">
-                        <h4 class="font-semibold text-gray-800">Zeynep Y.</h4>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <!-- Sadece md ve üstü ekranlarda görünür -->
+                        <div
+                            class="hidden md:block absolute -top-6 -left-6 w-64 h-64 bg-yellow-100 rounded-full opacity-50 animate-pulse">
                         </div>
+                        <div
+                            class="hidden md:block absolute -bottom-6 -right-6 w-64 h-64 bg-yellow-200 rounded-full opacity-30 animate-pulse delay-500">
+                        </div>
+
+                        <img src="" alt="" class="relative z-10 rounded-xl shadow-lg w-full max-w-md">
                     </div>
                 </div>
-                <p class="text-gray-600">"İçerik yazarlığı konusunda yardıma ihtiyacım vardı. Bulduğum çözüm ortağı harika iş çıkardı, teşekkürler EnUfak!"</p>
             </div>
-            
-            <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-800">MK</div>
-                    <div class="ml-4">
-                        <h4 class="font-semibold text-gray-800">Mehmet K.</h4>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Neden <span
+                        class="text-yellow-500">EnUfak</span>?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">İşlerinizi kolaylaştırmak için tasarlanmış
+                    özelliklerimizle tanışın</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Hızlı Çözüm</h3>
+                    <p class="text-gray-600">İhtiyacınız olan hizmete hızlıca ulaşın, sorunlarınızı minimum zamanda
+                        çözün.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-comments text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Kolay İletişim</h3>
+                    <p class="text-gray-600">Platform içerisindeki mesajlaşma özelliği ile daha rahat anlaşabilir ve işe
+                        başlayabilirsiniz.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
+                    <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Güçlü Topluluk</h3>
+                    <p class="text-gray-600">Güçlü topluluk sayesinde herhangi bir konuya çözüm bulabilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white" id="nasil-calisir">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">EnUfak Nasıl <span
+                        class="text-yellow-500">Çalışır</span>?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Sadece 3 adımda ihtiyacınız olan hizmeti bulun veya
+                    hizmet verin</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center">
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-bold text-yellow-600">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">İhtiyacını Belirt</h3>
+                    <p class="text-gray-600">Yapılmasını istediğin işi detaylı bir şekilde açıkla ve bütçeni belirle.
+                    </p>
+                </div>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-bold text-yellow-600">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Teklifleri Değerlendir</h3>
+                    <p class="text-gray-600">Gelen teklifleri inceleyerek sana en uygun olan çalışanı seç.</p>
+                </div>
+
+                <div class="flex-1 text-center">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-bold text-yellow-600">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">İşe Başla</h3>
+                    <p class="text-gray-600">Anlaştığın kişi ile iletişimde kalarak işinin temellerini atmaya hazırsın.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="/uygulama/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg">
+                    Hemen Deneyin <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kullanıcı <span
+                        class="text-yellow-500">Yorumları</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">EnUfak kullanıcılarının deneyimleri</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center font-bold text-yellow-800">
+                            AE</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Ahmet E.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
+                    <p class="text-gray-600">"Web sitemi yaptırmak için birçok yer gezdim. EnUfak'ta hem uygun fiyata
+                        hem de istediğim kalitede hizmet aldım."</p>
                 </div>
-                <p class="text-gray-600">"Logo tasarımı için birkaç kişiyle görüştüm ancak istediğim sonucu alamadım. EnUfak sayesinde aradığım tasarımı buldum."</p>
+
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800">
+                            ZY</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Zeynep Y.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"İçerik yazarlığı konusunda yardıma ihtiyacım vardı. Bulduğum çözüm ortağı
+                        harika iş çıkardı, teşekkürler EnUfak!"</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-800">
+                            MK</div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Mehmet K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Logo tasarımı için birkaç kişiyle görüştüm ancak istediğim sonucu
+                        alamadım. EnUfak sayesinde aradığım tasarımı buldum."</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="py-16 bg-yellow-500">
-    <div class="container mx-auto px-4 max-w-4xl text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Hemen Üye Ol, İşini Hallet!</h2>
-        <p class="text-lg text-white mb-8 opacity-90">Güçlü topluluğumuza katıl ve ihtiyacın olan hizmeti bul veya yeteneklerini paraya dönüştür.</p>
-        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="/uygulama/kayit-ol/" class="bg-white text-yellow-600 font-medium py-3 px-8 rounded-lg hover:bg-gray-100 transition">
-                Ücretsiz Kaydol <i class="fas fa-user-plus ml-2"></i>
-            </a>
-            <a href="/uygulama/giris-yap/" class="bg-yellow-700 text-white font-medium py-3 px-8 rounded-lg hover:bg-yellow-800 transition">
-                Giriş Yap <i class="fas fa-sign-in-alt ml-2"></i>
-            </a>
+    <section class="py-16 bg-yellow-500">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Hemen Üye Ol, İşini Hallet!</h2>
+            <p class="text-lg text-white mb-8 opacity-90">Güçlü topluluğumuza katıl ve ihtiyacın olan hizmeti bul veya
+                yeteneklerini paraya dönüştür.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/uygulama/kayit-ol/"
+                    class="bg-white text-yellow-600 font-medium py-3 px-8 rounded-lg hover:bg-gray-100 transition">
+                    Ücretsiz Kaydol <i class="fas fa-user-plus ml-2"></i>
+                </a>
+                <a href="/uygulama/giris-yap/"
+                    class="bg-yellow-700 text-white font-medium py-3 px-8 rounded-lg hover:bg-yellow-800 transition">
+                    Giriş Yap <i class="fas fa-sign-in-alt ml-2"></i>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% include 'components/_footer.jinja' %}
+    {% include 'components/_footer.jinja' %}
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in');
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('section').forEach(section => observer.observe(section));
         });
-    }, observerOptions);
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-});
-</script>
+    </script>
 
 </body>
 
