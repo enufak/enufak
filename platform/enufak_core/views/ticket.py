@@ -17,6 +17,7 @@ def ticket_olustur(request):
                 ticket = form.save(commit=False)
                 ticket.yazar = request.user  
                 ticket.save()
+                messages.success(request, 'Destek talebiniz başarıyla gönderildi.')
                 return redirect("index")
     else:
         form = TicketForm()

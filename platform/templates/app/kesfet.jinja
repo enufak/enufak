@@ -59,7 +59,7 @@
                 <div class="flex-grow relative">
                     <input type="text" name="kelime"
                         class="w-full p-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded-l-xl"
-                        placeholder="Ne arıyorsunuz? Örn: Grafiker, Web Tasarım..." />
+                        placeholder="Ne arıyorsunuz?" />
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <i class="fas fa-search text-gray-400"></i>
                     </div>
@@ -79,21 +79,21 @@
 
         <div class="mt-6 flex flex-wrap justify-center items-center gap-2">
             <span class="text-yellow-100 text-sm font-medium">Popüler aramalar:</span>
-            <a href="{% url 'ilan_ara' %}?kelime=Grafiker"
+            <a href="{% url 'ilan_ara' %}?kelime=Tamir"
                 class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
-                Grafiker
+                Tamir
             </a>
-            <a href="{% url 'ilan_ara' %}?kelime=Web Tasarım"
+            <a href="{% url 'ilan_ara' %}?kelime=Yazılım"
                 class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
-                Web Tasarım
+                Yazılım
             </a>
-            <a href="{% url 'ilan_ara' %}?kelime=SEO"
+            <a href="{% url 'ilan_ara' %}?kelime=Danışman"
                 class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
-                SEO
+                Danışman
             </a>
-            <a href="{% url 'ilan_ara' %}?kelime=Mobil Uygulama"
+            <a href="{% url 'ilan_ara' %}?kelime=Satış"
                 class="popular-search text-yellow-100 hover:text-white text-sm bg-yellow-600/30 hover:bg-yellow-600/50 px-3 py-1 rounded-full transition-colors">
-                Mobil Uygulama
+                Satış
             </a>
         </div>
     </div>
@@ -209,10 +209,17 @@
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900">
                             {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
+                        {% if ilan.ilan_sahibi.is_superuser %}
+                        <div class="flex items-center text-xs text-gray-500">
+                            <i class="fas fa-check-circle text-red-500 me-1"></i>
+                            <span>Yönetici</span>
+                        </div>
+                        {% elif ilan.ilan_sahibi.onayli_kullanici %}
                         <div class="flex items-center text-xs text-gray-500">
                             <i class="fas fa-check-circle text-yellow-500 me-1"></i>
                             <span>Doğrulanmış Kullanıcı</span>
                         </div>
+                        {% endif%}
                     </div>
                 </div>
 

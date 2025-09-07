@@ -44,15 +44,6 @@
                 <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-yellow-500 text-white">
                     Tümü
                 </button>
-                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
-                    <i class="fas fa-bolt mr-1"></i>Acil
-                </button>
-                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
-                    <i class="fas fa-fire mr-1"></i>Popüler
-                </button>
-                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">
-                    <i class="fas fa-money-bill-wave mr-1"></i>Yüksek Bütçe
-                </button>
             </div>
         </div>
 
@@ -106,12 +97,6 @@
                     <!-- Talep Açıklaması -->
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ talep.metin }}</p>
                     
-                    <!-- Yetenek Etiketleri -->
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-800">Web Tasarım</span>
-                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-800">UI/UX</span>
-                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-800">Responsive</span>
-                    </div>
                 </div>
 
                 <div>
@@ -121,18 +106,18 @@
                             <i class="far fa-clock mr-1 text-yellow-500"></i>{{ talep.get_süre_display }}
                         </span>
                         <span class="font-bold text-green-600">
-                            <i class="fas fa-lira-sign mr-1"></i>{{ talep.butce }}
+                            ₺ {{ talep.butce }}
                         </span>
                     </div>
                     
                     <!-- Kullanıcı Bilgisi -->
                     <div class="flex items-center mb-4 p-3 bg-gray-50 rounded-lg">
                         <div class="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-sm mr-3">
-                            {{ talep.yazar.username|first|upper }}
+                            {{ talep.yazar.get_full_name|first|upper }}
                         </div>
                         <div>
-                            <p class="text-xs font-medium text-gray-700">@{{ talep.yazar.username }}</p>
-                            <p class="text-xs text-gray-500">{{ talep.yazar.sehir }}</p>
+                            <p class="text-xs font-medium text-gray-700">{{ talep.yazar.get_full_name }}</p>
+                            <p class="text-xs text-gray-500">{{ talep.konum|default:"Konum belirtilmedi." }}</p>
                         </div>
                     </div>
 
@@ -144,21 +129,6 @@
                 </div>
             </div>
             {% endfor %}
-        </div>
-
-        <!-- Sayfalama -->
-        <div class="mt-10 flex justify-center">
-            <nav class="flex items-center space-x-2">
-                <a href="#" class="px-3 py-2 rounded border border-gray-300 text-gray-500 hover:bg-gray-50">
-                    <i class="fas fa-chevron-left"></i>
-                </a>
-                <a href="#" class="px-3 py-2 rounded border border-yellow-500 bg-yellow-500 text-white">1</a>
-                <a href="#" class="px-3 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">2</a>
-                <a href="#" class="px-3 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-50">3</a>
-                <a href="#" class="px-3 py-2 rounded border border-gray-300 text-gray-500 hover:bg-gray-50">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-            </nav>
         </div>
 
         {% else %}
