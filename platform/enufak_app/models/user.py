@@ -70,10 +70,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         if self.is_name_visible:
-            return f'{self.first_name} {self.last_name}'
+            return f'{self.first_name.title()} {self.last_name.title()}'
         else:
             if self.last_name:
-                return f'{self.first_name} {self.last_name[0]}***'
+                return f'{self.first_name.title()} {self.last_name[0].upper()}***'
             return self.first_name
         
     def __str__(self):
