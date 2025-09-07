@@ -29,7 +29,7 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.3);
         }
-        
+
         .no-results {
             display: none;
             text-align: center;
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- SSS Listesi -->
         <div class="bg-white rounded-xl shadow-md overflow-hidden">
@@ -113,14 +113,14 @@
             </div>
 
             <!-- Sonuç Bulunamadı Mesajı -->
-        <div id="no-results" class="no-results mb-6">
-            <div class="text-yellow-600 text-5xl mb-4">
-                <i class="fas fa-search"></i>
+            <div id="no-results" class="no-results mb-6">
+                <div class="text-yellow-600 text-5xl mb-4">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Aradığınız soru bulunamadı</h3>
+                <p class="text-gray-600 mb-4">Lütfen farklı kelimelerle tekrar deneyin veya aşağıdaki iletişim
+                    kanallarından bize ulaşın.</p>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Aradığınız soru bulunamadı</h3>
-            <p class="text-gray-600 mb-4">Lütfen farklı kelimelerle tekrar deneyin veya aşağıdaki iletişim kanallarından bize ulaşın.</p>
-            
-        </div>
 
             <!-- SSS Öğeleri -->
             <div id="faq-container" class="divide-y divide-gray-200">
@@ -313,7 +313,7 @@
             } else {
                 noResults.style.display = 'none';
             }
-            
+
             // Arama kutusu boşsa tüm sonuçları göster
             if (searchTerm.length === 0) {
                 faqItems.forEach(item => {
@@ -327,5 +327,6 @@
         });
     </script>
 </body>
+
 </html>
 {% endblock %}
