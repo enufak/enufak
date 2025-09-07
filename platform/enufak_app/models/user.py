@@ -37,6 +37,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     slug = AutoSlugField(populate_from='first_name', unique=True, always_update=True, null=True, blank=True)
     is_name_visible = models.BooleanField(default=False)
+    iletisim_bilgilerimi_goster = models.BooleanField(default=False)
+    onayli_kullanici = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

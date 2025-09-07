@@ -41,6 +41,19 @@
                             {% endif %}
                         </p>
                     </div>
+                    {% if request.user.is_superuser %}
+                    <div class="mt-4 md:mt-0 flex items-center">
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 2C10 2 3 5 3 10C3 15 10 18 10 18C10 18 17 15 17 10C17 5 10 2 10 2ZM10 4.5L14.5 6.5V10C14.5 13.5 12 15.5 10 16.5C8 15.5 5.5 13.5 5.5 10V6.5L10 4.5Z" />
+                            </svg>
+                            Yönetici Hesap
+                        </span>
+                    </div>
+
+                    {% elif request.user.onayli_kullanici %}
                     <div class="mt-4 md:mt-0 flex items-center">
                         <span
                             class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
@@ -51,6 +64,7 @@
                             Onaylı Profil
                         </span>
                     </div>
+                    {% endif %}
                 </div>
 
                 <div class="mt-6 flex flex-wrap gap-3">
@@ -111,8 +125,8 @@
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Ortalama Puan</h3>
-                    <p class="text-2xl font-bold text-gray-900">4.8</p>
+                    <h3 class="text-sm font-medium text-gray-500">Topluluk Değerlendirmesi</h3>
+                    <p class="text-2xl font-bold text-gray-900">İyi</p>
                 </div>
             </div>
         </div>
@@ -124,16 +138,16 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                        </path>
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Toplam Müşteri</h3>
-                    <p class="text-2xl font-bold text-gray-900">24</p>
+                    <h3 class="text-sm font-medium text-gray-500">Mesaja Dönüş Süresi</h3>
+                    <p class="text-2xl font-bold text-gray-900">2 Saat</p>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Sekmeler -->
@@ -199,7 +213,13 @@
                             </svg>
                             İletişim Bilgileri
                         </h3>
-                        <p class="text-gray-600">{{request.user.email}}</p>
+                        <p class="text-gray-600">
+                        {% if request.user.iletisim_bilgilerimi_goster %}
+                            {{request.user.email}}
+                        {% else %}
+                            {{ request.user.email|slice:":1" }}***@***
+                        {% endif %}
+                        </p>
                         {% if request.user.phone %}
                         <p class="text-gray-600 mt-1">{{request.user.phone}}</p>
                         {% endif %}
@@ -233,7 +253,7 @@
                                     class="w-12 h-12 rounded-full object-cover mr-3 shadow-md">
                                 {% else %}
                                 <div
-                                    class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center mr-3 text-white font-bold shadow-md">
+                                    class="w-12 h-12 rounded-full bg-gray-400 flex items-center justify-center mr-3 text-white font-bold shadow-md">
                                     {{ ilan.ilan_sahibi.first_name|slice:":1" }}
                                 </div>
                                 {% endif %}
