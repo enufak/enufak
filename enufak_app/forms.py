@@ -7,8 +7,10 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
 from enufak_app.models import *
 
-User = get_user_model()
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
+User = get_user_model()
 
 
 class KayitForm(UserCreationForm):
@@ -29,9 +31,11 @@ class KayitForm(UserCreationForm):
         widget=forms.TextInput(attrs={"placeholder": "Soyadınızı girin"})
     )
 
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
+
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "password1", "password2")
+        fields = ("first_name", "last_name", "email", "password1", "password2",'captcha')
 
     def clean_email(self):
         email = self.cleaned_data.get("email")

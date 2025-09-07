@@ -12,6 +12,8 @@ crispy-tailwind = "*"
 pillow = "*"
 uuid = "*"
 shortuuid = "*"
+django-recaptcha = "*"
+django-environ = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4e332846c206617d730acb1f69b647f7a7b8466acc847831be1b712a4c6a2743"
+            "sha256": "70a5b89168ceacc081b081778b88612c58fce34a87ac71240bae0caf96226629"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -35,12 +35,12 @@
         },
         "django": {
             "hashes": [
-                "sha256:0745b25681b129a77aae3d4f6549b62d3913d74407831abaa0d9021a03954bae",
-                "sha256:2b2ada0ee8a5ff743a40e2b9820d1f8e24c11bac9ae6469cd548f0057ea6ddcd"
+                "sha256:60549579b1174a304b77e24a93d8d9fafe6b6c03ac16311f3e25918ea5a20058",
+                "sha256:da5e00372763193d73cecbf71084a3848458cecf4cee36b9a1e8d318d114a87b"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==5.2.5"
+            "version": "==5.2.6"
         },
         "django-autoslug": {
             "hashes": [
@@ -68,6 +68,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.4"
         },
+        "django-environ": {
+            "hashes": [
+                "sha256:227dc891453dd5bde769c3449cf4a74b6f2ee8f7ab2361c93a07068f4179041a",
+                "sha256:92fb346a158abda07ffe6eb23135ce92843af06ecf8753f43adf9d2366dcc0ca"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9' and python_version < '4'",
+            "version": "==0.12.0"
+        },
         "django-js-asset": {
             "hashes": [
                 "sha256:1fc7584199ed1941ed7c8e7b87ca5524bb0f2ba941561d2a104e88ee9f07bedd",
@@ -75,6 +84,14 @@
             ],
             "markers": "python_version >= '3.10'",
             "version": "==3.1.2"
+        },
+        "django-recaptcha": {
+            "hashes": [
+                "sha256:463aa65967e973de466b28ce8e8b6abb2faffb1ce0c7faa1bf0e5b041e0497cb",
+                "sha256:73097b958733f65b729d4e4630c51fc2bf147aca6f026017d18898dfc25cb4c5"
+            ],
+            "index": "pypi",
+            "version": "==4.1.0"
         },
         "pillow": {
             "hashes": [
