@@ -16,7 +16,12 @@ def dm(request, id):
     else:
         other_user = dm.from_user
 
+    dmler = DM.objects.filter(
+        Q(from_user=request.user) | Q(to_user=request.user)
+    ).select_related("from_user", "to_user").order_by("-created_at")
+
     return render(request, 'mesaj/mesaj.jinja', {
         'dm': dm,
         'other_user':other_user,
+        'dmler':dmler,
     })
