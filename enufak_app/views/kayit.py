@@ -7,7 +7,7 @@ def kayit(request):
         form = KayitForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user) 
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend') 
             return redirect('app_index')
     else:
         form = KayitForm()

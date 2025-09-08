@@ -16,7 +16,7 @@ import os
 
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    RECAPTCHA_ENABLED=(bool, True)  # default True
 )
 
 
@@ -26,6 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SITE_ID=1
 SITE_URL = 'http://localhost:8000'
+
+RECAPTCHA_ENABLED = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -73,6 +75,8 @@ INSTALLED_APPS = [
 
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_USE_SSL = True
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -11,7 +11,7 @@ def giris(request):
             password = form.cleaned_data["sifre"]
             user = authenticate(request, username=email, password=password)
             if user:
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect("app_index")
             else:
                 form.add_error(None, "E-posta veya şifre yanlış.")

@@ -8,7 +8,9 @@ from crispy_forms.layout import Layout, Field
 from enufak_app.models import *
 
 from django_recaptcha.fields import ReCaptchaField
-from django_recaptcha.widgets import ReCaptchaV3
+from django_recaptcha.widgets import ReCaptchaV2Checkbox
+from django.conf import settings
+
 
 User = get_user_model()
 
@@ -31,17 +33,22 @@ class KayitForm(UserCreationForm):
         widget=forms.TextInput(attrs={"placeholder": "Soyadınızı girin"})
     )
 
-    captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "password1", "password2",'captcha')
+        fields = ("first_name", "last_name", "email", "password1", "password2")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if getattr(settings, "RECAPTCHA_ENABLED", True):
+            self.fields['captcha'] = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Bu e-posta zaten kayıtlı.")
         return email
+    
 
 class GirisForm(forms.Form):
     email = forms.EmailField(label="E-posta", widget=forms.EmailInput(attrs={"placeholder": "E-posta"}))
