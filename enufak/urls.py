@@ -27,6 +27,7 @@ urlpatterns = [
     path('mesajlar/', include('enufak_mesaj.urls')),
 
     path("ckeditor/", include("ckeditor_uploader.urls")),
+    path('uygulama/social/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:

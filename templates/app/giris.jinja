@@ -1,5 +1,7 @@
 {% extends "base.jinja" %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+
 
 {% block title %}Giriş Yap{% endblock %}
 
@@ -20,8 +22,18 @@
         </button>
     </form>
     <p class="mt-4 text-center text-sm text-gray-500">
+       <a href="{% url 'google_login_direct' %}" 
+    class="flex items-center justify-center gap-2 w-full max-w-xs mx-auto py-3 px-4 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100 transition-colors duration-200">
+        <i class="fab fa-google text-red-500 text-lg"></i>
+        <span class="text-gray-700 font-medium">Google ile Giriş Yap</span>
+    </a>
+
+
+        <br>
         Hesabınız yok mu? <a href="{% url 'kayit_ol' %}" class="text-yellow-600 hover:underline">Kayıt Ol</a>
     </p>
+
+
 </div>
 
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.jinja" %}
+
+{% block content %}
+<p>Google yönlendiriliyor...</p>
+<form id="auto-login" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+<script>
+    document.getElementById("auto-login").submit();
+</script>
+{% endblock %}
