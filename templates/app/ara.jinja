@@ -88,10 +88,11 @@
                         <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
                             src="{% if ilan.ilan_sahibi.avatar %}{{ ilan.ilan_sahibi.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
                             alt="{{ ilan.ilan_sahibi }}">
+                        {% if ilan.ilan_sahibi.is_online %}
                         <span
-                            class="absolute -bottom-1 -right-1 bg-yellow-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                            <i class="fas fa-star text-xs"></i>
+                            class="absolute -bottom-1 -right-1 bg-green-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                         </span>
+                        {% endif %}
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900">

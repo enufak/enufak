@@ -40,6 +40,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     iletisim_bilgilerimi_goster = models.BooleanField(default=False)
     onayli_kullanici = models.BooleanField(default=False)
 
+    last_seen = models.DateTimeField(null=True, blank=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
@@ -49,6 +51,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         db_table = 'user'
         verbose_name = 'Kullanıcı'
         verbose_name_plural = 'Kullanıcılar'
+
+    @property
+    def is_online(self):
+        if self.last_seen:
+            return timezone.now() - self.last_seen < timezone.timedelta(minutes=5)
+        return False
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

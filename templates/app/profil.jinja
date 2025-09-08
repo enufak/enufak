@@ -16,9 +16,11 @@
                             src="{% if request.user.avatar %}{{request.user.avatar.url}}{% else %}{% static  'images/blank-profile.jpg' %}{% endif %}"
                             alt="Profil Fotoğrafı">
                     </div>
+                    {% if request.user.is_online %}
                     <div class="absolute bottom-2 right-2 bg-white rounded-full p-1 shadow-md">
                         <div class="bg-green-500 rounded-full p-1.5"></div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="p-8 flex-1">

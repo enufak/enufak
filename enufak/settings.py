@@ -39,7 +39,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://43b21ed16ce4.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
 
 CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = None
@@ -88,6 +88,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'enufak_core.middleware.Force404Middleware',
     'allauth.account.middleware.AccountMiddleware',
+    'enufak_app.middlewares.LastSeenMiddleware',
 ]
 
 ROOT_URLCONF = 'enufak.urls'
