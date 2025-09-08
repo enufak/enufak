@@ -55,7 +55,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_online(self):
         if self.last_seen:
-            return timezone.now() - self.last_seen < timezone.timedelta(minutes=5)
+            return timezone.now() - self.last_seen < timezone.timedelta(minutes=1)
         return False
     
     def save(self, *args, **kwargs):
