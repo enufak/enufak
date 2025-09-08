@@ -41,6 +41,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     onayli_kullanici = models.BooleanField(default=False)
 
     last_seen = models.DateTimeField(null=True, blank=True)
+    email_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

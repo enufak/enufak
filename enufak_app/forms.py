@@ -10,6 +10,8 @@ from enufak_app.models import *
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
 
 
 User = get_user_model()
@@ -50,9 +52,12 @@ class KayitForm(UserCreationForm):
         return email
     
 
-class GirisForm(forms.Form):
-    email = forms.EmailField(label="E-posta", widget=forms.EmailInput(attrs={"placeholder": "E-posta"}))
-    sifre = forms.CharField(label="Şifre", widget=forms.PasswordInput(attrs={"placeholder": "Şifre"}))
+class GirisForm(AuthenticationForm):
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            raise ValidationError("Hesabınız aktif değil. E-postanızı doğrulayın.", code="inactive")
+        if not getattr(user, "email_verified", False) and not user.is_superuser:
+            raise ValidationError("E-posta adresinizi doğrulamanız gerekiyor.", code="email_not_verified")
 
 
 class ProfilDuzenleForm(UserChangeForm):

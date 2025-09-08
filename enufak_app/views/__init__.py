@@ -1,5 +1,5 @@
 from .index import index
-from .kayit import kayit
+from .kayit import kayit, hesap_dogrula
 from .giris import giris
 from .cikis_yap import cikis_yap
 from .profil import profil

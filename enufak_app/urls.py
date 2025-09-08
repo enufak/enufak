@@ -2,6 +2,8 @@ from django.urls import path
 from enufak_app.views import *
 from django.shortcuts import redirect
 from allauth.socialaccount.providers.google.views import oauth2_login
+from django.contrib.auth import views as auth_views
+from enufak_app.forms import GirisForm
 
 
 
@@ -9,8 +11,10 @@ urlpatterns = [
     path('kesfet/', index, name='app_index'),
     path('', lambda request: redirect('app_index', permanent=False)),
     path('kayit-ol/', kayit, name='kayit_ol'),
-    path('giris-yap/', giris, name='giris_yap'),
+    path('giris-yap/', auth_views.LoginView.as_view(template_name='app/giris.jinja', authentication_form=GirisForm), name='giris_yap'),
     path('cikis-yap/', cikis_yap, name='cikis_yap'),
+    path('dogrula/<uidb64>/<token>/', hesap_dogrula, name='hesap_dogrula'),
+
     path('profil/', profil, name='profil'),
     path('profil/duzenle/', profil_duzenle, name='profil_duzenle'),
     path('ilan-ekle/', ilan_ekle, name='ilan_ekle'),
