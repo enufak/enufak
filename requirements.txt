@@ -1,0 +1,14 @@
+django
+django-autoslug
+django-ckeditor
+django-crispy-forms
+crispy-tailwind
+pillow
+uuid
+shortuuid
+django-environ
+django-allauth
+requests
+pyjwt==2.7.0
+django-recaptcha
+cryptography
