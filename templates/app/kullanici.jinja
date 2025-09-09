@@ -312,7 +312,7 @@
                     <p class="mt-2 text-gray-500">İlk ilanınızı oluşturarak iş teklifleri almaya başlayabilirsiniz.</p>
                     <div class="mt-6">
                         <a href="/uygulama/ilan-ekle/"
-                            class="px-5 py-2.5 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center">
+                            class="px-5 py-2.5 bg-yellow-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -327,63 +327,6 @@
 
             <!-- Yorumlar Sekmesi -->
             <div id="reviews" class="tab-content hidden">
-                <div class="space-y-6">
-                    <!-- Örnek Yorum 1 -->
-                    <div
-                        class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 rounded-full bg-gray-500 flex items-center justify-center text-white font-bold shadow-md">
-                                A
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <div class="flex items-center justify-between">
-                                    <p class="font-semibold text-gray-800">Ali Yılmaz</p>
-                                    <span class="text-sm text-gray-400">01 Eyl 2025</span>
-                                </div>
-                                <p class="text-gray-600 mt-2">Çok hızlı teslimat, kaliteli iş. Tavsiye ederim.
-                                    Projemdeki tüm detaylara özen gösterdi.</p>
-                                <div class="flex mt-3">
-                                    {% for i in "12345" %}
-                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
-                                    </svg>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Örnek Yorum 2 -->
-                    <div
-                        class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                        <div class="flex items-start">
-                            <div
-                                class="w-12 h-12 rounded-full bg-gray-500 flex items-center justify-center text-white font-bold shadow-md">
-                                M
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <div class="flex items-center justify-between">
-                                    <p class="font-semibold text-gray-800">Mehmet Kaya</p>
-                                    <span class="text-sm text-gray-400">15 Ağu 2025</span>
-                                </div>
-                                <p class="text-gray-600 mt-2">İşini son derece profesyonelce yaptı. Zamanında teslim
-                                    etti ve iletişimi çok iyiydi. Tekrar çalışacağım.</p>
-                                <div class="flex mt-3">
-                                    {% for i in "12345" %}
-                                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.957c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.286-3.957a1 1 0 00-.364-1.118L2.072 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.957z" />
-                                    </svg>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% if not ilanlar %}
                 <div class="text-center py-12">
                     <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +337,6 @@
                     <h3 class="mt-4 text-lg font-medium text-gray-900">Henüz yorumunuz bulunmuyor</h3>
                     <p class="mt-2 text-gray-500">İlanlarınızı yayınladıktan sonra müşterileriniz yorum bırakabilir.</p>
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>
