@@ -79,6 +79,8 @@ RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_USE_SSL = True
 
+DEFAULT_FILE_STORAGE = "enufak_app.storage.NormalizedFileSystemStorage"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
