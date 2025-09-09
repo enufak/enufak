@@ -320,17 +320,25 @@
 
 <script>
 const installButton = document.getElementById('install-app');
-        let beforeInstallPromptEvent
-        window.addEventListener("beforeinstallprompt", function(e) {
-            e.preventDefault();
-            beforeInstallPromptEvent = e
-            installButton.style.display = 'block'
-            installButton.addEventListener("click", function() {
-                e.prompt();
-            });
-            installButton.hidden = false;
-        });
-        installButton.addEventListener("click", function() {
-            beforeInstallPromptEvent.prompt();
-        });
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e; 
+    installButton.style.display = 'inline-block'; 
+});
+
+installButton.addEventListener("click", async () => {
+    if (!deferredPrompt) return; 
+    deferredPrompt.prompt(); 
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log('PWA yükleme sonucu:', outcome);
+    deferredPrompt = null;
+    installButton.style.display = 'none'; 
+});
+
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    installButton.style.display = 'none';
+}
+
 </script>
