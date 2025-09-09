@@ -109,35 +109,13 @@
         </div>
     </div>
 
-    <!-- Mobilde geri butonu (sadece sohbet görünürken) -->
-    <div id="geri-buton" class="fixed top-4 left-4 z-50 bg-yellow-500 text-white p-2 rounded-full shadow-md hidden">
-        <i class="fas fa-arrow-left"></i>
-    </div>
 </div>
 
 <script>
 function sohbetAc(dmID) {
-    // Masaüstünde normal yönlendirme
-    if (window.innerWidth >= 768) {
-        window.location.href = "/mesajlar/" + dmID + "/";
-        return;
-    }
-    
-    // Mobilde AJAX ile sohbet içeriğini yükle
-    fetch("/mesajlar/" + dmID + "/")
-        .then(response => response.text())
-        .then(data => {
-            // Sohbet panelini göster, kullanıcı listesini gizle
-            document.getElementById('kullanici-listesi-panel').classList.add('hidden');
-            document.getElementById('sohbet-panel').classList.remove('hidden');
-            document.getElementById('sohbet-panel').innerHTML = data;
-            document.getElementById('geri-buton').classList.remove('hidden');
-        })
-        .catch(error => {
-            console.error('Hata:', error);
-            window.location.href = "/mesajlar/" + dmID + "/";
-        });
+    window.location.href = "/mesajlar/" + dmID + "/";
 }
+
 
 // Sayfa yüklendiğinde
 document.addEventListener('DOMContentLoaded', function() {
