@@ -1,38 +1,196 @@
 {% extends "base.jinja" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}İlan Oluştur{% endblock %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-md">
-    <a href="/uygulama/profil/" 
-   class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 rounded-lg shadow hover:bg-gray-200 transition">
-  <i class="bi bi-arrow-left mr-2"></i>
-  Geri dön
-</a>
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">Yeni İlan Oluştur</h2>
-
-    <div class="mt-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200">
-        <p class="text-sm text-yellow-800">
-            <i class="bi bi-info-circle-fill mr-2"></i>
-            Oluşturduğunuz ilanlar önce sistemimiz tarafından onaylanmalıdır. Onay süreci tamamlandıktan sonra ilanınız yayına alınacaktır.
-        </p>
-    </div>
-    <br>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
-
-        <div class="flex justify-end mt-6">
-            <a href="{% url 'profil' %}"
-               class="px-5 py-2 rounded-lg border text-gray-600 hover:bg-gray-100 transition">
-               İptal
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-yellow-50 py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Başlık ve Geri Butonu -->
+        <div class="flex items-center mb-8">
+            <a href="/uygulama/profil/" 
+               class="inline-flex items-center px-4 py-3 bg-white text-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 mr-4">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                
             </a>
-            <button type="submit"
-                    class="ml-3 px-5 py-2 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition">
-                Kaydet
-            </button>
+            <h1 class="text-3xl font-bold text-gray-900">Yeni İlan Oluştur</h1>
         </div>
-    </form>
+
+        <!-- Bilgi Kutusu -->
+        <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 shadow-sm">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="w-6 h-6 text-yellow-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">İlan Onay Süreci</h3>
+                    <p class="text-gray-700">
+                        Oluşturduğunuz ilanlar önce sistemimiz tarafından onaylanmalıdır. 
+                        Onay süreci genellikle 24 saat içinde tamamlanır. Onaylandıktan sonra ilanınız yayına alınacaktır.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- İlan Formu -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="p-1 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
+            
+            <form method="post" enctype="multipart/form-data" class="p-8">
+                {% csrf_token %}
+                
+                <!-- Form Başlığı -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900">İlan Bilgileri</h2>
+                    <p class="text-gray-600 mt-2">İlanınızla ilgili tüm detayları eksiksiz doldurunuz.</p>
+                </div>
+                
+                <!-- Form Alanları -->
+                <div class="space-y-6">
+                    {% for field in form %}
+                    <div class="{% if field.name == 'description' or field.name == 'address' %}md:col-span-2{% endif %}">
+                        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                            <!-- İkonlar -->
+                            {% if field.name == 'title' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            {% elif field.name == 'price' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            {% elif field.name == 'category' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            {% elif field.name == 'description' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                            </svg>
+                            {% elif field.name == 'address' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            {% elif field.name == 'image' %}
+                            <svg class="w-4 h-4 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            {% endif %}
+                            {{ field.label }}
+                        </label>
+                        
+                        <!-- Özel alan stilleri -->
+                        {% if field.name == 'image' %}
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
+                            <div class="space-y-1 text-center">
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="{{ field.id_for_label }}" class="relative cursor-pointer bg-white rounded-md font-medium text-yellow-600 hover:text-yellow-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-yellow-500">
+                                        <span>Dosya yükle</span>
+                                        <input id="{{ field.id_for_label }}" name="{{ field.name }}" type="file" class="sr-only" multiple>
+                                    </label>
+                                    <p class="pl-1">veya sürükle bırak</p>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                        {% else %}
+                        {{ field }}
+                        {% endif %}
+                        
+                        {% if field.help_text %}
+                        <p class="mt-2 text-sm text-gray-500">{{ field.help_text }}</p>
+                        {% endif %}
+                        {% for error in field.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Butonlar -->
+                <div class="flex justify-end space-x-4 mt-10 pt-6 border-t border-gray-200">
+                    <a href="{% url 'profil' %}"
+                       class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-sm">
+                        İptal
+                    </a>
+                    <button type="submit"
+                            class="px-6 py-3 bg-yellow-500 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-md flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                        İlanı Oluştur
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<!-- Özel CSS -->
+<style>
+    /* Form alanları için özel stil */
+    input, textarea, select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #eab308;
+        box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+    }
+    
+    /* Dosya yükleme alanı için özel stil */
+    .border-dashed:hover {
+        border-color: #eab308;
+    }
+    
+    /* Checkbox ve radio butonları için özel stil */
+    input[type="checkbox"], input[type="radio"] {
+        width: auto;
+        margin-right: 0.5rem;
+    }
+</style>
+
+<!-- JavaScript for Image Preview -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Dosya yükleme önizlemesi
+        const imageInput = document.querySelector('input[type="file"]');
+        if (imageInput) {
+            imageInput.addEventListener('change', function() {
+                // Burada dosya önizleme işlevselliği eklenebilir
+                console.log('Dosya seçildi:', this.files);
+            });
+        }
+        
+        // İlk input alanına odaklan
+        const firstInput = document.querySelector('input:not([type="hidden"]):not([type="file"]), textarea, select');
+        if (firstInput) {
+            firstInput.focus();
+        }
+        
+        // Form gönderim animasyonu
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const submitButton = this.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> İlan Oluşturuluyor...';
+                    submitButton.disabled = true;
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
