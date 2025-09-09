@@ -4,14 +4,12 @@ from django.contrib.auth.decorators import login_required
 from enufak_mesaj.models import DM, Mesaj
 from django.shortcuts import get_object_or_404
 
-
 @login_required
 def dm_messages_longpoll(request, id):
     dm = get_object_or_404(DM, id=id)
     if request.user != dm.from_user and request.user != dm.to_user:
         return JsonResponse({'error':'Unauthorized'}, status=403)
     
-
     last_id = int(request.GET.get('last_id', 0))
     timeout = 25
     interval = 0.5
@@ -20,6 +18,8 @@ def dm_messages_longpoll(request, id):
     while elapsed < timeout:
         new_messages = dm.mesajlar.filter(id__gt=last_id)
         if new_messages.exists():
+            dm.mesajlar.filter(id__gt=last_id).exclude(sender=request.user).update(okunma=True)
+
             data = [
                 {
                     'id': m.id,
