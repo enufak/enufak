@@ -30,7 +30,30 @@
 
     <div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-gray-100">
         <h3 class="text-lg font-medium text-gray-900 mb-4">Detaylı Filtreleme</h3>
-        <form method="get" action="{% url 'ilan_ara' %}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <form method="get" action="{% url 'ilan_ara' %}" class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div>
+                <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <select id="kategori" name="kategori"
+                        class="pl-10 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 appearance-none bg-white">
+                        <option value="">Tüm Kategoriler</option>
+                        <option value="teknoloji" {% if kategori == 'teknoloji' %}selected{% endif %}>Teknoloji</option>
+                        <option value="sanat" {% if kategori == 'sanat' %}selected{% endif %}>Sanat</option>
+                        <option value="tamir" {% if kategori == 'tamir' %}selected{% endif %}>Tamir</option>
+                        <option value="eglence" {% if kategori == 'eglence' %}selected{% endif %}>Eğlence</option>
+                        <option value="egitim" {% if kategori == 'egitim' %}selected{% endif %}>Eğitim</option>
+                        <option value="saglik" {% if kategori == 'saglik' %}selected{% endif %}>Sağlık</option>
+                        <option value="moda" {% if kategori == 'moda' %}selected{% endif %}>Moda</option>
+                        <option value="diger" {% if kategori == 'diger' %}selected{% endif %}>Diğer</option>
+                    </select>
+                    
+                </div>
+            </div>
             <div>
                 <label for="konum" class="block text-sm font-medium text-gray-700 mb-2">Konum</label>
                 <div class="relative">
@@ -78,69 +101,185 @@
         </form>
     </div>
 
+    <!-- Aktif Filtreler -->
+    {% if kelime or konum or min_ucret or max_ucret or kategori %}
+    <div class="bg-yellow-50 rounded-xl p-4 mb-6 border border-yellow-200">
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="text-sm font-medium text-gray-700">Aktif Filtreler:</span>
+            
+            {% if kelime %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                Kelime: {{ kelime }}
+                <a href="?{% if konum %}konum={{ konum }}&{% endif %}{% if min_ucret %}min_ucret={{ min_ucret }}&{% endif %}{% if max_ucret %}max_ucret={{ max_ucret }}&{% endif %}{% if kategori %}kategori={{ kategori }}&{% endif %}" class="ml-1 text-yellow-600 hover:text-yellow-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+            </span>
+            {% endif %}
+            
+            {% if kategori and kategori != "" %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                Kategori: {{ kategori|title }}
+                <a href="?{% if kelime %}kelime={{ kelime }}&{% endif %}{% if konum %}konum={{ konum }}&{% endif %}{% if min_ucret %}min_ucret={{ min_ucret }}&{% endif %}{% if max_ucret %}max_ucret={{ max_ucret }}&{% endif %}" class="ml-1 text-yellow-600 hover:text-yellow-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+            </span>
+            {% endif %}
+            
+            {% if konum %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                Konum: {{ konum }}
+                <a href="?{% if kelime %}kelime={{ kelime }}&{% endif %}{% if min_ucret %}min_ucret={{ min_ucret }}&{% endif %}{% if max_ucret %}max_ucret={{ max_ucret }}&{% endif %}{% if kategori %}kategori={{ kategori }}&{% endif %}" class="ml-1 text-yellow-600 hover:text-yellow-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+            </span>
+            {% endif %}
+            
+            {% if min_ucret %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                Min: {{ min_ucret }}₺
+                <a href="?{% if kelime %}kelime={{ kelime }}&{% endif %}{% if konum %}konum={{ konum }}&{% endif %}{% if max_ucret %}max_ucret={{ max_ucret }}&{% endif %}{% if kategori %}kategori={{ kategori }}&{% endif %}" class="ml-1 text-yellow-600 hover:text-yellow-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+            </span>
+            {% endif %}
+            
+            {% if max_ucret %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                Maks: {{ max_ucret }}₺
+                <a href="?{% if kelime %}kelime={{ kelime }}&{% endif %}{% if konum %}konum={{ konum }}&{% endif %}{% if min_ucret %}min_ucret={{ min_ucret }}&{% endif %}{% if kategori %}kategori={{ kategori }}&{% endif %}" class="ml-1 text-yellow-600 hover:text-yellow-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+            </span>
+            {% endif %}
+            
+            <a href="{% url 'ilan_ara' %}" class="ml-auto text-sm text-yellow-600 hover:text-yellow-800 font-medium">
+                Tüm Filtreleri Temizle
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
     {% if ilanlar %}
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {% for ilan in ilanlar %}
-            <div
-                class="bg-white rounded-2xl shadow-sm p-6 flex flex-col hover:shadow-md transition-all duration-300 border border-gray-100 group">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="relative">
-                        <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
-                            src="{% if ilan.ilan_sahibi.avatar %}{{ ilan.ilan_sahibi.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
-                            alt="{{ ilan.ilan_sahibi }}">
-                        {% if ilan.ilan_sahibi.is_online %}
-                        <span
-                            class="absolute -bottom-1 -right-1 bg-green-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                        </span>
-                        {% endif %}
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">
-                            {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
-                        {% if ilan.ilan_sahibi.is_superuser %}
-                        <div class="flex items-center text-xs text-gray-500">
-                            <i class="fas fa-check-circle text-red-500 me-1"></i>
-                            <span>Yönetici</span>
-                        </div>
-                        {% elif ilan.ilan_sahibi.onayli_kullanici %}
-                        <div class="flex items-center text-xs text-gray-500">
-                            <i class="fas fa-check-circle text-yellow-500 me-1"></i>
-                            <span>Doğrulanmış Kullanıcı</span>
-                        </div>
-                        {% endif%}
-                    </div>
+        {% for ilan in ilanlar %}
+        <div class="bg-white rounded-2xl shadow-sm p-6 flex flex-col hover:shadow-md transition-all duration-300 border border-gray-100 group">
+            <!-- Kategori Badge -->
+            {% if ilan.kategori %}
+            <div class="mb-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                    {% if ilan.kategori == 'teknoloji' %}bg-blue-100 text-blue-800
+                    {% elif ilan.kategori == 'sanat' %}bg-purple-100 text-purple-800
+                    {% elif ilan.kategori == 'tamir' %}bg-green-100 text-green-800
+                    {% elif ilan.kategori == 'eglence' %}bg-pink-100 text-pink-800
+                    {% elif ilan.kategori == 'egitim' %}bg-indigo-100 text-indigo-800
+                    {% elif ilan.kategori == 'saglik' %}bg-red-100 text-red-800
+                    {% elif ilan.kategori == 'moda' %}bg-yellow-100 text-yellow-800
+                    {% else %}bg-gray-100 text-gray-800{% endif %}">
+                    {{ ilan.get_kategori_display }}
+                </span>
+            </div>
+            {% endif %}
+            
+            <div class="flex items-center gap-4 mb-4">
+                <div class="relative">
+                    <img class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
+                        src="{% if ilan.ilan_sahibi.avatar %}{{ ilan.ilan_sahibi.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
+                        alt="{{ ilan.ilan_sahibi }}">
+                    {% if ilan.ilan_sahibi.is_online %}
+                    <span
+                        class="absolute -bottom-1 -right-1 bg-green-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    </span>
+                    {% endif %}
                 </div>
-
-                <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ ilan.ilan_baslik }}</h4>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {{ ilan.ilan_metni|truncatechars:120 }}
-                </p>
-
-                <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
-                    <div class="flex items-center gap-1">
-                        <i class="fas fa-map-marker-alt text-yellow-500"></i>
-                        <span>{{ ilan.konum|default:"Konum belirtilmedi." }}</span>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                        {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
+                    {% if ilan.ilan_sahibi.is_superuser %}
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-check-circle text-red-500 me-1"></i>
+                        <span>Yönetici</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                        <i class="fas fa-briefcase text-yellow-500"></i>
-                        <span>{{ ilan.is_deneyimi|default:"İş deneyimi belirtilmedi." }}</span>
+                    {% elif ilan.ilan_sahibi.onayli_kullanici %}
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-check-circle text-yellow-500 me-1"></i>
+                        <span>Doğrulanmış Kullanıcı</span>
                     </div>
-                </div>
-
-                <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
-                    <div>
-                        <span class="text-xs text-gray-500">İstenilen Ücret:</span>
-                        <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
-                    </div>
-                    <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}"
-                    class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
-                        <span>İncele</span>
-                        <i class="fas fa-arrow-right text-lg ml-1"></i>
-                    </a>
+                    {% endif%}
                 </div>
             </div>
-            {% endfor %}
+
+            <h4 class="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{{ ilan.ilan_baslik }}</h4>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                {{ ilan.ilan_metni|truncatechars:120 }}
+            </p>
+
+            <div class="flex items-center text-sm text-gray-500 gap-4 mb-4">
+                <div class="flex items-center gap-1">
+                    <i class="fas fa-map-marker-alt text-yellow-500"></i>
+                    <span>{{ ilan.konum|default:"Konum belirtilmedi." }}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fas fa-briefcase text-yellow-500"></i>
+                    <span>{{ ilan.is_deneyimi|default:"İş deneyimi belirtilmedi." }}</span>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                <div>
+                    <span class="text-xs text-gray-500">İstenilen Ücret:</span>
+                    <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
+                </div>
+                <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}"
+                class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
+                    <span>İncele</span>
+                    <i class="fas fa-arrow-right text-lg ml-1"></i>
+                </a>
+            </div>
         </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if ilanlar.has_other_pages %}
+    <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+            {% if ilanlar.has_previous %}
+            <a href="?page={{ ilanlar.previous_page_number }}{% if kelime %}&kelime={{ kelime }}{% endif %}{% if konum %}&konum={{ konum }}{% endif %}{% if min_ucret %}&min_ucret={{ min_ucret }}{% endif %}{% if max_ucret %}&max_ucret={{ max_ucret }}{% endif %}{% if kategori %}&kategori={{ kategori }}{% endif %}" 
+               class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-yellow-50 hover:text-yellow-600 transition">
+                &laquo;
+            </a>
+            {% endif %}
+
+            {% for i in ilanlar.paginator.page_range %}
+                {% if ilanlar.number == i %}
+                <span class="px-3 py-2 rounded-lg bg-yellow-500 text-white font-medium">{{ i }}</span>
+                {% else %}
+                <a href="?page={{ i }}{% if kelime %}&kelime={{ kelime }}{% endif %}{% if konum %}&konum={{ konum }}{% endif %}{% if min_ucret %}&min_ucret={{ min_ucret }}{% endif %}{% if max_ucret %}&max_ucret={{ max_ucret }}{% endif %}{% if kategori %}&kategori={{ kategori }}{% endif %}" 
+                   class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-yellow-50 hover:text-yellow-600 transition">
+                    {{ i }}
+                </a>
+                {% endif %}
+            {% endfor %}
+
+            {% if ilanlar.has_next %}
+            <a href="?page={{ ilanlar.next_page_number }}{% if kelime %}&kelime={{ kelime }}{% endif %}{% if konum %}&konum={{ konum }}{% endif %}{% if min_ucret %}&min_ucret={{ min_ucret }}{% endif %}{% if max_ucret %}&max_ucret={{ max_ucret }}{% endif %}{% if kategori %}&kategori={{ kategori }}{% endif %}" 
+               class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-yellow-50 hover:text-yellow-600 transition">
+                &raquo;
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
 
     {% else %}
     <div class="text-center py-16 bg-white rounded-xl border border-gray-200">
@@ -159,6 +298,13 @@
 </div>
 
 <style>
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -166,11 +312,14 @@
         overflow: hidden;
     }
     
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 </style>
 {% endblock %}
