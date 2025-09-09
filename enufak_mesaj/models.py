@@ -20,4 +20,4 @@ class Mesaj(models.Model):
         ordering = ['created_at']
 
     def __str__(self):
-        return f'{self.sender.username}: {self.text[:20]}'
+        return f'{self.sender.get_full_name}: {self.text[:20]}'
