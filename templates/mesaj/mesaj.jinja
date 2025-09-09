@@ -49,6 +49,11 @@
                                 <div class="ml-3 flex-1 min-w-0">
                                     <div class="flex justify-between items-center">
                                         <p class="text-sm font-medium text-gray-900 truncate">{{ user.get_full_name }}</p>
+                                        {% if dm.unread_count > 0 %}
+                                        <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                                            {{ dm.unread_count }}
+                                        </span>
+                                        {% endif %}
                                         <span class="text-xs text-gray-400">{{ dm.created_at|date:"H:i" }}</span>
                                     </div>
                                     <p class="text-xs text-gray-500 truncate">Mesajlara devam etmek için tıkla...</p>
@@ -72,6 +77,11 @@
                                 <div class="ml-3 flex-1 min-w-0">
                                     <div class="flex justify-between items-center">
                                         <p class="text-sm font-medium text-gray-900 truncate">{{ user.get_full_name }}</p>
+                                        {% if dm.unread_count > 0 %}
+                                        <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                                            {{ dm.unread_count }}
+                                        </span>
+                                        {% endif %}
                                         <span class="text-xs text-gray-400">{{ dm.created_at|date:"H:i" }}</span>
                                     </div>
                                     <p class="text-xs text-gray-500 truncate">Mesajlara devam etmek için tıkla...</p>

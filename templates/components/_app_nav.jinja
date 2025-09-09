@@ -240,10 +240,21 @@
                     </button>
                     
                     <!-- Kullanıcı menüsü butonu -->
-                    <button type="button" class="flex text-sm rounded-full md:mr-0 focus:outline-none focus:ring-2 focus:ring-blue-500" id="user-menu-button">
-                        <span class="sr-only">Kullanıcı menüsünü aç</span>
-                        <img class="w-9 h-9 rounded-full border-2 border-transparent user-avatar" src="{% if request.user.avatar %}{{request.user.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" alt="user">
-                    </button>
+                    <div class="relative">
+                        <button type="button" class="flex text-sm rounded-full md:mr-0 focus:outline-none focus:ring-2 focus:ring-blue-500" id="user-menu-button">
+                            <span class="sr-only">Kullanıcı menüsünü aç</span>
+                            <img class="w-9 h-9 rounded-full border-2 border-transparent user-avatar" 
+                                src="{% if request.user.avatar %}{{request.user.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
+                                alt="user">
+                        </button>
+
+                        {% if unread_count > 0 %}
+                        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                            {{ unread_count }}
+                        </span>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
 
@@ -270,6 +281,11 @@
                 <li>
                     <a href="/mesajlar/" class="dropdown-item">
                         <i class="fas fa-envelope mr-3 w-5 text-center text-yellow-500"></i> Mesajlarım
+                        {% if unread_count %}
+                            <span style="margin-left: 5px;" class="bg-red-600 text-white text-xs rounded-full px-1">
+                                {{ unread_count }}
+                            </span>
+                        {% endif %}
                     </a>
                 </li>
                 <li>
