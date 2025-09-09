@@ -39,7 +39,9 @@
                                     <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
                                          class="w-12 h-12 rounded-full object-cover border-2 border-yellow-200" 
                                          alt="{{ user.get_full_name }}">
+                                    {% if user.is_online %}
                                     <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                    {% endif %}
                                 </div>
                                 <div class="ml-3 flex-1 min-w-0">
                                     <div class="flex justify-between items-center">
@@ -60,7 +62,9 @@
                                     <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
                                          class="w-12 h-12 rounded-full object-cover border-2 border-yellow-200" 
                                          alt="{{ user.get_full_name }}">
+                                    {% if user.is_online %}
                                     <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                                    {% endif %}
                                 </div>
                                 <div class="ml-3 flex-1 min-w-0">
                                     <div class="flex justify-between items-center">
