@@ -1,4 +1,6 @@
 {% load static %}
+{% load pwa %}
+{% progressive_web_app_meta %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EnUfak! | {% block title %} {% endblock %}</title>
+    <link rel="manifest" href="{% static 'manifest.webmanifest' %}">
+    <meta name="theme-color" content="#facc15">
 
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
     <script src="https://cdn.tailwindcss.com/"></script>
@@ -89,6 +93,14 @@
     });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("{% static 'serviceworker.js' %}")
+        .then(reg => console.log("Service Worker kaydedildi:", reg))
+        .catch(err => console.log("SW hatası:", err));
+    }
+    </script>
+
 </body>
 
 </html>

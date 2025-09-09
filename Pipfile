@@ -18,6 +18,7 @@ requests = "*"
 pyjwt = "==2.7.0"
 django-recaptcha = "*"
 cryptography = "*"
+django-pwa = "*"
 
 [dev-packages]
 

@@ -6,4 +6,5 @@ urlpatterns = [
     path('ticket/', ticket_olustur, name='tickets'),
     path('sss/', sss, name='sss'),
     path('gizlilik/', gizlilik, name='gizlilik'),
+    path('manifest.json', manifest, name='manifest')
 ]

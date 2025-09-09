@@ -25,6 +25,7 @@ import os
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('enufak_core.urls')),
+    path('', include('pwa.urls')),
     path('blog/', include('enufak_blog.urls')),
     path('uygulama/', include('enufak_app.urls')),
     path('mesajlar/', include('enufak_mesaj.urls')),
