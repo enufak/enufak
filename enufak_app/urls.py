@@ -4,6 +4,13 @@ from django.shortcuts import redirect
 from allauth.socialaccount.providers.google.views import oauth2_login
 from django.contrib.auth import views as auth_views
 from enufak_app.forms import GirisForm
+from django.shortcuts import render
+
+from allauth.account.views import EmailVerificationSentView as BaseEmailVerificationSentView
+
+class CustomEmailVerificationSentView(BaseEmailVerificationSentView):
+    template_name = "account/email/email_verification_sent.html"
+
 
 
 
@@ -14,6 +21,11 @@ urlpatterns = [
     path('giris-yap/', auth_views.LoginView.as_view(template_name='app/giris.jinja', authentication_form=GirisForm), name='giris_yap'),
     path('cikis-yap/', cikis_yap, name='cikis_yap'),
     path('dogrula/<uidb64>/<token>/', hesap_dogrula, name='hesap_dogrula'),
+    path(
+        'social/confirm-email/',
+        CustomEmailVerificationSentView.as_view(),
+        name='account_email_verification_sent'
+    ),
 
     path('profil/', profil, name='profil'),
     path('profil/duzenle/', profil_duzenle, name='profil_duzenle'),
