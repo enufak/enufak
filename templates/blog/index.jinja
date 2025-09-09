@@ -36,7 +36,7 @@
                     </h3>
                 </div>
                 <div class="relative mt-8 flex items-center gap-x-4 justify-self-end">
-                    <img src="{% static 'images/logo.png' %}"
+                    <img src="{% if gonderi.yazar.avatar %}{{gonderi.yazar.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}"
                         alt="" class="size-10 rounded-full bg-gray-100" />
                     <div class="text-sm">
                         <p class="font-semibold text-gray-900">
@@ -46,7 +46,7 @@
                             </a>
                         </p>
                         <p class="text-gray-500">
-                        Site Yönetimi
+                        EnUfak Ekibi
                         </p>
                     </div>
                 </div>

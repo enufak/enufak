@@ -1,0 +1,275 @@
+{% extends "base.jinja" %}
+{% load static %}
+
+{% block title %}Gizlilik Politikası{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <div class="w-16 h-16 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Gizlilik Politikası</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Kişisel verilerinizin güvenliği bizim için önemlidir. Verilerinizi nasıl topladığımız, kullandığımız ve koruduğumuz hakkında bilgi edinin.
+            </p>
+            <div class="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500">
+                <span>Son güncelleme: 9 Eylül 2025</span>
+                <span>•</span>
+                <span>Geçerli versiyon: 1.0</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="bg-yellow-50 rounded-2xl p-6 mb-12 border border-yellow-100">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+                İçindekiler
+            </h2>
+            <div class="grid md:grid-cols-2 gap-3">
+                <a href="#veri-toplama" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    Veri Toplama
+                </a>
+                <a href="#veri-kullanimi" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    Veri Kullanımı
+                </a>
+                <a href="#veri-paylasimi" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    Veri Paylaşımı
+                </a>
+                <a href="#guvenlik" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    Güvenlik
+                </a>
+                <a href="#haklariniz" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    Haklarınız
+                </a>
+                <a href="#iletisim" class="flex items-center text-gray-700 hover:text-yellow-600 transition-colors">
+                    <span class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                    İletişim
+                </a>
+            </div>
+        </div>
+
+        <!-- Privacy Content -->
+        <div class="prose prose-lg max-w-none">
+            <!-- Veri Toplama -->
+            <section id="veri-toplama" class="scroll-mt-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">1</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Veri Toplama</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700 mb-4">
+                        Platformumuzu kullanırken aşağıdaki türden kişisel verileri topluyoruz:
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>Kimlik bilgileriniz (ad, soyad)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>İletişim bilgileriniz (e-posta adresi)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>İçerik verileri (ilanlar, mesajlar, yorumlar)</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Veri Kullanımı -->
+            <section id="veri-kullanimi" class="scroll-mt-20 mt-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">2</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Veri Kullanımı</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700 mb-4">
+                        Topladığımız verileri aşağıdaki amaçlarla kullanıyoruz:
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-yellow-50 rounded-xl p-4">
+                            <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Hesap Yönetimi</h3>
+                            <p class="text-sm text-gray-600">Hesabınızı oluşturmak ve yönetmek için</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-xl p-4">
+                            <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-2">İletişim</h3>
+                            <p class="text-sm text-gray-600">Sizinle iletişim kurmak için</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-xl p-4">
+                            <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Hizmet Geliştirme</h3>
+                            <p class="text-sm text-gray-600">Hizmetlerimizi geliştirmek için</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-xl p-4">
+                            <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                                <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Güvenlik</h3>
+                            <p class="text-sm text-gray-600">Güvenliği sağlamak için</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diğer bölümler benzer şekilde devam eder -->
+            <section id="veri-paylasimi" class="scroll-mt-20 mt-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">3</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Veri Paylaşımı</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700">
+                        Verilerinizi yalnızca yasal zorunluluklar ve hizmet sağlayıcılarımızla sınırlı olarak paylaşıyoruz. 
+                        Verileriniz asla üçüncü taraflara satılmaz ve reklam amaçlı kullanılmaz.
+                    </p>
+                </div>
+            </section>
+
+            <section id="guvenlik" class="scroll-mt-20 mt-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">4</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Güvenlik</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700">
+                        Verilerinizi korumak için endüstri standartlarında güvenlik önlemleri uyguluyoruz. 
+                        Hesap şifreleriniz hashlenmiş olarak saklanır ve yetkisiz erişime karşı korunur.
+                    </p>
+                </div>
+            </section>
+
+            <section id="haklariniz" class="scroll-mt-20 mt-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">5</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Haklarınız</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700 mb-4">
+                        KVKK kapsamında aşağıdaki haklara sahipsiniz:
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center">• Verilerinize erişim hakkı</li>
+                        <li class="flex items-center">• Düzeltme hakkı</li>
+                        <li class="flex items-center">• Silinme hakkı</li>
+                        <li class="flex items-center">• İtiraz hakkı</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="iletisim" class="scroll-mt-20 mt-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl font-bold text-yellow-600">6</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">İletişim</h2>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p class="text-gray-700 mb-4">
+                        Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:
+                    </p>
+                    <div class="bg-yellow-50 rounded-xl p-4">
+                        <p class="text-sm text-gray-700">
+                            <strong>E-posta:</strong> iletisim@enufak.com<br>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="bg-yellow-50 rounded-2xl p-8 text-center mt-16 border border-yellow-100">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Sorularınız mı var?</h3>
+            <p class="text-gray-700 mb-6">Gizlilik politikamızla ilgili her türlü sorunuz için bizimle iletişime geçmekten çekinmeyin.</p>
+            <a href="mailto:iletisim@enufak.com" target="_blank" class="inline-flex items-center px-6 py-3 bg-yellow-600 text-white font-medium rounded-lg hover:bg-yellow-700 transition-colors">
+                İletişime Geç
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Smooth Scroll -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .scroll-mt-20 {
+        scroll-margin-top: 5rem;
+    }
+    
+    section {
+        scroll-behavior: smooth;
+    }
+    
+    /* Bağlantılar için hover efektleri */
+    a:hover {
+        transition: color 0.2s ease;
+    }
+    
+    /* Kart gölgeleri için */
+    .shadow-sm {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+</style>
+{% endblock %}
