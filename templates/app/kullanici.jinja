@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="mt-6 flex flex-wrap gap-3">
-                    <a {% if request.user.is_authenticated %}href="/mesajlar/dm-olustur/{{request.user.id}}-{{user.id}}/"{% else %}href="/uygulama/giris-yap/"{% endif %}
+                    <button onclick="sendMessage('{{request.user.id}}','{{user.id}}')"
                         class="px-5 py-2.5 bg-yellow-500 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
                             </path>
                         </svg>
                         Mesaj Gönder
-                    </a>
+                    </button>
 
                     <a href="/ticket/"
                         class="px-5 py-2.5 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center bg-white">
@@ -312,7 +312,10 @@
 </style>
 
 <script>
-    // Sekme değiştirme işlevselliği
+function sendMessage(requestID, userID) {
+    window.location.href = '/mesajlar/dm-olustur/' + requestID + '-' + userID + '/'
+}
+
     document.addEventListener('DOMContentLoaded', function () {
         const tabs = document.querySelectorAll('[data-tabs-target]');
         const tabContents = document.querySelectorAll('.tab-content');
