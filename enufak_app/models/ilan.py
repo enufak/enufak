@@ -1,5 +1,6 @@
 from django.db import models
 from enufak_app.models import CustomUser
+from autoslug import AutoSlugField
 
 
 class Ilan(models.Model):
@@ -24,6 +25,7 @@ class Ilan(models.Model):
     aktif = models.BooleanField(default=False)
 
     kategori = models.CharField(max_length=20, choices=KATEGORI_SECENEKLERI, default='diger', blank=True, null=True)
+    slug = AutoSlugField(populate_from='ilan_baslik', unique=True)
 
     class Meta:
         db_table = 'ilan'

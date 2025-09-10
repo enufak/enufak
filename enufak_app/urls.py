@@ -38,4 +38,5 @@ urlpatterns = [
     path("google/login/", oauth2_login, name="google_login_direct"),
     #
     path('@<slug:slug>/', kullanici, name='kullanici'),
+    path('@<slug:userslug>/<slug:slug>/', ilan_detay, name='ilan_detay'),
 ]

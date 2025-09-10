@@ -262,7 +262,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-gray-900">
-                            {{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</h3>
+                            <a href="/uygulama/@{{ilan.ilan_sahibi.slug}}/">{{ ilan.ilan_sahibi.get_full_name|default:ilan.ilan_sahibi }}</a></h3>
                         {% if ilan.ilan_sahibi.is_superuser %}
                         <div class="flex items-center text-xs text-gray-500">
                             <i class="fas fa-check-circle text-red-500 me-1"></i>
@@ -298,7 +298,7 @@
                         <span class="text-xs text-gray-500">İstenilen Ücret:</span>
                         <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
                     </div>
-                    <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}"
+                    <a href="/uygulama/@{{ilan.ilan_sahibi.slug}}/{{ ilan.slug }}/"
                     class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
                         <span>İncele</span>
                         <i class="fas fa-arrow-right text-lg ml-1"></i>

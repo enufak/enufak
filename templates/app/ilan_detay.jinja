@@ -1,0 +1,112 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}{{ilan.ilan_baslik}}{% endblock %}
+
+
+{% block content %}
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-gray-100">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ilan.ilan_baslik}}</h1>
+                    </div>
+                    <span
+                        class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">{{ilan.get_kategori_display}}</span>
+                </div>
+                <br>
+                <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-file-alt text-yellow-500 mr-2"></i>
+                    İlan Detayları
+                </h2>
+                <div class="prose max-w-none text-gray-700">
+                    <p>{{ilan.ilan_metni}}</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-info-circle text-yellow-500 mr-2"></i>
+                    Çalışan Hakkında
+                </h2>
+                <div class="flex items-start mb-4">
+                    <img src="{% if ilan.ilan_sahibi.avatar %}{{ilan.ilan_sahibi.avatar.url}}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" alt="TechCorp Logo"
+                        class="w-16 h-16 rounded-lg object-cover mr-4">
+                    <div>
+                        <h3 class="font-semibold text-lg">{{ilan.ilan_sahibi.get_full_name}}</h3>
+                        {% if ilan.ilan_sahibi.is_superuser %}
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-check-circle text-red-500 me-1"></i>
+                            <span>Yönetici</span>
+                        </div>
+                        {% elif ilan.ilan_sahibi.onayli_kullanici %}
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-check-circle text-yellow-500 me-1"></i>
+                            <span>Doğrulanmış Kullanıcı</span>
+                        </div>
+                        {% else %}
+                        Normal Kullanıcı
+                        {% endif%}
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    {{ilan.ilan_sahibi.biyografi|default:"Biyografi belirtilmedi."}}
+                </p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-gray-100 sticky top-6">
+                <button id="profil-goruntule" onclick="profilGoruntule('{{ilan.ilan_sahibi.slug}}')"
+                    class="w-full bg-yellow-600 text-white py-3 rounded-lg font-medium hover:bg-yellow-700 transition-colors mb-4">
+                    Profili Görüntüle
+                </button>
+                <a href="/ticket/"
+                    class="w-full border border-yellow-600 text-yellow-600 py-3 rounded-lg font-medium hover:bg-yellow-50 transition-colors mb-6 flex items-center justify-center">
+                    <i class="far fa-bookmark mr-2"></i>
+                    Şikayet Et
+                </a>
+
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-money-bill-wave text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">İstenen Ücret</p>
+                            <p class="font-medium">{{ilan.istenilen_ucret}}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-briefcase text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Deneyim</p>
+                            <p class="font-medium">{{ilan.is_deneyimi}}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-map-marker-alt text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Konum</p>
+                            <p class="font-medium">{{ilan.konum}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+function profilGoruntule(slug) {
+    window.location.href = '/uygulama/@' + slug + '/'
+}
+</script>
+{% endblock %}
