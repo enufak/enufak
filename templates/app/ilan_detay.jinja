@@ -45,11 +45,11 @@
                 <div class="flex flex-wrap gap-3 mb-6">
                     <span class="inline-flex items-center px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm">
                         <i class="fas fa-clock text-yellow-500 mr-1.5 text-xs"></i>
-                        {{ilan.olusturulma_tarihi|timesince}} önce
+                        {{ilan.created_at|timesince}} önce
                     </span>
                     <span class="inline-flex items-center px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm">
                         <i class="fas fa-eye text-yellow-500 mr-1.5 text-xs"></i>
-                        245 görüntüleme
+                        {{ ilan.goruntulenme_sayisi }} görüntüleme
                     </span>
                 </div>
 
@@ -97,7 +97,9 @@
 
                     <div>
                         <h3 class="font-bold text-lg text-gray-900">{{ilan.ilan_sahibi.get_full_name}}</h3>
-
+                        <div class="flex items-center text-sm text-gray-600">
+                            {{ilan.ilan_sahibi.date_joined|date:"d M Y"}} tarihinde üye oldu.
+                        </div>
                         <div class="flex items-center mt-2 mb-3">
                             {% if ilan.ilan_sahibi.is_superuser %}
                             <span
@@ -115,11 +117,6 @@
                                 Normal Kullanıcı
                             </span>
                             {% endif %}
-                        </div>
-
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-map-marker-alt mr-1.5 text-yellow-500 text-xs"></i>
-                            {{ilan.konum}}
                         </div>
                     </div>
                 </div>
@@ -177,7 +174,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Deneyim</p>
-                            <p class="font-semibold text-gray-900 text-lg">{{ilan.is_deneyimi}} yıl</p>
+                            <p class="font-semibold text-gray-900 text-lg">{{ilan.is_deneyimi}}</p>
                         </div>
                     </div>
 
@@ -201,70 +198,57 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Yayınlanma Tarihi</p>
-                            <p class="font-semibold text-gray-900 text-lg">{{ilan.olusturulma_tarihi|date:"d M Y"}}</p>
+                            <p class="font-semibold text-gray-900 text-lg">{{ilan.created_at|date:"d M Y"}}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sosyal Paylaşım Butonları -->
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                    <h3 class="font-semibold text-gray-900 text-lg mb-3 flex items-center">
-                        <i class="fas fa-share-alt text-yellow-500 mr-2 text-lg"></i>
-                        İlanı Paylaş
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <!-- Twitter -->
-                        <a href="#"
-                            class="social-btn relative w-12 h-12 rounded-xl bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition-colors duration-300">
-                            <i class="fab fa-twitter text-sm"></i>
-                            <div
-                                class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
-                                Twitter'da Paylaş
-                            </div>
-                        </a>
+                <h3 class="font-semibold text-gray-900 text-lg mb-3 flex items-center">
+                    <i class="fas fa-share-alt text-yellow-500 mr-2 text-lg"></i>
+                    İlanı Paylaş
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <!-- Twitter -->
+                    <a target="_blank" href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" id="twitter-share"
+                        class="social-btn relative w-12 h-12 rounded-xl bg-blue-400 text-white flex items-center justify-center hover:bg-blue-500 transition-colors duration-300">
+                        <i class="fab fa-twitter text-sm"></i>
+                        <div class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
+                            Twitter'da Paylaş
+                        </div>
+                    </a>
 
-                        <!-- Instagram -->
-                        <a href="#"
-                            class="social-btn relative w-12 h-12 rounded-xl instagram-bg text-white flex items-center justify-center">
-                            <i class="fab fa-instagram text-sm"></i>
-                            <div
-                                class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
-                                Instagram'da Paylaş
-                            </div>
-                        </a>
+                    <!-- LinkedIn -->
+                    <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" id="linkedin-share"
+                        class="social-btn relative w-12 h-12 rounded-xl bg-blue-800 text-white flex items-center justify-center hover:bg-blue-900 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                        <div class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
+                            LinkedIn'de Paylaş
+                        </div>
+                    </a>
 
-                        <!-- LinkedIn -->
-                        <a href="#"
-                            class="social-btn relative w-12 h-12 rounded-xl bg-blue-800 text-white flex items-center justify-center hover:bg-blue-900 transition-colors duration-300">
-                            <i class="fab fa-linkedin-in text-sm"></i>
-                            <div
-                                class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
-                                LinkedIn'de Paylaş
-                            </div>
-                        </a>
+                    <!-- WhatsApp -->
+                    <a target="_blank" href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" id="whatsapp-share"
+                        class="social-btn relative w-12 h-12 rounded-xl bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors duration-300">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <div class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
+                            WhatsApp'ta Paylaş
+                        </div>
+                    </a>
 
-                        <!-- WhatsApp -->
-                        <a href="#"
-                            class="social-btn relative w-12 h-12 rounded-xl bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors duration-300">
-                            <i class="fab fa-whatsapp text-sm"></i>
-                            <div
-                                class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
-                                WhatsApp'ta Paylaş
-                            </div>
-                     
-                        </a>
-
-                        <!-- Link Kopyala -->
-                        <button id="copy-link-btn"
-                            class="social-btn relative w-12 h-12 rounded-xl bg-yellow-500 text-white flex items-center justify-center hover:bg-yellow-600 transition-colors duration-300">
-                            <i class="fas fa-link text-sm"></i>
-                            <div id="copy-tooltip"
-                                class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
-                                Linki Kopyala
-                            </div>
-                        </button>
-                    </div>
+                    <!-- Link Kopyala -->
+                    <button id="copy-link-btn"
+                        class="social-btn relative w-12 h-12 rounded-xl bg-yellow-500 text-white flex items-center justify-center hover:bg-yellow-600 transition-colors duration-300">
+                        <i class="fas fa-link text-sm"></i>
+                        <div id="copy-tooltip"
+                            class="tooltip absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded-md whitespace-nowrap opacity-0 invisible transition-all duration-300">
+                            Linki Kopyala
+                        </div>
+                    </button>
                 </div>
+            </div>
+
             </div>
 
           

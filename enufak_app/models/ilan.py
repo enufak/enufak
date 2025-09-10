@@ -27,6 +27,9 @@ class Ilan(models.Model):
     kategori = models.CharField(max_length=20, choices=KATEGORI_SECENEKLERI, default='diger', blank=True, null=True)
     slug = AutoSlugField(populate_from='ilan_baslik', unique=True)
 
+    goruntulenme_sayisi = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
     class Meta:
         db_table = 'ilan'
         verbose_name = 'İlan'
