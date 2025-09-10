@@ -173,58 +173,102 @@
     </div>
 </div>
 <section class="py-12 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold text-gray-900">Popüler <span class="text-yellow-600">Kategoriler</span></h2>
-            <p class="mt-2 text-gray-600">Farklı kategorilerdeki hizmetleri keşfet</p>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">Popüler <span class="text-yellow-600">Kategoriler</span></h2>
+                <p class="mt-2 text-gray-600">Farklı kategorilerdeki hizmetleri keşfet</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                <!-- Eğitim -->
+                <a href="{% url 'ilan_ara' %}?kategori=egitim"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-blue-100 transition-colors">
+                        <i class="fas fa-graduation-cap text-xl sm:text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Eğitim</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.egitim }} ilan</p>
+                </a>
+
+                <!-- Teknoloji -->
+                <a href="{% url 'ilan_ara' %}?kategori=teknoloji"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-purple-100 transition-colors">
+                        <i class="fas fa-laptop-code text-xl sm:text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Teknoloji</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.teknoloji }} ilan</p>
+                </a>
+
+                <!-- Eğlence -->
+                <a href="{% url 'ilan_ara' %}?kategori=eglence"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-pink-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-pink-100 transition-colors">
+                        <i class="fas fa-theater-masks text-xl sm:text-2xl text-pink-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Eğlence</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.eglence }} ilan</p>
+                </a>
+
+                <!-- Moda -->
+                <a href="{% url 'ilan_ara' %}?kategori=moda"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-red-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-red-100 transition-colors">
+                        <i class="fas fa-tshirt text-xl sm:text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Moda</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.moda }} ilan</p>
+                </a>
+
+                <!-- Sağlık -->
+                <a href="{% url 'ilan_ara' %}?kategori=saglik"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-green-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-green-100 transition-colors">
+                        <i class="fas fa-heartbeat text-xl sm:text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Sağlık</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.saglik }} ilan</p>
+                </a>
+
+                <!-- Tamir -->
+                <a href="{% url 'ilan_ara' %}?kategori=tamir"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-yellow-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-yellow-100 transition-colors">
+                        <i class="fas fa-tools text-xl sm:text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Tamir</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.tamir }} ilan</p>
+                </a>
+
+                <!-- Sanat -->
+                <a href="{% url 'ilan_ara' %}?kategori=sanat"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-indigo-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-indigo-100 transition-colors">
+                        <i class="fas fa-palette text-xl sm:text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Sanat</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.sanat }} ilan</p>
+                </a>
+
+                <!-- Diğer -->
+                <a href="{% url 'ilan_ara' %}?kategori=diger"
+                   class="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
+                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gray-50 rounded-lg mb-3 sm:mb-4 group-hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-ellipsis-h text-xl sm:text-2xl text-gray-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 text-sm sm:text-base mb-1">Diğer</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">{{ kategori_sayilari.diger }} ilan</p>
+                </a>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="/uygulama/ara/" class="inline-flex items-center text-gray-700 hover:text-yellow-600 font-medium transition-colors">
+                    <span>Tüm kategorileri görüntüle</span>
+                    <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
         </div>
-
-        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <a href="{% url 'ilan_ara' %}?kategori=egitim"
-               class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
-                <div class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
-                    <i class="fas fa-graduation-cap text-2xl text-yellow-600"></i>
-                </div>
-                <h3 class="font-semibold text-gray-900 mb-1">Eğitim</h3>
-                <p class="text-sm text-gray-500">{{ kategori_sayilari.egitim }} ilan</p>
-            </a>
-
-            <a href="{% url 'ilan_ara' %}?kategori=teknoloji"
-               class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
-                <div class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
-                    <i class="fas fa-laptop-code text-2xl text-yellow-600"></i>
-                </div>
-                <h3 class="font-semibold text-gray-900 mb-1">Teknoloji</h3>
-                <p class="text-sm text-gray-500">{{ kategori_sayilari.teknoloji }} ilan</p>
-            </a>
-
-            <a href="{% url 'ilan_ara' %}?kategori=eglence"
-               class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
-                <div class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
-                    <i class="fas fa-theater-masks text-2xl text-yellow-600"></i>
-                </div>
-                <h3 class="font-semibold text-gray-900 mb-1">Eğlence</h3>
-                <p class="text-sm text-gray-500">{{ kategori_sayilari.eglence }} ilan</p>
-            </a>
-
-            <a href="{% url 'ilan_ara' %}?kategori=moda"
-               class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 group text-center">
-                <div class="inline-flex items-center justify-center w-14 h-14 bg-yellow-100 rounded-lg mb-4 group-hover:bg-yellow-200 transition-colors">
-                    <i class="fas fa-tshirt text-2xl text-yellow-600"></i>
-                </div>
-                <h3 class="font-semibold text-gray-900 mb-1">Moda</h3>
-                <p class="text-sm text-gray-500">{{ kategori_sayilari.moda }} ilan</p>
-            </a>
-        </div>
-
-        <div class="text-center mt-8">
-            <a href="/uygulama/ara/" class="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-medium">
-                <span>Tüm kategorileri görüntüle</span>
-                <i class="fas fa-arrow-right ms-2"></i>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
 <section class="py-12 bg-gray-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">

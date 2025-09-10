@@ -15,6 +15,10 @@ def index(request):
         'teknoloji': ilan_liste.filter(kategori='teknoloji').count(),
         'eglence': ilan_liste.filter(kategori='eglence').count(),
         'moda': ilan_liste.filter(kategori='moda').count(),
+        'saglik': ilan_liste.filter(kategori='saglik').count(),
+        'tamir': ilan_liste.filter(kategori='tamir').count(),
+        'sanat': ilan_liste.filter(kategori='sanat').count(),
+        'diger': ilan_liste.filter(kategori='diger').count(),
     }
 
 
