@@ -3,3 +3,4 @@ from .ticket import ticket_olustur
 from .sss import sss
 from .gizlilik import gizlilik
 from .manifest import manifest
+from .assetlinks import assetlinks
