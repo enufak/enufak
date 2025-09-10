@@ -212,13 +212,23 @@
             transform: scale(1.05);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
+        .kesfet-navbar {
+            background-color: transparent;
+            border-bottom: none;
+            transition: background-color 0.3s, border-bottom 0.3s;
+        }
+
+        .kesfet-navbar.scrolled {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
     </style>
-    <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="antialiased sticky top-0 z-50">
-        <nav class="nav-bg px-4 lg:px-6 py-3">
+    <header class="antialiased sticky top-0 z-50 ">
+        <nav class="nav-bg px-4 lg:px-6 py-3 fixed w-full top-0 z-50 transition-colors {% if request.path == '/uygulama/kesfet/' %}kesfet-navbar{% endif %} duration-300" id="navbar">
             <div class="flex justify-between items-center">
                 <!-- Logo ve mobil menü butonu -->
                 <div class="flex items-center">
@@ -317,6 +327,11 @@
             </ul>
         </div>
     </header>
+    {% if request.path == '/uygulama/kesfet/' %} 
+    
+    {% else %}
+    <br><br><br>
+    {% endif %}
 </body>
 </html>
 
@@ -342,5 +357,36 @@ installButton.addEventListener("click", async () => {
 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
     installButton.style.display = 'none';
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector("nav.nav-bg");
+
+    function updateNavbar() {
+        if (window.scrollY === 0) {
+            navbar.classList.add("nav-transparent");
+        } else {
+            navbar.classList.remove("nav-transparent");
+        }
+    }
+
+    updateNavbar(); 
+    window.addEventListener("scroll", updateNavbar);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector(".kesfet-navbar");
+    if (!navbar) return; 
+
+    function updateNavbar() {
+        if (window.scrollY < 100) {
+            navbar.classList.remove("scrolled");
+        } else {
+            navbar.classList.add("scrolled");
+        }
+    }
+
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar);
+});
+
 
 </script>
