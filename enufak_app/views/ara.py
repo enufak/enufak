@@ -9,7 +9,7 @@ def ilan_arama(request):
     max_ucret = request.GET.get("max_ucret")
     secili_kategori = request.GET.get("kategori")
 
-    ilanlar = Ilan.objects.filter(aktif=True)
+    ilanlar = Ilan.objects.filter(aktif=True).order_by('-id')
 
     if kelime:
         ilanlar = ilanlar.filter(
