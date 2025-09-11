@@ -5,7 +5,8 @@ from allauth.socialaccount.providers.google.views import oauth2_login
 from django.contrib.auth import views as auth_views
 from enufak_app.forms import GirisForm
 from django.shortcuts import render
-
+from allauth.socialaccount.views import login_cancelled
+from django.views.generic import TemplateView
 from allauth.account.views import EmailVerificationSentView as BaseEmailVerificationSentView
 
 class CustomEmailVerificationSentView(BaseEmailVerificationSentView):
@@ -39,4 +40,9 @@ urlpatterns = [
     #
     path('@<slug:slug>/', kullanici, name='kullanici'),
     path('@<slug:userslug>/<slug:slug>/', ilan_detay, name='ilan_detay'),
+    path(
+        "social/3rdparty/login/cancelled/",
+        TemplateView.as_view(template_name="socialaccount/login_cancelled.html"),
+        name="socialaccount_login_cancelled",
+    ),
 ]
