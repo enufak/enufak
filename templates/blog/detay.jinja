@@ -21,9 +21,11 @@
                     <p class="text-base font-semibold text-indigo-500">{{gonderi.get_etiket_display}}</p>
                     <h1 class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{gonderi.baslik}}
                     </h1>
+                    {% if gonderi.kapak_resmi %}
                     <div class="rounded-lg overflow-hidden" style="padding-top: 15px;">
                         <img src="{{ gonderi.kapak_resmi.url }}" alt="Kapak resmi" class="w-full h-auto object-cover">
                     </div>
+                    {% endif %}
                     <div class="mt-6 text-xl text-gray prose prose-indigo">
                     {{gonderi.icerik|safe}}
                     </div>
