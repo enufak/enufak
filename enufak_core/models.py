@@ -7,10 +7,12 @@ class Ticket(models.Model):
         ("1", "Teknik Problem"),
         ("2", "Kullanıcı Bildirimi"),
         ('3', 'Ekip'),
+        ('4', 'Onaylı Kullanıcı'),
     )
 
     tur = models.CharField(max_length=1, choices=TICKET_TURU)
     baslik = models.CharField(max_length=200)
+    resim = models.ImageField(upload_to='destek/', blank=True, null=True)
     konu = models.TextField()
     yazar = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at  = models.DateTimeField(auto_now_add=True)

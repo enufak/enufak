@@ -6,7 +6,7 @@ from crispy_forms.layout import Layout, Field, Row, Column, Submit
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['tur', 'baslik', 'konu']
+        fields = ['tur', 'baslik', 'konu','resim']
         widgets = {
             'tur': forms.Select(attrs={
                 'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none',
@@ -17,6 +17,9 @@ class TicketForm(forms.ModelForm):
             }),
             'konu': forms.Textarea(attrs={
                 'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none',
+            }),
+            'resim': forms.ClearableFileInput(attrs={
+                'class': 'w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400'
             }),
         }
 
@@ -32,6 +35,9 @@ class TicketForm(forms.ModelForm):
             ),
             Row(
                 Column("konu", css_class="sm:col-span-6"),
+            ),
+            Row(
+                Column("resim", css_class="sm:col-span-6"),
             ),
             Submit("submit", "Gönder", css_class="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-white hover:bg-yellow-500 focus:ring-2 focus:ring-indigo-600")
         )

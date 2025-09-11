@@ -12,7 +12,7 @@ def ticket_olustur(request):
             messages.error(request, "Zaten bir destek talebi açtınız. İşleme alınana kadar yeni talep açamazsınız.")
             return redirect("tickets")
         else:
-            form = TicketForm(request.POST)
+            form = TicketForm(request.POST, request.FILES)
             if form.is_valid():
                 ticket = form.save(commit=False)
                 ticket.yazar = request.user  

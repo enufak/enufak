@@ -4,6 +4,7 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
+from zeep import Client
 
 
 def send_verification_email(request, user):
@@ -25,3 +26,20 @@ def send_verification_email(request, user):
     msg = EmailMultiAlternatives(subject, text_body, to=[user.email])
     msg.attach_alternative(html_body, "text/html")
     msg.send()
+
+
+def verify_tc(first_name, last_name, birth_year, tc_no):
+    wsdl = "https://tckimlik.nvi.gov.tr/service/kpspublic.asmx?WSDL"
+    client = Client(wsdl=wsdl)
+
+    try:
+        result = client.service.TCKimlikNoDogrula(
+            TCKimlikNo=int(tc_no),
+            Ad=first_name.upper(),
+            Soyad=last_name.upper(),
+            DogumYili=int(birth_year)
+        )
+        return result
+    except Exception as e:
+        print("Doğrulama hatası:", e)
+        return False
