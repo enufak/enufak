@@ -12,7 +12,11 @@ from allauth.account.views import EmailVerificationSentView as BaseEmailVerifica
 class CustomEmailVerificationSentView(BaseEmailVerificationSentView):
     template_name = "account/email/email_verification_sent.html"
 
+def redirect_login(request):
+    return redirect('giris_yap')
 
+def redirect_signup(request):
+    return redirect('kayit_ol')
 
 
 urlpatterns = [
@@ -45,4 +49,6 @@ urlpatterns = [
         TemplateView.as_view(template_name="socialaccount/login_cancelled.html"),
         name="socialaccount_login_cancelled",
     ),
+    path('social/login/', redirect_login),
+    path('social/signup/', redirect_signup),
 ]
