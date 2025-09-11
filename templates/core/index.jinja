@@ -27,11 +27,9 @@
         0% {
             background-position: 0% 50%;
         }
-
         50% {
             background-position: 100% 50%;
         }
-
         100% {
             background-position: 0% 50%;
         }
@@ -56,207 +54,438 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
     }
+
+    .hero-pattern {
+        background-image: radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.15) 0%, transparent 55%),
+                          radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 55%);
+    }
+
+    .floating-animation {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .category-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        margin-bottom: 16px;
+        font-size: 24px;
+    }
+
+    .service-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stats-box {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .testimonial-card {
+        background: linear-gradient(145deg, #ffffff, #f8fafc);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .testimonial-card:before {
+        content: """;
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        font-size: 120px;
+        color: #fef3c7;
+        font-family: Arial;
+        z-index: 0;
+    }
 </style>
 
 <body class="bg-gray-50">
 
-    <section class="bg-white py-16 md:py-24">
-        <div class="container mx-auto px-4 max-w-6xl">
+    <!-- Hero Section (Korundu) -->
+    <section class="relative bg-white overflow-hidden hero-pattern">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full opacity-20 transform translate-x-32 -translate-y-32"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-yellow-200 rounded-full opacity-10 transform -translate-x-32 translate-y-32"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 max-w-6xl py-16 md:py-24 relative z-10">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
                         İşleri çözmenin <span class="gradient-text">en kolay</span> yolu.
                     </h1>
-                    <p class="text-lg text-gray-600 mb-8">
-                        İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe
-                        dönüştürebilir,
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        İşlerin büyüklüğüne bakılmaz, çözüm anında gelir. EnUfak ile becerilerinizi bir işe dönüştürebilir,
                         karşılaştığınız sorunları alanına hakim kişiler yardımıyla çözebilirsiniz.
                     </p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a href="/uygulama/"
-                            class="btn-primary text-white font-medium py-3 px-6 rounded-lg text-center">
+                            class="btn-primary text-white font-medium py-3 px-8 rounded-lg text-center text-lg shadow-lg">
                             Hemen Başla <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                         <a href="#nasil-calisir"
-                            class="bg-white text-gray-800 border border-gray-300 font-medium py-3 px-6 rounded-lg text-center hover:bg-gray-50 transition">
+                            class="bg-white text-gray-800 border border-gray-300 font-medium py-3 px-8 rounded-lg text-center text-lg hover:bg-gray-50 transition shadow-md">
                             Nasıl Çalışır? <i class="fas fa-question-circle ml-2"></i>
                         </a>
                     </div>
+                    
+                    <div class="mt-10 flex items-center space-x-6">
+                        <div class="flex -space-x-3">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User">
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600"><span class="font-semibold text-yellow-600">5.000+</span> mutlu kullanıcı</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-500 ml-2">4.8/5</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="md:w-1/2 flex justify-center">
                     <div class="relative">
-                        <!-- Sadece md ve üstü ekranlarda görünür -->
-                        <div
-                            class="hidden md:block absolute -top-6 -left-6 w-64 h-64 bg-yellow-100 rounded-full opacity-50 animate-pulse">
+                        <div class="floating-animation">
+                            <div class="relative bg-white rounded-2xl shadow-2xl p-6 mx-8 border border-gray-100">
+                                <div class="absolute -top-4 -right-4 bg-yellow-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <img class="w-12 h-12 rounded-full object-cover border-2 border-yellow-100" 
+                                         src="https://randomuser.me/api/portraits/women/65.jpg" alt="Profile">
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold text-gray-800">Ayşe Y.</h4>
+                                        <p class="text-sm text-gray-500">Grafik Tasarımcı</p>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">Logo Tasarımı</h3>
+                                <p class="text-gray-600 text-sm mb-4">Şirketiniz için modern ve şık bir logo tasarlıyorum.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-yellow-600 font-bold">750₺</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">3 gün</span>
+                                </div>
+                            </div>
                         </div>
-                        <div
-                            class="hidden md:block absolute -bottom-6 -right-6 w-64 h-64 bg-yellow-200 rounded-full opacity-30 animate-pulse delay-500">
-                        </div>
-
+                        
+                        <!-- Floating elements -->
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-yellow-100 rounded-lg opacity-50 transform rotate-12 floating-animation" style="animation-delay: 1s;"></div>
+                        <div class="absolute -bottom-8 -right-8 w-20 h-20 bg-yellow-200 rounded-full opacity-30 floating-animation" style="animation-delay: 2s;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Neden <span
-                        class="text-yellow-500">EnUfak</span>?</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">İşlerinizi kolaylaştırmak için tasarlanmış
-                    özelliklerimizle tanışın</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                    <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-bolt text-yellow-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Hızlı Çözüm</h3>
-                    <p class="text-gray-600">İhtiyacınız olan hizmete hızlıca ulaşın, sorunlarınızı minimum zamanda
-                        çözün.</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-comments text-blue-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Kolay İletişim</h3>
-                    <p class="text-gray-600">Platform içerisindeki mesajlaşma özelliği ile daha rahat anlaşabilir ve işe
-                        başlayabilirsiniz.</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-md card-hover">
-                    <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="fas fa-users text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Güçlü Topluluk</h3>
-                    <p class="text-gray-600">Güçlü topluluk sayesinde herhangi bir konuya çözüm bulabilirsiniz.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-white" id="nasil-calisir">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">EnUfak Nasıl <span
-                        class="text-yellow-500">Çalışır</span>?</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Sadece 3 adımda ihtiyacınız olan hizmeti bulun veya
-                    hizmet verin</p>
-            </div>
-
-            <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 items-center">
-                <div class="flex-1 text-center">
-                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl font-bold text-yellow-600">1</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">İhtiyacını Belirt</h3>
-                    <p class="text-gray-600">Yapılmasını istediğin işi detaylı bir şekilde açıkla ve bütçeni belirle.
-                    </p>
-                </div>
-
-                <div class="flex-1 text-center">
-                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl font-bold text-yellow-600">2</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Teklifleri Değerlendir</h3>
-                    <p class="text-gray-600">Gelen teklifleri inceleyerek sana en uygun olan çalışanı seç.</p>
-                </div>
-
-                <div class="flex-1 text-center">
-                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl font-bold text-yellow-600">3</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">İşe Başla</h3>
-                    <p class="text-gray-600">Anlaştığın kişi ile iletişimde kalarak işinin temellerini atmaya hazırsın.
-                    </p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="/uygulama/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg">
-                    Hemen Deneyin <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
+    <!-- Popüler Hizmetler -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kullanıcı <span
-                        class="text-yellow-500">Yorumları</span></h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">EnUfak kullanıcılarının deneyimleri</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Popüler <span class="text-yellow-500">Hizmetler</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">En çok talep edilen hizmetlerden bazıları</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center font-bold text-yellow-800">
-                            AE</div>
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-800">Ahmet E.</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover text-center">
+                    <div class="category-icon bg-yellow-100 text-yellow-600 mx-auto">
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <p class="text-gray-600">"Web sitemi yaptırmak için birçok yer gezdim. EnUfak'ta hem uygun fiyata
-                        hem de istediğim kalitede hizmet aldım."</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Web Tasarım</h3>
+                    <p class="text-gray-600 text-sm">Profesyonel web siteleri</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800">
-                            ZY</div>
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-800">Zeynep Y.</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover text-center">
+                    <div class="category-icon bg-blue-100 text-blue-600 mx-auto">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <p class="text-gray-600">"İçerik yazarlığı konusunda yardıma ihtiyacım vardı. Bulduğum çözüm ortağı
-                        harika iş çıkardı, teşekkürler EnUfak!"</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Mobil Uygulama</h3>
+                    <p class="text-gray-600 text-sm">iOS ve Android uygulamaları</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-800">
-                            MK</div>
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-800">Mehmet K.</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover text-center">
+                    <div class="category-icon bg-green-100 text-green-600 mx-auto">
+                        <i class="fas fa-pencil-ruler"></i>
                     </div>
-                    <p class="text-gray-600">"Logo tasarımı için birkaç kişiyle görüştüm ancak istediğim sonucu
-                        alamadım. EnUfak sayesinde aradığım tasarımı buldum."</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Grafik Tasarım</h3>
+                    <p class="text-gray-600 text-sm">Logo, banner ve afişler</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-md card-hover text-center">
+                    <div class="category-icon bg-purple-100 text-purple-600 mx-auto">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">İçerik Yazarlığı</h3>
+                    <p class="text-gray-600 text-sm">SEO uyumlu makaleler</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="/uygulama/ara/" class="inline-flex items-center text-yellow-600 font-medium hover:text-yellow-700">
+                    Tüm hizmetleri görüntüle <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nasıl Çalışır? -->
+    <section class="py-16 bg-white" id="nasil-calisir">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">EnUfak Nasıl <span class="text-yellow-500">Çalışır</span>?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Sadece 3 adımda ihtiyacınız olan hizmeti bulun veya hizmet verin</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto shadow-md">
+                            <i class="fas fa-tasks text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">İhtiyacını Belirt</h3>
+                    <p class="text-gray-600">Yapılmasını istediğin işi detaylı bir şekilde açıkla ve bütçeni belirle.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto shadow-md">
+                            <i class="fas fa-handshake text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Teklifleri Değerlendir</h3>
+                    <p class="text-gray-600">Gelen teklifleri inceleyerek sana en uygun olan çalışanı seç.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto shadow-md">
+                            <i class="fas fa-rocket text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">İşe Başla</h3>
+                    <p class="text-gray-600">Anlaştığın kişi ile iletişimde kalarak işinin temellerini atmaya hazırsın.</p>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 rounded-2xl p-8 md:p-12 border border-yellow-100">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Hemen bir iş oluşturun</h3>
+                        <p class="text-gray-600 mb-6">İhtiyacınız olan hizmeti tanımlayın, teklifleri alın ve en uygun çalışanı seçin.</p>
+                        <a href="/uygulama/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg text-lg">
+                            İş Oluştur <i class="fas fa-plus-circle ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4254/4254068.png" alt="Create Job" class="w-48 h-48 object-contain">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Öne Çıkan Hizmet Sağlayıcılar -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Öne Çıkan <span class="text-yellow-500">Hizmet Sağlayıcılar</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Alanında uzman hizmet sağlayıcılarımız</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md service-card">
+                    <div class="h-40 bg-yellow-100 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Service Provider" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold py-1 px-2 rounded-full">4.9</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Provider" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow">
+                            <div class="ml-3">
+                                <h3 class="font-semibold text-gray-800">Zeynep K.</h3>
+                                <p class="text-sm text-gray-500">Grafik Tasarımcı</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">5 yıllık deneyimle kurumsal kimlik ve logo tasarımı hizmeti veriyorum.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-600 font-bold">500₺起</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-briefcase mr-1"></i> 24 iş</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md service-card">
+                    <div class="h-40 bg-blue-100 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Service Provider" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold py-1 px-2 rounded-full">4.8</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Provider" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow">
+                            <div class="ml-3">
+                                <h3 class="font-semibold text-gray-800">Mehmet Y.</h3>
+                                <p class="text-sm text-gray-500">Web Geliştirici</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Modern ve responsive web siteleri tasarlıyorum. SEO uyumlu ve hızlı çözümler.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-600 font-bold">1200₺起</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-briefcase mr-1"></i> 36 iş</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md service-card">
+                    <div class="h-40 bg-green-100 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485893086445-ed75865251e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Service Provider" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold py-1 px-2 rounded-full">5.0</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Provider" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow">
+                            <div class="ml-3">
+                                <h3 class="font-semibold text-gray-800">Ayşe T.</h3>
+                                <p class="text-sm text-gray-500">İçerik Yazarı</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">SEO uyumlu, özgün ve akıcı içerikler oluşturuyorum. Blog yazıları ve makaleler.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-600 font-bold">250₺起</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-briefcase mr-1"></i> 42 iş</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="/uygulama/ara/" class="btn-primary inline-block text-white font-medium py-3 px-8 rounded-lg">
+                    Tüm Hizmet Sağlayıcıları Gör <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- İstatistikler ve Güven -->
     <section class="py-16 bg-yellow-500">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="stats-box">
+                    <div class="text-3xl font-bold text-white mb-2">5.000+</div>
+                    <div class="text-yellow-100">Mutlu Kullanıcı</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold text-white mb-2">1.200+</div>
+                    <div class="text-yellow-100">Tamamlanan İş</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold text-white mb-2">300+</div>
+                    <div class="text-yellow-100">Hizmet Sağlayıcı</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold text-white mb-2">4.8/5</div>
+                    <div class="text-yellow-100">Ortalama Puan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Müşteri Yorumları -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Müşteri <span class="text-yellow-500">Yorumları</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">EnUfak kullanıcılarının deneyimleri</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full object-cover border-2 border-yellow-100" 
+                             src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Ahmet E.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 relative z-10">"Web sitemi yaptırmak için birçok yer gezdim. EnUfak'ta hem uygun fiyata hem de istediğim kalitede hizmet aldım."</p>
+                </div>
+
+                <div class="testimonial-card p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full object-cover border-2 border-yellow-100" 
+                             src="https://randomuser.me/api/portraits/women/33.jpg" alt="Customer">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Zeynep Y.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 relative z-10">"İçerik yazarlığı konusunda yardıma ihtiyacım vardı. Bulduğum çözüm ortağı harika iş çıkardı, teşekkürler EnUfak!"</p>
+                </div>
+
+                <div class="testimonial-card p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img class="w-12 h-12 rounded-full object-cover border-2 border-yellow-100" 
+                             src="https://randomuser.me/api/portraits/men/42.jpg" alt="Customer">
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Mehmet K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 relative z-10">"Logo tasarımı için birkaç kişiyle görüştüm ancak istediğim sonucu alamadım. EnUfak sayesinde aradığım tasarımı buldum."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-yellow-500 to-yellow-600">
         <div class="container mx-auto px-4 max-w-4xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Hemen Üye Ol, İşini Hallet!</h2>
-            <p class="text-lg text-white mb-8 opacity-90">Güçlü topluluğumuza katıl ve ihtiyacın olan hizmeti bul veya
-                yeteneklerini paraya dönüştür.</p>
+            <p class="text-lg text-white mb-8 opacity-90">Güçlü topluluğumuza katıl ve ihtiyacın olan hizmeti bul veya yeteneklerini paraya dönüştür.</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <a href="/uygulama/kayit-ol/"
-                    class="bg-white text-yellow-600 font-medium py-3 px-8 rounded-lg hover:bg-gray-100 transition">
+                    class="bg-white text-yellow-600 font-medium py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition shadow-lg">
                     Ücretsiz Kaydol <i class="fas fa-user-plus ml-2"></i>
                 </a>
                 <a href="/uygulama/giris-yap/"
-                    class="bg-yellow-700 text-white font-medium py-3 px-8 rounded-lg hover:bg-yellow-800 transition">
+                    class="bg-yellow-800 text-white font-medium py-3 px-8 rounded-lg text-lg hover:bg-yellow-900 transition shadow-lg">
                     Giriş Yap <i class="fas fa-sign-in-alt ml-2"></i>
                 </a>
             </div>
@@ -265,9 +494,9 @@
 
     {% include 'components/_footer.jinja' %}
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Animasyon için Intersection Observer
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -276,24 +505,25 @@
                     }
                 });
             }, observerOptions);
-            document.querySelectorAll('section').forEach(section => observer.observe(section));
+            
+            document.querySelectorAll('.card-hover, .service-card').forEach(card => observer.observe(card));
         });
     </script>
 
 </body>
 
 <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/68c03a4303b24a1925f914ee/1j4ne76mm';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68c03a4303b24a1925f914ee/1j4ne76mm';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
 {% endblock %}
