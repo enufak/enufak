@@ -495,46 +495,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const input = document.getElementById("konum-input");
-    const list = document.createElement("ul");
-    list.id = "konum-list";
-    list.className = "absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden";
-    input.parentElement.appendChild(list);
-
-    const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-    const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
-        .replace(/ı/g,"i").replace(/ş/g,"s").replace(/ç/g,"c").replace(/ü/g,"u").replace(/ö/g,"o").replace(/ğ/g,"g");
-
-    $.getJSON("https://raw.githubusercontent.com/umut79/dinamik-ililce-json/master/tr-il.json", function(sonuc){
-        const renderList = (filter="") => {
-            list.innerHTML = "";
-            const filterNorm = normalizeText(filter);
-            sonuc.filter(il => normalizeText(il.il_adi).includes(filterNorm))
-                .forEach(il => {
-                    const li = document.createElement("li");
-                    li.textContent = capitalize(il.il_adi);
-                    li.className = "px-4 py-2 hover:bg-yellow-100 cursor-pointer";
-                    li.onclick = () => {
-                        input.value = capitalize(il.il_adi);
-                        list.classList.add("hidden");
-                    };
-                    list.appendChild(li);
-                });
-        };
-
-        renderList();
-
-        input.addEventListener("focus", () => list.classList.remove("hidden"));
-        input.addEventListener("input", e => renderList(e.target.value));
-
-        document.addEventListener("click", e => {
-            if (!input.parentElement.contains(e.target)) {
-                list.classList.add("hidden");
-            }
-        });
-    });
-});
 </script>
 
 

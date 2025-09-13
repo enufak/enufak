@@ -27,91 +27,79 @@
             </button>
         </form>
     </div>
-<div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-gray-100">
-    <h3 class="text-lg font-medium text-gray-900 mb-4">Detaylı Filtreleme</h3>
-    <form method="get" action="{% url 'ilan_ara' %}" class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
-        <!-- Kategori -->
-        <div class="flex flex-col">
-            <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+
+    <div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-gray-100">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Detaylı Filtreleme</h3>
+        <form method="get" action="{% url 'ilan_ara' %}" class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div>
+                <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <select id="kategori" name="kategori"
+                        class="pl-10 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 appearance-none bg-white">
+                        <option value="">Tüm Kategoriler</option>
+                        <option value="teknoloji" {% if kategori == 'teknoloji' %}selected{% endif %}>Teknoloji</option>
+                        <option value="sanat" {% if kategori == 'sanat' %}selected{% endif %}>Sanat</option>
+                        <option value="tamir" {% if kategori == 'tamir' %}selected{% endif %}>Tamir</option>
+                        <option value="eglence" {% if kategori == 'eglence' %}selected{% endif %}>Eğlence</option>
+                        <option value="egitim" {% if kategori == 'egitim' %}selected{% endif %}>Eğitim</option>
+                        <option value="saglik" {% if kategori == 'saglik' %}selected{% endif %}>Sağlık</option>
+                        <option value="moda" {% if kategori == 'moda' %}selected{% endif %}>Moda</option>
+                        <option value="diger" {% if kategori == 'diger' %}selected{% endif %}>Diğer</option>
+                    </select>
+                    
+                </div>
+            </div>
+            <div>
+                <label for="konum" class="block text-sm font-medium text-gray-700 mb-2">Konum</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <input type="text" id="konum" name="konum" value="{{ konum }}"
+                        class="pl-10 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                        placeholder="Şehir veya ilçe">
+                </div>
+            </div>
+            <div>
+                <label for="min_ucret" class="block text-sm font-medium text-gray-700 mb-2">Min. Ücret</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span class="text-gray-500">₺</span>
+                    </div>
+                    <input type="number" id="min_ucret" name="min_ucret" value="{{ min_ucret }}"
+                        class="pl-7 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                        placeholder="En az">
+                </div>
+            </div>
+            <div>
+                <label for="max_ucret" class="block text-sm font-medium text-gray-700 mb-2">Maks. Ücret</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span class="text-gray-500">₺</span>
+                    </div>
+                    <input type="number" id="max_ucret" name="max_ucret" value="{{ max_ucret }}"
+                        class="pl-7 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                        placeholder="En fazla">
+                </div>
+            </div>
+            <div class="flex items-end">
+                <button type="submit"
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 px-4 rounded-lg transition font-medium flex items-center justify-center">
+                    <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
                     </svg>
-                </div>
-                <select id="kategori" name="kategori"
-                    class="pl-10 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 appearance-none bg-white">
-                    <option value="">Tüm Kategoriler</option>
-                    <option value="teknoloji" {% if kategori == 'teknoloji' %}selected{% endif %}>Teknoloji</option>
-                    <option value="sanat" {% if kategori == 'sanat' %}selected{% endif %}>Sanat</option>
-                    <option value="tamir" {% if kategori == 'tamir' %}selected{% endif %}>Tamir</option>
-                    <option value="eglence" {% if kategori == 'eglence' %}selected{% endif %}>Eğlence</option>
-                    <option value="egitim" {% if kategori == 'egitim' %}selected{% endif %}>Eğitim</option>
-                    <option value="saglik" {% if kategori == 'saglik' %}selected{% endif %}>Sağlık</option>
-                    <option value="moda" {% if kategori == 'moda' %}selected{% endif %}>Moda</option>
-                    <option value="diger" {% if kategori == 'diger' %}selected{% endif %}>Diğer</option>
-                </select>
+                    Filtrele
+                </button>
             </div>
-        </div>
-
-        <!-- Konum -->
-        <div class="flex flex-col">
-            <label for="il" class="block text-sm font-medium text-gray-700 mb-2">Konum</label>
-            <div id="il-select" class="relative">
-                <input type="text" id="il-search" name="konum"
-                    class="w-full py-2.5 pl-3 pr-10 text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-                    placeholder="İl seç veya ara..." />
-                <ul id="il-list"
-                    class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                    <!-- JS ile iller buraya eklenecek -->
-                </ul>
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 8l4 4 4-4" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <!-- Min Ücret -->
-        <div class="flex flex-col">
-            <label for="min_ucret" class="block text-sm font-medium text-gray-700 mb-2">Min. Ücret</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="text-gray-500">₺</span>
-                </div>
-                <input type="number" id="min_ucret" name="min_ucret" value="{{ min_ucret }}"
-                    class="pl-7 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-                    placeholder="En az">
-            </div>
-        </div>
-
-        <!-- Max Ücret -->
-        <div class="flex flex-col">
-            <label for="max_ucret" class="block text-sm font-medium text-gray-700 mb-2">Maks. Ücret</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="text-gray-500">₺</span>
-                </div>
-                <input type="number" id="max_ucret" name="max_ucret" value="{{ max_ucret }}"
-                    class="pl-7 block w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
-                    placeholder="En fazla">
-            </div>
-        </div>
-
-        <!-- Filtrele Butonu -->
-        <div class="flex items-end">
-            <button type="submit"
-                class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 px-4 rounded-lg transition font-medium flex items-center justify-center">
-                <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
-                </svg>
-                Filtrele
-            </button>
-        </div>
-    </form>
-</div>
-
+        </form>
+    </div>
 
     <!-- Aktif Filtreler -->
     {% if kelime or konum or min_ucret or max_ucret or kategori %}
@@ -249,8 +237,7 @@
             <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
                 <div>
                     <span class="text-xs text-gray-500">İstenilen Ücret:</span>
-                    <span class="text-lg font-bold text-green-600 ucret" data-value="{{ ilan.istenilen_ucret }}">
-    {{ ilan.istenilen_ucret }} ₺</span>
+                    <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
                 </div>
                 <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}/{{ilan.slug}}/"
                 class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
@@ -335,65 +322,4 @@
         print-color-adjust: exact;
     }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const ucretElements = document.querySelectorAll(".ucret");
-    ucretElements.forEach(el => {
-        const value = parseInt(el.dataset.value, 10) || 0;
-        el.textContent = value.toLocaleString("tr-TR") + " ₺";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.getElementById("il-search");
-  const list = document.getElementById("il-list");
-
-  // Küçük-büyük harf ve Türkçe karakterler için normalize fonksiyonu
-  const normalizeText = (text) => text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/ı/g, "i").replace(/ş/g, "s").replace(/ç/g, "c")
-    .replace(/ü/g, "u").replace(/ö/g, "o").replace(/ğ/g, "g");
-
-  // Baş harfi büyük fonksiyonu
-  const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-
-  $.getJSON("https://raw.githubusercontent.com/umut79/dinamik-ililce-json/master/tr-il.json", function (sonuc) {
-    const renderList = (filter = "") => {
-      list.innerHTML = "";
-      const filterNorm = normalizeText(filter);
-
-      sonuc
-        .filter(il => normalizeText(il.il_adi).includes(filterNorm))
-        .forEach(il => {
-          const li = document.createElement("li");
-          li.textContent = capitalize(il.il_adi); // Baş harfi büyük yap
-          li.className = "px-4 py-2 hover:bg-yellow-100 cursor-pointer";
-          li.onclick = () => {
-            input.value = capitalize(il.il_adi);
-            list.classList.add("hidden");
-          };
-          list.appendChild(li);
-        });
-    };
-
-    renderList();
-
-    input.addEventListener("focus", () => list.classList.remove("hidden"));
-    input.addEventListener("input", (e) => renderList(e.target.value));
-
-    document.addEventListener("click", (e) => {
-      if (!document.getElementById("il-select").contains(e.target)) {
-        list.classList.add("hidden");
-      }
-    });
-  });
-});
-
-
-
-
-</script>
 {% endblock %}
