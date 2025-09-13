@@ -152,15 +152,19 @@
         </div>
 
         <form method="get" action="{% url 'ilan_ara' %}" class="p-5">
+            <!-- Konum -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Konum</label>
                 <div class="relative">
-                    <input type="text" name="konum"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400">
+                    <input type="text" name="konum" id="konum-input"
+                           value="{{ konum|default:'' }}"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                           placeholder="İl seç veya ara..." autocomplete="off">
                     <i class="fas fa-map-marker-alt absolute right-3 top-3.5 text-gray-400"></i>
                 </div>
             </div>
 
+            <!-- Min ve Max Ücret -->
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Min Ücret (₺)</label>
@@ -174,6 +178,7 @@
                 </div>
             </div>
 
+            <!-- Kategori -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
                 <select name="kategori"
@@ -190,7 +195,7 @@
                 </select>
             </div>
 
-
+            <!-- Butonlar -->
             <div class="flex justify-between mt-6">
                 <button type="button" data-modal-hide="filtreModal"
                     class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors">
@@ -490,7 +495,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("konum-input");
+    const list = document.createElement("ul");
+    list.id = "konum-list";
+    list.className = "absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden";
+    input.parentElement.appendChild(list);
+
+    const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
+        .replace(/ı/g,"i").replace(/ş/g,"s").replace(/ç/g,"c").replace(/ü/g,"u").replace(/ö/g,"o").replace(/ğ/g,"g");
+
+    $.getJSON("https://raw.githubusercontent.com/umut79/dinamik-ililce-json/master/tr-il.json", function(sonuc){
+        const renderList = (filter="") => {
+            list.innerHTML = "";
+            const filterNorm = normalizeText(filter);
+            sonuc.filter(il => normalizeText(il.il_adi).includes(filterNorm))
+                .forEach(il => {
+                    const li = document.createElement("li");
+                    li.textContent = capitalize(il.il_adi);
+                    li.className = "px-4 py-2 hover:bg-yellow-100 cursor-pointer";
+                    li.onclick = () => {
+                        input.value = capitalize(il.il_adi);
+                        list.classList.add("hidden");
+                    };
+                    list.appendChild(li);
+                });
+        };
+
+        renderList();
+
+        input.addEventListener("focus", () => list.classList.remove("hidden"));
+        input.addEventListener("input", e => renderList(e.target.value));
+
+        document.addEventListener("click", e => {
+            if (!input.parentElement.contains(e.target)) {
+                list.classList.add("hidden");
+            }
+        });
+    });
+});
 </script>
+
+
+
 
 <!--Start of Tawk.to Script-->
     <script type="text/javascript">
