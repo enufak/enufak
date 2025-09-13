@@ -42,6 +42,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     last_seen = models.DateTimeField(null=True, blank=True)
     email_verified = models.BooleanField(default=False)
+    goruntulenme_sayisi = models.PositiveIntegerField(default=0)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

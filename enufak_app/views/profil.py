@@ -10,6 +10,10 @@ def profil(request):
     yeni_kullanici = (timezone.now() - request.user.date_joined) <= timedelta(days=5)
     ilanlar = Ilan.objects.filter(ilan_sahibi=request.user, aktif=True)
 
+    user = request.user
+
+    user.goruntulenme_sayisi += 1
+    user.save(update_fields=['goruntulenme_sayisi'])
 
     return render(request, 'app/profil.jinja', context={
         'yeni_kullanici':yeni_kullanici,

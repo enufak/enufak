@@ -3,7 +3,8 @@
 {% block title %}Görüntülü Sohbet{% endblock %}
 
 {% block content %}
-<div id="jitsi-container" class="fixed inset-0 flex justify-center items-center w-full h-full bg-gray-900"></div>
+<div id="jitsi-container" class="absolute top-[64px] left-0 right-0 bottom-0 bg-gray-900">
+</div>
 
 <script src="https://jitsi.riot.im/external_api.js"></script>
 <script>
@@ -23,5 +24,4 @@ api.addEventListener('readyToClose', () => {
     window.location.href = document.referrer || '/mesajlar/';
 });
 </script>
-
 {% endblock %}
