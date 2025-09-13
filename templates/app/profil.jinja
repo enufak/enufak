@@ -267,7 +267,8 @@
                             </div>
 
                             <div class="flex items-center justify-between mt-4">
-                                <span class="font-semibold text-green-600 text-lg">{{ilan.istenilen_ucret}} ₺</span>
+                                <span class="font-semibold text-green-600 text-lg ucret" data-value="{{ ilan.istenilen_ucret }}">
+    {{ ilan.istenilen_ucret }} ₺</span>
                                 <div class="flex space-x-2">
                                     <a href="/uygulama/ilan-duzenle/{{ilan.id}}/"
                                         class="px-3 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded-lg transition-colors duration-200">Düzenle</a>
@@ -366,6 +367,14 @@
             });
         });
     });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const ucretElements = document.querySelectorAll(".ucret");
+    ucretElements.forEach(el => {
+        const value = parseInt(el.dataset.value, 10) || 0;
+        el.textContent = value.toLocaleString("tr-TR") + " ₺";
+    });
+});
 </script>
 
 {% endblock %}

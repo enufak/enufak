@@ -242,7 +242,8 @@
                                 </div>
                             </div>
 
-                            <h3 class="font-bold text-gray-900 text-lg mb-2"><a href="/uygulama/@{{user.slug}}/{{ilan.slug}}/">{{ ilan.ilan_baslik }}</a></h3>
+                            <h3 class="font-bold text-gray-900 text-lg mb-2"><a
+                                    href="/uygulama/@{{user.slug}}/{{ilan.slug}}/">{{ ilan.ilan_baslik }}</a></h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-6">{{ ilan.ilan_metni|truncatechars:600 }}
                             </p>
 
@@ -269,7 +270,8 @@
                             </div>
 
                             <div class="flex items-center justify-between mt-4">
-                                <span class="font-semibold text-green-600 text-lg">{{ilan.istenilen_ucret}} ₺</span>
+                                <span class="font-semibold text-green-600 text-lg ucret" data-value="{{ ilan.istenilen_ucret }}">
+    {{ ilan.istenilen_ucret }} ₺</span>
                             </div>
                         </div>
                     </div>
@@ -333,9 +335,9 @@
 </style>
 
 <script>
-function sendMessage(requestID, userID) {
-    window.location.href = '/mesajlar/dm-olustur/' + requestID + '-' + userID + '/'
-}
+    function sendMessage(requestID, userID) {
+        window.location.href = '/mesajlar/dm-olustur/' + requestID + '-' + userID + '/'
+    }
 
     document.addEventListener('DOMContentLoaded', function () {
         const tabs = document.querySelectorAll('[data-tabs-target]');
@@ -363,6 +365,14 @@ function sendMessage(requestID, userID) {
                 // Hedef içeriği göster
                 target.classList.remove('hidden');
             });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const ucretElements = document.querySelectorAll(".ucret");
+        ucretElements.forEach(el => {
+            const value = parseInt(el.dataset.value, 10) || 0;
+            el.textContent = value.toLocaleString("tr-TR") + " ₺";
         });
     });
 </script>

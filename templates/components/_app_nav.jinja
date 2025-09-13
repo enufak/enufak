@@ -3,29 +3,12 @@
     <script>
         // Tema kontrolü için JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            const themeToggleBtn = document.getElementById('theme-toggle');
             const htmlElement = document.documentElement;
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const userMenuButton = document.getElementById('user-menu-button');
             const userDropdown = document.getElementById('user-dropdown');
-            
-            // Yerel depolamadan tema tercihini kontrol et
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                htmlElement.setAttribute('data-theme', savedTheme);
-                updateButtonIcon(savedTheme);
-            }
-            
-            // Tema değiştirme butonuna tıklama olayı
-            themeToggleBtn.addEventListener('click', function() {
-                let currentTheme = htmlElement.getAttribute('data-theme') || 'light';
-                let newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                htmlElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                updateButtonIcon(newTheme);
-            });
+                   
             
             // Mobil menü butonuna tıklama olayı
             mobileMenuButton.addEventListener('click', function() {
@@ -49,16 +32,7 @@
                     mobileMenu.classList.add('hidden');
                 }
             });
-            
-            // Buton ikonunu güncelleme fonksiyonu
-            function updateButtonIcon(theme) {
-                const icon = themeToggleBtn.querySelector('i');
-                if (theme === 'dark') {
-                    icon.className = 'fas fa-sun';
-                } else {
-                    icon.className = 'fas fa-moon';
-                }
-            }
+          
         });
     </script>
     <style>
@@ -93,26 +67,7 @@
         .text-primary {
             color: var(--text-color);
         }
-        
-        /* Tema butonu stilleri */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background-color: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-right: 0.75rem;
-        }
-        
-        .theme-toggle:hover {
-            background-color: var(--border-color);
-            transform: rotate(12deg);
-        }
+      
         
         /* Dropdown stilleri - Animasyonlu */
         .dropdown-menu {
@@ -244,10 +199,7 @@
 
                 <!-- Sağ taraf - tema değiştirici ve kullanıcı menüsü -->
                 <div class="flex items-center">
-                    <!-- Tema değiştirme butonu -->
-                    <button id="theme-toggle" class="theme-toggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
+                   
 
                     <!-- Kullanıcı menüsü butonu -->
                     <div class="relative">
