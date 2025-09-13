@@ -32,6 +32,7 @@ urlpatterns = [
 
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path('uygulama/social/', include('allauth.urls')),
+    path('video/', include('video.urls')),
 ]
 
 if settings.DEBUG:

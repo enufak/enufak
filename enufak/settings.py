@@ -29,6 +29,9 @@ SITE_URL = 'http://localhost:8000'
 
 RECAPTCHA_ENABLED = False
 
+DAILY_API_KEY = env('DAILY_API_KEY')
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -73,6 +76,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'pwa',
+    'video',
 ]
 
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')

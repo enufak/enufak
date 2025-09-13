@@ -127,9 +127,9 @@
                 </span>
             </div>
             <!-- Görüntülü arama butonu mobil -->
-            <button onclick="baslatGoruntulu()" class="ml-2 p-2 rounded-full bg-green-500 hover:bg-green-600 text-white transition">
+            <a href="{% url 'start_call' to_user_id=other_user.id %}" class="ml-2 p-2 rounded-full bg-green-500 hover:bg-green-600 text-white transition">
                 <i class="fas fa-video"></i>
-            </button>
+            </a>
         </div>
         
         <div class="flex flex-col w-full h-full bg-white rounded-xl shadow-md overflow-hidden md:rounded-none md:shadow-none">
@@ -143,9 +143,9 @@
                     </span>
                 </div>
                 <!-- Görüntülü arama butonu masaüstü -->
-                <button onclick="baslatGoruntulu()" class="ml-3 p-2 rounded-full bg-green-500 hover:bg-green-600 text-white transition">
+                <a href="{% url 'start_call' to_user_id=other_user.id %}" class="ml-3 p-2 rounded-full bg-green-500 hover:bg-green-600 text-white transition">
                     <i class="fas fa-video"></i>
-                </button>
+                </a>
             </div>
 
             <!-- Mesajlar scrollable -->
@@ -201,12 +201,6 @@ function sohbetAc(dmID) {
         });
 }
 
-// Görüntülü arama fonksiyonu
-function baslatGoruntulu() {
-    const otherSlug = "{{ other_user.slug }}";
-    const url = `/goruntulu-arama/${otherSlug}/`;
-    window.open(url, "_blank", "width=800,height=600");
-}
 
 // Mesajlar için sürekli fetch
 const dmId = {{ dm.id }};
