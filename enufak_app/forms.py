@@ -34,23 +34,11 @@ class KayitForm(UserCreationForm):
         label="Soyad",
         widget=forms.TextInput(attrs={"placeholder": "Soyadınızı girin"})
     )
-    tckno = forms.CharField(
-        required=True,
-        label="T.C. Kimlik No",
-        max_length=11,
-        min_length=11,
-        widget=forms.TextInput(attrs={"placeholder": "11 haneli T.C. Kimlik Numaranızı girin"})
-    )
-    dogum_tarihi = forms.DateField(
-        required=True,
-        label="Doğum Tarihi",
-        widget=forms.DateInput(attrs={"type": "date", "placeholder": "YYYY-MM-DD"})
-    )
 
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", 'tckno','dogum_tarihi' , "password1", "password2")
+        fields = ("first_name", "last_name", "email" , "password1", "password2")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

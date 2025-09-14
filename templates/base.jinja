@@ -65,7 +65,7 @@
     <div class="fixed top-5 right-5 space-y-2 z-50">
         {% for message in messages %}
             <div id="alert-{{ forloop.counter }}" class="flex items-center justify-between px-4 py-3 rounded-lg shadow-md text-white
-                {% if message.tags == 'error' %}bg-red-500{% elif message.tags == 'success' %}bg-green-500{% else %}bg-gray-500{% endif %} transition-all">
+                {% if message.tags == 'error' %}bg-red-500{% elif message.tags == 'success' %}bg-green-500{% elif message.tags == 'info' %}bg-blue-500{% else %}bg-gray-500{% endif %} transition-all">
                 
                 <span>{{ message }}</span>
                 <button type="button" class="ml-4 text-white" data-dismiss-target="#alert-{{ forloop.counter }}" aria-label="Close">

@@ -98,7 +98,7 @@
     </div>
 
     <!-- İstatistik Kartları -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
         <div
             class="bg-white rounded-2xl shadow-md p-6 border-l-4 border-blue-500 hover:shadow-lg transition-all duration-300">
             <div class="flex items-center">
@@ -134,6 +134,40 @@
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-500">Profil Görüntülenme</h3>
                     <p class="text-2xl font-bold text-gray-900">{{user.goruntulenme_sayisi}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-all duration-300 max-w-sm">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 p-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zM19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"></path>
+                    </svg>
+                </div>
+
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-semibold text-gray-500">Kimlik Doğrulaması</h3>
+                    <p class="mt-1 text-2xl font-bold text-gray-900 flex items-center">
+                        {% if user.tc_verified %}
+                        <span class="inline-flex items-center text-green-600 text-base">
+                            <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Onaylı
+                        </span>
+                        {% else %}
+                        <span class="inline-flex items-center text-red-500 text-base">
+                            <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Onaylanmadı
+                        </span>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>

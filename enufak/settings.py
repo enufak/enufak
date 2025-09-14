@@ -24,7 +24,7 @@ env = environ.Env(
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-SITE_ID=1
+SITE_ID=2
 SITE_URL = 'http://localhost:8000'
 
 RECAPTCHA_ENABLED = False

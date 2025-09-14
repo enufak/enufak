@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -30,10 +31,16 @@ class TcVerificationMiddleware:
         if request.user.is_superuser or request.user.is_staff:
             return self.get_response(request)
 
-        if not request.user.tc_verified and request.path not in [
-            reverse("tc_dogrulama"),
-            reverse("cikis_yap"),
-        ]:
-            return redirect("tc_dogrulama")
+        ilan_olustur_path = reverse("ilan_ekle")
+        tc_dogrulama_path = reverse("tc_dogrulama")
+        cikis_yap_path = reverse("cikis_yap")
+
+        if not request.user.tc_verified:
+            if request.path.startswith(ilan_olustur_path):
+                messages.info(request, 'İlan oluşturabilmek için kimlik doğrulaması yapman gerekmektedir.')
+                return redirect("tc_dogrulama")
+
+            if request.path.startswith(tc_dogrulama_path) or request.path.startswith(cikis_yap_path):
+                return self.get_response(request)
 
         return self.get_response(request)
