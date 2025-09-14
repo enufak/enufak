@@ -32,6 +32,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     konum = models.CharField(max_length=50, blank=True, null=True)
     biyografi = models.TextField(max_length=300, blank=True, null=True)
+    tckno = models.CharField(max_length=11, unique=True, blank=True, null=True)
+    dogum_tarihi = models.DateField(null=True, blank=True)
 
     date_joined = models.DateTimeField(default=timezone.now)
 
@@ -43,6 +45,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_seen = models.DateTimeField(null=True, blank=True)
     email_verified = models.BooleanField(default=False)
     goruntulenme_sayisi = models.PositiveIntegerField(default=0)
+    tc_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

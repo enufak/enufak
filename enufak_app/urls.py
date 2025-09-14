@@ -51,4 +51,5 @@ urlpatterns = [
     ),
     path('social/login/', redirect_login),
     path('social/signup/', redirect_signup),
+    path("tc-dogrulama/", tc_dogrulama, name="tc_dogrulama"),
 ]

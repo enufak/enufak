@@ -6,6 +6,24 @@ from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from zeep import Client
 
+def turkce_upper(text):
+    mapping = {
+        'i': 'İ',
+        'ş': 'Ş',
+        'ğ': 'Ğ',
+        'ü': 'Ü',
+        'ö': 'Ö',
+        'ç': 'Ç',
+        'ı': 'I'
+    }
+    result = ''
+    for char in text:
+        if char in mapping:
+            result += mapping[char]
+        else:
+            result += char.upper()
+    return result
+
 
 def send_verification_email(request, user):
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))

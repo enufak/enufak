@@ -12,3 +12,4 @@ from .alici_talepleri import alici_talepleri
 from .ilan_duzenle import ilan_duzenle
 from .ilan_sil import ilan_sil
 from .ilan_detay import ilan_detay
+from .tc_dogrula import tc_dogrulama
