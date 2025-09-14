@@ -8,12 +8,10 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 import requests
 from django.conf import settings
-import locale
 from enufak_app.utils import turkce_upper
 
 
 
-locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
 User = get_user_model()
 
 
