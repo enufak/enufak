@@ -8,6 +8,8 @@ def ilan_arama(request):
     min_ucret = request.GET.get("min_ucret")
     max_ucret = request.GET.get("max_ucret")
     secili_kategori = request.GET.get("kategori")
+    onayli = request.GET.get('onayli')
+    cevrimici = request.GET.get('cevrimici')
 
     ilanlar = Ilan.objects.filter(aktif=True).order_by('-id')
 
@@ -23,6 +25,10 @@ def ilan_arama(request):
         ilanlar = ilanlar.filter(istenilen_ucret__gte=min_ucret)
     if max_ucret:
         ilanlar = ilanlar.filter(istenilen_ucret__lte=max_ucret)
+    if onayli == '1':
+        ilanlar = ilanlar.filter(ilan_sahibi__onayli_kullanici=True)
+    if cevrimici == '1':
+        ilanlar = [ilan for ilan in ilanlar if ilan.ilan_sahibi.is_online]
 
     if secili_kategori:
         ilanlar = ilanlar.filter(kategori=secili_kategori)
