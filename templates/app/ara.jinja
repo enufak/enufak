@@ -1,7 +1,7 @@
 {% extends "base.jinja" %}
 {% load static %}
 
-{% block title %}İlan Ara - En Ufak{% endblock %}
+{% block title %}İlan Ara{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -89,6 +89,22 @@
                         placeholder="En fazla">
                 </div>
             </div>
+
+            <!-- Onaylı Kullanıcı -->
+        <div class="flex items-center mt-6">
+            <input type="checkbox" id="onayli" name="onayli" value="1" 
+                   {% if request.GET.onayli %}checked{% endif %}
+                   class="h-4 w-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500">
+            <label for="onayli" class="ml-2 block text-sm text-gray-700">Onaylı Kullanıcılar</label>
+        </div>
+
+        <!-- Çevrim içi Kullanıcı -->
+        <div class="flex items-center mt-6">
+            <input type="checkbox" id="cevrimici" name="cevrimici" value="1" 
+                   {% if request.GET.cevrimici %}checked{% endif %}
+                   class="h-4 w-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500">
+            <label for="cevrimici" class="ml-2 block text-sm text-gray-700">Çevrim İçi Kullanıcılar</label>
+        </div>
             <div class="flex items-end">
                 <button type="submit"
                     class="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 px-4 rounded-lg transition font-medium flex items-center justify-center">
@@ -98,6 +114,8 @@
                     Filtrele
                 </button>
             </div>
+
+
         </form>
     </div>
 
