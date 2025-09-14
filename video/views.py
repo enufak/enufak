@@ -79,7 +79,7 @@ def video_call(request, project_id):
         token = base64.urlsafe_b64encode(hashed).decode()[:16]
         return token
 
-    room_name = f"room_{encode_room_id(project.id, settings.SECRET_KEY)}"
+    room_name = f"Oda_{project_id}"
     jitsi_server = "https://jitsi.riot.im"
     redirect_url = request.META.get('HTTP_REFERER', '/')
 
