@@ -11,6 +11,8 @@ def dm_olustur(request, ids):
 
     if request.user != from_user:
         return redirect(request.META.get('HTTP_REFERER', '/'))
+    if from_user == to_user:
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
     mevcut_dm = DM.objects.filter(
         from_user=from_user,
