@@ -8,4 +8,5 @@ urlpatterns = [
     path('gizlilik/', gizlilik, name='gizlilik'),
     path('manifest.json', manifest, name='manifest'),
     path(".well-known/assetlinks.json", assetlinks, name="assetlinks"),
+    path('kullanim-kosullari/', kullanim_kosullari, name='kullanim_kosullari'),
 ]
