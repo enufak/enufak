@@ -237,7 +237,8 @@
             <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
                 <div>
                     <span class="text-xs text-gray-500">İstenilen Ücret:</span>
-                    <span class="text-lg font-bold text-green-600">{{ ilan.istenilen_ucret }} ₺</span>
+                    <span class="text-lg font-bold text-green-600 ucret" data-value="{{ ilan.istenilen_ucret }}">
+    {{ ilan.istenilen_ucret }} ₺</span>
                 </div>
                 <a href="/uygulama/@{{ ilan.ilan_sahibi.slug }}/{{ilan.slug}}/"
                 class="text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors group-hover:bg-yellow-100 flex items-center">
@@ -322,4 +323,14 @@
         print-color-adjust: exact;
     }
 </style>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const ucretElements = document.querySelectorAll(".ucret");
+    ucretElements.forEach(el => {
+        const value = parseInt(el.dataset.value, 10) || 0;
+        el.textContent = value.toLocaleString("tr-TR") + " ₺";
+    });
+}); 
+</script>
 {% endblock %}
