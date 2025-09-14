@@ -1,8 +1,259 @@
 {% extends 'base.jinja' %}
 
-{% block title %}Kullanım Koşulları ve Sorumluluk Metni{% endblock %}
+{% block title %}Kullanım Koşulları ve Sorumluluk Metni - En Ufak{% endblock %}
 
 {% block content %}
+<div class="min-h-screen bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Başlık Bölümü -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Kullanım Koşulları ve Sorumluluk Metni</h1>
+            <p class="text-lg text-gray-600">Son güncelleme: 01 Ocak 2024</p>
+        </div>
+
+        <!-- İçerik -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <!-- Yan menü (mobilde gizli, desktop'ta görünür) -->
+            <div class="lg:flex">
+                <div class="hidden lg:block lg:w-1/4 bg-yellow-50 p-6">
+                    <div class="sticky top-6">
+                        <h3 class="font-semibold text-yellow-800 mb-4">İçindekiler</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#kabul" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Koşulların Kabulü</a></li>
+                            <li><a href="#tanimlar" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Tanımlar</a></li>
+                            <li><a href="#hesap" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Hesap Sorumluluğu</a></li>
+                            <li><a href="#hizmet" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Hizmet Kullanımı</a></li>
+                            <li><a href="#fikri-mulkiyet" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Fikri Mülkiyet</a></li>
+                            <li><a href="#sinirlamalar" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Sınırlamalar</a></li>
+                            <li><a href="#sorumluluk" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Sorumluluk Reddi</a></li>
+                            <li><a href="#degisiklik" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">Değişiklikler</a></li>
+                            <li><a href="#iletisim" class="text-yellow-700 hover:text-yellow-900 text-sm block py-1">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ana içerik -->
+                <div class="lg:w-3/4 p-6 lg:p-8">
+                    <!-- Giriş -->
+                    <div class="mb-8">
+                        <p class="text-gray-600 mb-4">
+                            En Ufak platformunu ("Platform") kullanmadan önce bu Kullanım Koşulları ve Sorumluluk Metni'ni dikkatlice okuyunuz. 
+                            Platformu kullanmanız, bu koşulları kabul ettiğiniz anlamına gelir.
+                        </p>
+                    </div>
+
+                    <!-- Bölüm 1 -->
+                    <div id="kabul" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            Koşulların Kabulü
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Bu platforma erişerek ve kullanarak, bu Kullanım Koşullarına tabi olmayı kabul etmiş sayılırsınız. 
+                                Bu koşulları kabul etmiyorsanız, lütfen platformu kullanmayınız.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 2 -->
+                    <div id="tanimlar" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            Tanımlar
+                        </h2>
+                        <div class="ml-11">
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li><strong>Platform:</strong> En Ufak web sitesi ve mobil uygulaması</li>
+                                <li><strong>Kullanıcı:</strong> Platformu ziyaret eden veya kullanan herhangi bir kişi</li>
+                                <li><strong>Üye:</strong> Platforma kayıt olmuş kullanıcı</li>
+                                <li><strong>İçerik:</strong> Platformda paylaşılan metin, görsel, video ve diğer materyaller</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 3 -->
+                    <div id="hesap" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            Hesap Sorumluluğu
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Platforma üye olurken doğru, güncel ve tam bilgiler sağlamayı kabul edersiniz. 
+                                Hesap bilgilerinizin gizliliğinden siz sorumlusunuz.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>Hesabınızı yetkisiz kullanıma karşı korumalısınız</li>
+                                <li>Hesabınız üzerinden yapılan tüm işlemlerden siz sorumlusunuz</li>
+                                <li>Şüpheli herhangi bir faaliyet tespit ettiğinizde derhal bize bildirmelisiniz</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 4 -->
+                    <div id="hizmet" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            Hizmet Kullanımı
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Platformu aşağıdaki durumlarda kullanamazsınız:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>Yasa dışı herhangi bir amaç için</li>
+                                <li>Başkalarının haklarını ihlal etmek için</li>
+                                <li>Zararlı yazılım yaymak için</li>
+                                <li>Spam veya istenmeyen ileti göndermek için</li>
+                                <li>Platformun çalışmasını engelleyecek şekilde</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 5 -->
+                    <div id="fikri-mulkiyet" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            Fikri Mülkiyet
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Platformdaki tüm içerik, logo, grafik, görsel ve yazılımlar En Ufak'a aittir 
+                                ve telif hakkı ve diğer fikri mülkiyet yasalarıyla korunmaktadır.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 6 -->
+                    <div id="sinirlamalar" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">6</span>
+                            Sınırlamalar
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Platform aşağıdaki durumlarda geçici veya kalıcı olarak askıya alınabilir veya kısıtlanabilir:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                <li>Bakım ve güncelleme çalışmaları sırasında</li>
+                                <li>Olağanüstü durumlarda</li>
+                                <li>Yasal zorunluluklar nedeniyle</li>
+                                <li>Kötüye kullanım şüphesi durumunda</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 7 -->
+                    <div id="sorumluluk" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">7</span>
+                            Sorumluluk Reddi
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Platform "olduğu gibi" ve "müsait olduğu şekliyle" sunulmaktadır. 
+                                Kesintisiz veya hatasız hizmet sunacağımıza dair garanti vermiyoruz.
+                            </p>
+                            <p class="text-gray-600">
+                                Kullanıcılar arasındaki iletişim ve işlemlerden platform sorumlu değildir. 
+                                Kullanıcılar kendi aralarındaki anlaşmazlıkları kendileri çözmelidir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 8 -->
+                    <div id="degisiklik" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">8</span>
+                            Değişiklikler
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600">
+                                Bu kullanım koşullarını herhangi bir zamanda değiştirme hakkını saklı tutarız. 
+                                Değişiklikler platformda yayınlandıktan sonra geçerli olacaktır. 
+                                Değişikliklerden haberdar olmak için bu sayfayı periyodik olarak kontrol etmenizi öneririz.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bölüm 9 -->
+                    <div id="iletisim" class="mb-8 scroll-mt-20">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <span class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">9</span>
+                            İletişim
+                        </h2>
+                        <div class="ml-11">
+                            <p class="text-gray-600 mb-4">
+                                Kullanım Koşulları ile ilgili herhangi bir sorunuz varsa, lütfen bizimle iletişime geçin:
+                            </p>
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <p class="text-yellow-800"><strong>E-posta:</strong> destek@enufak.com</p>
+                                <p class="text-yellow-800 mt-2"><strong>Telefon:</strong> 0 (212) 123 45 67</p>
+                                <p class="text-yellow-800 mt-2"><strong>Adres:</strong> Örnek Mahallesi, Örnek Sokak No:123, İstanbul</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% include 'components/_footer.jinja' %}
 
 
+<style>
+    .scroll-mt-20 {
+        scroll-margin-top: 5rem;
+    }
+    
+    /* Mobil için yan menüyü gizle */
+    @media (max-width: 1023px) {
+        .sticky {
+            position: relative;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Onay kutusu ve buton etkileşimi
+        const onayKutusu = document.getElementById('onay');
+        const onayButon = document.getElementById('onayButon');
+        
+        onayKutusu.addEventListener('change', function() {
+            if (this.checked) {
+                onayButon.disabled = false;
+                onayButon.classList.remove('bg-gray-300', 'text-gray-500');
+                onayButon.classList.add('bg-yellow-500', 'text-white', 'hover:bg-yellow-600');
+            } else {
+                onayButon.disabled = true;
+                onayButon.classList.remove('bg-yellow-500', 'text-white', 'hover:bg-yellow-600');
+                onayButon.classList.add('bg-gray-300', 'text-gray-500');
+            }
+        });
+        
+        onayButon.addEventListener('click', function() {
+            alert('Kullanım koşullarını kabul ettiğiniz için teşekkür ederiz!');
+            // Burada bir sonraki sayfaya yönlendirme yapılabilir
+        });
+        
+        // İçindekiler menüsü linkleri için smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    });
+</script>
 {% endblock%}
