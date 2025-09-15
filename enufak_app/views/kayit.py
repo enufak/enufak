@@ -23,7 +23,6 @@ def kayit(request):
             payload = {
                 "ad": turkce_upper(data["first_name"]),
                 "soyad": turkce_upper(data["last_name"]),
-                "dogumTarihi": data["dogum_tarihi"].strftime("%Y-%m-%d")
             }
 
             response = requests.post("https://tc-kimlik.ibrahimo.dev/api/dogrula", json=payload)
