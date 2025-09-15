@@ -97,7 +97,6 @@ MIDDLEWARE = [
     'enufak_core.middleware.Force404Middleware',
     'allauth.account.middleware.AccountMiddleware',
     'enufak_app.middlewares.LastSeenMiddleware',
-    "enufak_app.middlewares.TcVerificationMiddleware",
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
