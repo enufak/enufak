@@ -20,27 +20,17 @@ def kayit(request):
         form = KayitForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            payload = {
-                "ad": turkce_upper(data["first_name"]),
-                "soyad": turkce_upper(data["last_name"]),
-            }
+            
+            user = form.save(commit=False)
+            user.is_active = False
+            user.email_verified = False
+            user.save()
 
-            response = requests.post("https://tc-kimlik.ibrahimo.dev/api/dogrula", json=payload)
-            data = response.json()
-
-            if data.get("result"):
-                user = form.save(commit=False)
-                user.is_active = False
-                user.email_verified = False
-                user.save()
-
-                send_verification_email(request, user)
-                messages.success(request, 'Kayıt başarılı! Lütfen e-postanızı doğrulayın.')
-                return redirect('giris_yap')
-            else:
-                messages.error(request, "TC Kimlik Numarası doğrulaması başarısız.")
-                messages.error(request, payload)
-                return render(request, 'app/kayit.jinja', {'form': form})
+            send_verification_email(request, user)
+            messages.success(request, 'Kayıt başarılı! Lütfen e-postanızı doğrulayın.')
+            return redirect('giris_yap')
+        else:
+            return render(request, 'app/kayit.jinja', {'form': form})
     else:
         form = KayitForm()
     return render(request, 'app/kayit.jinja', {'form': form})
