@@ -14,7 +14,8 @@ def giris(request):
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect("app_index")
             else:
-                form.add_error(None, "E-posta veya şifre yanlış.")
+                messages.error(request, "E-posta veya şifre yanlış.")
+                return redirect('giris_yap')
     else:
         form = GirisForm()
     return render(request, "app/giris.jinja", {"form": form})
