@@ -21,7 +21,6 @@ def kayit(request):
         if form.is_valid():
             data = form.cleaned_data
             payload = {
-                "tc": data["tckno"],
                 "ad": turkce_upper(data["first_name"]),
                 "soyad": turkce_upper(data["last_name"]),
                 "dogumTarihi": data["dogum_tarihi"].strftime("%Y-%m-%d")
