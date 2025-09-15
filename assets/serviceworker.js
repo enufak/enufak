@@ -1,9 +1,10 @@
+const CACHE_NAME = "enufak-cache-v1";
+
 self.addEventListener("install", function(event) {
-    console.log("Service Worker: Kuruluyor...");
     event.waitUntil(
-        caches.open("v1").then(function(cache) {
+        caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll([
-                "/",
+                "/uygulama/kesfet/",
                 "/assets/manifest.json",
                 "/assets/images/logo.png",
                 "/assets/images/logo.png"
@@ -15,7 +16,7 @@ self.addEventListener("install", function(event) {
 self.addEventListener("fetch", function(event) {
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
+            return response || fetch(event.request).catch(() => caches.match("/offline.html"));
         })
     );
 });
