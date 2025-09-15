@@ -32,7 +32,6 @@ def kayit(request):
                 user = form.save(commit=False)
                 user.is_active = False
                 user.email_verified = False
-                user.tc_verified = True
                 user.save()
 
                 send_verification_email(request, user)
