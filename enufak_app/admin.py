@@ -5,3 +5,4 @@ from enufak_app.models import *
 admin.site.register(CustomUser)
 admin.site.register(Ilan)
 admin.site.register(AliciTalebi)
+admin.site.register(Portfolyo)

@@ -13,3 +13,6 @@ from .ilan_duzenle import ilan_duzenle
 from .ilan_sil import ilan_sil
 from .ilan_detay import ilan_detay
 from .tc_dogrula import tc_dogrulama
+from .portfolyo import portfolyo
+from .p_ekle import p_ekle
+from .p_sil import p_sil

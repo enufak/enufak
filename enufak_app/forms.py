@@ -204,3 +204,25 @@ class TcDogrulamaForm(forms.Form):
     ad = forms.CharField(max_length=50, label="Ad")
     soyad = forms.CharField(max_length=50, label="Soyad")
     dogum_tarihi = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+
+
+class PortfolyoForm(forms.ModelForm):
+    class Meta:
+        model = Portfolyo
+        fields = ['baslik','icerik','aciklama','link']
+        labels = {
+            "baslik": "Portfolyo Başlığı",
+            "icerik": "Portfolyo Görseli",
+            "aciklama": "Portfolyo Metni",
+            "link": "Portfolyo Linki",
+        }
+        widgets = {
+            "baslik": forms.TextInput(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "placeholder": "Örn: Mobil Uygulama"
+            }),
+            "link": forms.TextInput(attrs={
+                "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
+                "placeholder": "Örn: https://enufak.com"
+            }),
+        }

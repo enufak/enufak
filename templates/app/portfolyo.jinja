@@ -1,0 +1,219 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}Portfolyom{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 bg-gray-700 bg-clip-text text-transparent">Portfolyom</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Portfolyolarını buradan yönetebilirsin.</p>
+            <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mt-8 rounded-full"></div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+            <div class="inline-flex flex-wrap justify-center gap-2 p-1 bg-white rounded-full shadow-md">
+                <button class="filter-btn px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg active:scale-95" data-filter="all" style="background: linear-gradient(145deg, #f59e0b, #d97706); color: white; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);">
+                    Tümü
+                </button>
+            </div>
+            
+            <a href="/uygulama/portfolyo/ekle/" class="px-6 py-3 bg-yellow-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center group hover:from-indigo-600 hover:to-purple-700">
+                <svg class="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Yeni Proje Ekle
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% if portfolyo %}
+                {% for proje in portfolyo %}
+                <div class="portfolio-item group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl transform hover:-translate-y-2" data-category="{{ proje.kategori }}">
+                    <div class="portfolio-image relative h-64 overflow-hidden">
+                        <img src="{% if proje.icerik %}{{proje.icerik.url}}{% else %}{% static 'images/portfolyo.png' %}{% endif %}" alt="{{ proje.baslik }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                            <div class="flex space-x-3 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                <a href="{{ proje.link|default:'' }}" {% if proje.link %}target="_blank"{% endif %} class="text-white bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-all hover:bg-black hover:scale-110 shadow-md" aria-label="Proje Linki">
+                                    <i class="fas fa-link text-sm"></i>
+                                </a>
+                                <a href="/uygulama/portfolyo/sil/{{proje.id}}/" class="text-white bg-red-500 rounded-full w-10 h-10 flex items-center justify-center transition-all hover:bg-black hover:scale-110 shadow-md" aria-label="Proje Linki">
+                                    <i class="fas fa-trash text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-yellow-500 transition-colors duration-300">{{ proje.baslik }}</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">{{ proje.aciklama }}</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-sm text-gray-500">{{ proje.tarih|date:"d M Y"|default:"" }}</span>
+                            <div class="flex space-x-2">
+                                {% for tech in proje.teknolojiler|slice:":3" %}
+                                <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">{{ tech }}</span>
+                                {% endfor %}
+                                {% if proje.teknolojiler|length > 3 %}
+                                <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">+{{ proje.teknolojiler|length|add:"-3" }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-span-3 text-center py-16 px-4 bg-white rounded-2xl shadow-lg">
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-full mb-6">
+                        <svg class="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Henüz portfolyonuz bulunmuyor</h3>
+                    <p class="text-gray-600 mb-6 max-w-md mx-auto">Yeteneklerinizi sergilemek için ilk projenizi ekleyin ve potansiyel işverenlerinize kendinizi kanıtlayın.</p>
+                    <a href="/uygulama/portfolyo/ekle/" class="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center group">
+                        <svg class="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        İlk Projeni Ekle
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        {% if portfolyo and portfolyo.paginator.num_pages > 1 %}
+        <div class="flex justify-center mt-16">
+            <div class="flex space-x-2">
+                {% if portfolyo.has_previous %}
+                <a href="?page={{ portfolyo.previous_page_number }}" class="px-4 py-2 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Önceki
+                </a>
+                {% endif %}
+                
+                {% for num in portfolyo.paginator.page_range %}
+                    {% if portfolyo.number == num %}
+                    <span class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-md">{{ num }}</span>
+                    {% else %}
+                    <a href="?page={{ num }}" class="px-4 py-2 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if portfolyo.has_next %}
+                <a href="?page={{ portfolyo.next_page_number }}" class="px-4 py-2 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center">
+                    Sonraki
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    .portfolio-item {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .filter-btn.active {
+        background: linear-gradient(145deg, #f59e0b, #d97706);
+        color: white;
+        box-shadow: 0 4px 8px rgba(245, 158, 11, 0.4);
+    }
+    #projectModal.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    #projectModal.active > div {
+        transform: scale(1);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const modal = document.getElementById('projectModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+        
+        document.querySelectorAll('.portfolio-item button').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.closest('.portfolio-item');
+                const title = item.querySelector('h3').textContent;
+                const description = item.querySelector('p').textContent;
+                const link = item.querySelector('a').href;
+                const image = item.querySelector('img').src;
+                
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalDescription').textContent = description;
+                document.getElementById('modalLink').href = link;
+                document.getElementById('modalTechnologies').innerHTML = '';
+                
+                item.querySelectorAll('.flex.space-x-2 span').forEach(tech => {
+                    const techSpan = document.createElement('span');
+                    techSpan.className = 'text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full';
+                    techSpan.textContent = tech.textContent;
+                    document.getElementById('modalTechnologies').appendChild(techSpan);
+                });
+                
+                modal.classList.add('active');
+            });
+        });
+        
+        portfolioItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    });
+</script>
+{% endblock %}

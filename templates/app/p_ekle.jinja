@@ -1,0 +1,252 @@
+{% extends "base.jinja" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Portfolyo Ekle{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex items-center mb-8">
+            <a href="/uygulama/portfolyo/" 
+               class="inline-flex items-center px-4 py-3 bg-white text-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 mr-4">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Portfolyoya Dön
+            </a>
+            <h1 class="text-3xl font-bold text-gray-900">Yeni Proje Ekle</h1>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="p-1 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+            
+            <form method="post" enctype="multipart/form-data" class="p-8">
+                {% csrf_token %}
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900">Proje Bilgileri</h2>
+                    <p class="text-gray-600 mt-2">Projenizle ilgili tüm detayları eksiksiz doldurunuz.</p>
+                </div>
+                
+                <div class="mb-10">
+                    <label class="block text-sm font-medium text-gray-700 mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Proje Görseli
+                    </label>
+                    
+                    <div id="drop-zone" 
+                         class="border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center transition-all duration-300 hover:border-blue-400 hover:bg-blue-50 bg-gray-50 cursor-pointer h-64 flex flex-col items-center justify-center">
+                        <input type="file" id="id_icerik" name="icerik" class="hidden" accept="image/*">
+                        
+                        <div id="upload-content">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            <p class="text-gray-600 mb-2">Proje görselini sürükle & bırak</p>
+                            <p class="text-gray-500 text-sm">veya</p>
+                            <button type="button" id="browse-btn" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors">Dosya Seç</button>
+                            <p class="text-gray-500 text-xs mt-3">PNG, JPG, GIF - Maksimum 5MB</p>
+                        </div>
+                        
+                        <div id="preview-container" class="hidden w-full h-full flex items-center justify-center">
+                            <img id="preview-image" class="max-h-52 max-w-full object-contain rounded-lg">
+                            <button type="button" id="remove-image" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% for field in form %}
+                        {% if field.name != 'icerik' %}
+                        <div class="{% if field.name == 'aciklama' or field.name == 'teknolojiler' %}md:col-span-2{% endif %}">
+                            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                                {% if field.name == 'baslik' %}
+                                <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                {% elif field.name == 'kategori' %}
+                                <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                                {% elif field.name == 'aciklama' %}
+                                <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                                </svg>
+                                {% elif field.name == 'link' %}
+                                <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
+                                {% elif field.name == 'teknolojiler' %}
+                                <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                </svg>
+                                {% endif %}
+                                {{ field.label }}
+                            </label>
+
+                            {{ field }}
+
+                            {% if field.help_text %}
+                            <p class="mt-2 text-sm text-gray-500">{{ field.help_text }}</p>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="flex justify-end space-x-4 mt-10 pt-6 border-t border-gray-200">
+                    <a href="{% url 'portfolyo' %}"
+                       class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-sm">
+                        İptal
+                    </a>
+                    <button type="submit"
+                            class="px-6 py-3 bg-yellow-500 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-md flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Projeyi Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+input, textarea, select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+input[type="file"] {
+    padding: 0.5rem;
+}
+
+#drop-zone.drag-over {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    transform: scale(1.01);
+}
+
+#preview-container {
+    position: relative;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const teknolojiInput = document.querySelector("input[name='teknolojiler']");
+    if (teknolojiInput) {
+        teknolojiInput.placeholder = "React, Python, Django, JavaScript... (virgülle ayırın)";
+    }
+    
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('id_icerik');
+    const browseBtn = document.getElementById('browse-btn');
+    const uploadContent = document.getElementById('upload-content');
+    const previewContainer = document.getElementById('preview-container');
+    const previewImage = document.getElementById('preview-image');
+    const removeImageBtn = document.getElementById('remove-image');
+    
+    browseBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    fileInput.addEventListener('change', handleFileSelect);
+    
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight() {
+        dropZone.classList.add('drag-over');
+    }
+    
+    function unhighlight() {
+        dropZone.classList.remove('drag-over');
+    }
+    
+    dropZone.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length) {
+            fileInput.files = files;
+            handleFiles(files);
+        }
+    }
+    
+    function handleFileSelect(e) {
+        const files = e.target.files;
+        handleFiles(files);
+    }
+    
+    function handleFiles(files) {
+        if (files.length > 0) {
+            const file = files[0];
+            
+            if (!file.type.match('image.*')) {
+                alert('Lütfen sadece resim dosyaları yükleyin.');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Dosya boyutu 5MB\'dan büyük olamaz.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                uploadContent.classList.add('hidden');
+                previewContainer.classList.remove('hidden');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    }
+    
+    removeImageBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        fileInput.value = '';
+        previewImage.src = '';
+        previewContainer.classList.add('hidden');
+        uploadContent.classList.remove('hidden');
+    });
+});
+</script>
+{% endblock %}
