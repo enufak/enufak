@@ -63,13 +63,15 @@ class GirisForm(AuthenticationForm):
 class ProfilDuzenleForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "konum", "biyografi", "avatar",'is_name_visible','iletisim_bilgilerimi_goster')
+        fields = ("first_name", "last_name", "email", "konum", "biyografi",'instagram' ,'linkedin', "avatar",'is_name_visible','iletisim_bilgilerimi_goster')
         labels = {
             "first_name": "Ad",
             "last_name": "Soyad",
             "email": "E-posta",
             "konum": "Konum",
             "biyografi": "Biyografi",
+            'instagram': 'Instagram Hesabı',
+            'linkedin': 'LinkedIn Hesabı',
             "avatar": "Profil Fotoğrafı",
             'is_name_visible': 'İsim Görünürlüğü',
             'iletisim_bilgilerimi_goster': 'İletişim Bilgilerimi Göster',

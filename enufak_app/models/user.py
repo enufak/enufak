@@ -32,6 +32,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     konum = models.CharField(max_length=50, blank=True, null=True)
     biyografi = models.TextField(max_length=300, blank=True, null=True)
+    instagram = models.CharField(max_length=50, blank=True, null=True)
+    linkedin = models.CharField(max_length=50, blank=True, null=True)
+
+
     tckno = models.CharField(max_length=11, unique=True, blank=True, null=True)
     dogum_tarihi = models.DateField(null=True, blank=True)
 
