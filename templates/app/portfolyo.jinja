@@ -6,12 +6,6 @@
 {% block content %}
 <section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 bg-gray-700 bg-clip-text text-transparent">Portfolyom</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Portfolyolarını buradan yönetebilirsin.</p>
-            <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mt-8 rounded-full"></div>
-        </div>
-        
         <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             <div class="inline-flex flex-wrap justify-center gap-2 p-1 bg-white rounded-full shadow-md">
                 <button class="filter-btn px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg active:scale-95" data-filter="all" style="background: linear-gradient(145deg, #f59e0b, #d97706); color: white; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);">
@@ -63,14 +57,14 @@
                 {% endfor %}
             {% else %}
                 <div class="col-span-3 text-center py-16 px-4 bg-white rounded-2xl shadow-lg">
-                    <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-full mb-6">
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-yellow-100 rounded-full mb-6">
                         <svg class="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-gray-800 mb-2">Henüz portfolyonuz bulunmuyor</h3>
                     <p class="text-gray-600 mb-6 max-w-md mx-auto">Yeteneklerinizi sergilemek için ilk projenizi ekleyin ve potansiyel işverenlerinize kendinizi kanıtlayın.</p>
-                    <a href="/uygulama/portfolyo/ekle/" class="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center group">
+                    <a href="/uygulama/portfolyo/ekle/" class="px-6 py-3 bg-yellow-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center group">
                         <svg class="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
@@ -94,7 +88,7 @@
                 
                 {% for num in portfolyo.paginator.page_range %}
                     {% if portfolyo.number == num %}
-                    <span class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg shadow-md">{{ num }}</span>
+                    <span class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow-md">{{ num }}</span>
                     {% else %}
                     <a href="?page={{ num }}" class="px-4 py-2 bg-white text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">{{ num }}</a>
                     {% endif %}
