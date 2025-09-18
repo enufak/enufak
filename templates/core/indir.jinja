@@ -1,0 +1,110 @@
+{% extends 'base.jinja' %}
+{% load static %}
+
+{% block title %}Uygulamayı İndir{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-b from-white to-yellow-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+        Uygulamayı İndir
+      </h1>
+      <p class="mt-5 max-w-xl mx-auto text-xl text-gray-600">
+        Mobil deneyimimizi keşfetmek için uygulamamızı indirin.
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div class="flex-1 flex justify-center">
+        <div class="relative">
+          <div class="absolute rounded-2xl transform rotate-3"></div>
+          <img class="relative z-10 max-w-xs w-full" src="{% static 'images/telefon.png' %}" alt="Uygulama ekran görüntüsü">
+        </div>
+      </div>
+
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Mobil Uygulamamızın Özellikleri</h2>
+        
+        <ul class="space-y-4 mb-10">
+          <li class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="ml-3 text-base text-gray-700">Kolay ve hızlı kullanım arayüzü</p>
+          </li>
+          <li class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="ml-3 text-base text-gray-700">Mobil'e özel güncellemeler</p>
+          </li>
+          <li class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="ml-3 text-base text-gray-700">Kolay ulaşım</p>
+          </li>
+        </ul>
+
+        <div class="space-y-4">
+            <h3 class="text-xl font-semibold text-gray-800">Hemen İndir</h3>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="{% static 'enufak-1.0.apk' %}" download class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 transition duration-300">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2a1 1 0 0 1 1 1v12.586l3.293-3.293a1 1 0 0 1 
+                            1.414 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 
+                            1.414-1.414L11 15.586V3a1 1 0 0 1 1-1z"/>
+                    <path d="M4 20a1 1 0 0 0 1 1h14a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1z"/>
+                </svg>
+                APK'yı indir
+                </a>
+
+                <a class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 4h16v2H4V4zm0 4h16v12H4V8zm4 3v6h2v-6H8zm6 
+                            0v6h2v-6h-2z"/>
+                </svg>
+                F-Droid
+                </a>
+
+                <a class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition duration-300">
+                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3.6 2.6l13.49 9.39c.39.27.39.87 0 1.14L3.6 
+                            22.5c-.42.3-1 .01-1-.5V3.1c0-.51.58-.8 1-.5zm4.15 
+                            2.59l6.76 4.71-2.12 2.12-4.64-6.83zm0 13.62l4.64-6.83 
+                            2.12 2.12-6.76 4.71z"/>
+                </svg>
+                Google Play
+                </a>
+            </div>
+            </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleFAQ(id) {
+    const content = document.getElementById(`faq-content-${id}`);
+    const icon = document.getElementById(`faq-icon-${id}`);
+    
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      icon.classList.add('transform', 'rotate-180');
+    } else {
+      content.classList.add('hidden');
+      icon.classList.remove('transform', 'rotate-180');
+    }
+  }
+</script>
+{% endblock %}
