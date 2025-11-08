@@ -569,6 +569,33 @@
         </div>
     </section>
 
+    <div id="crown-toast" style="background: linear-gradient(to right, #fef9c3, #fde68a, #fefce8);"
+        class="fixed bottom-10 left-4 right-4 sm:left-4 sm:right-auto w-auto sm:w-96 max-w-full p-4 border-l-4 border-yellow-500 rounded-2xl shadow-xl animate-fade-in z-50"
+        role="alert">
+
+        <button type="button" onclick="document.getElementById('crown-toast').style.display='none'"
+            class="absolute top-2 right-2 sm:top-3 sm:right-3 text-yellow-600 hover:text-yellow-800 transition text-lg sm:text-base w-6 h-6 flex items-center justify-center rounded-full hover:bg-yellow-200">
+            ✖
+        </button>
+
+        <div class="flex items-start pr-6 sm:pr-0">
+            <div
+                class="flex items-center justify-center w-10 h-10 bg-yellow-500 text-white rounded-full shadow-md mr-4 flex-shrink-0">
+                <i class="fa-solid fa-download w-5 h-5"></i>
+            </div>
+
+            <div class="flex-1">
+                <h4 class="text-base font-semibold text-yellow-900">Uygulamayı İndir</h4>
+                <p class="mt-1 text-sm text-yellow-800">
+                    Mobil uygulamamızı deneyimlemek ister misin? <br>
+                    <a href="/indir/" class="font-semibold underline hover:text-yellow-900 transition">
+                        Buraya tıkla
+                    </a> ve <strong>mobil uygulamamızı</strong> kullanmaya başla.
+                </p>
+            </div>
+        </div>
+    </div>
+
     {% include 'components/_footer.jinja' %}
 
     <script>
