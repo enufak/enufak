@@ -1,7 +1,7 @@
 {% extends "base.jinja" %}
 {% load static %}
 
-{% block title %}EnUfak - İşleri çözmenin en kolay yolu{% endblock %}
+{% block title %}İşleri çözmenin en kolay yolu{% endblock %}
 
 {% block content %}
 
@@ -11,44 +11,44 @@
 
 <style>
     :root {
-        --primary: #0066cc;
-        --primary-dark: #0052a3;
-        --primary-light: #e6f2ff;
-        --secondary: #001a33;
-        --accent: #00b8e6;
-        --gray-light: #f7f9fc;
-        --gray-dark: #4d5c6d;
+        --primary: #d97706;
+        --primary-dark: #b45309;
+        --primary-light: #fef3c7;
+        --secondary: #1c1917;
+        --accent: #eab308;
+        --gray-light: #fefce8;
+        --gray-dark: #57534e;
     }
-    
+
     body {
         font-family: 'Inter', sans-serif;
         scroll-behavior: smooth;
-        background-color: #fafcff;
+        background-color: #fefefe;
     }
-    
+
     .hero-gradient {
-        background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #f8fbff 100%);
+        background: linear-gradient(135deg, #fefce8 0%, #ffffff 50%, #fef9c3 100%);
     }
-    
+
     .text-gradient {
         background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
     }
-    
+
     .btn-primary {
         background-color: var(--primary);
         transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(0, 102, 204, 0.2);
+        box-shadow: 0 2px 10px rgba(217, 119, 6, 0.2);
     }
-    
+
     .btn-primary:hover {
         background-color: var(--primary-dark);
         transform: translateY(-1px);
-        box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3);
+        box-shadow: 0 4px 20px rgba(217, 119, 6, 0.3);
     }
-    
+
     .service-card {
         background: white;
         border: 1px solid #e5e7eb;
@@ -56,13 +56,13 @@
         position: relative;
         overflow: hidden;
     }
-    
+
     .service-card:hover {
         transform: translateY(-2px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         border-color: var(--primary);
     }
-    
+
     .category-icon {
         width: 56px;
         height: 56px;
@@ -76,40 +76,30 @@
         color: var(--primary);
         transition: all 0.3s ease;
     }
-    
+
     .service-card:hover .category-icon {
         transform: scale(1.05);
         background-color: var(--primary);
         color: white;
     }
-    
+
     .stats-card {
         background: white;
         border: 1px solid #e5e7eb;
         transition: all 0.3s ease;
     }
-    
+
     .stats-card:hover {
         transform: translateY(-1px);
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     }
-    
+
     .process-step {
         position: relative;
         text-align: center;
         padding: 2rem 1rem;
     }
-    
-    .process-step:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        top: 40%;
-        right: 0;
-        width: 50%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--primary-light), transparent);
-    }
-    
+
     .step-number {
         width: 48px;
         height: 48px;
@@ -124,18 +114,18 @@
         margin: 0 auto 1.5rem;
         transition: all 0.3s ease;
     }
-    
+
     .process-step:hover .step-number {
         transform: scale(1.1);
         background-color: var(--primary-dark);
     }
-    
+
     .section-title {
         position: relative;
         display: inline-block;
         margin-bottom: 3rem;
     }
-    
+
     .section-title::after {
         content: '';
         position: absolute;
@@ -147,7 +137,7 @@
         background-color: var(--primary);
         border-radius: 2px;
     }
-    
+
     .nav-link {
         position: relative;
         padding: 0.5rem 0;
@@ -155,7 +145,7 @@
         color: var(--secondary);
         transition: all 0.3s;
     }
-    
+
     .nav-link::after {
         content: '';
         position: absolute;
@@ -166,34 +156,35 @@
         background-color: var(--primary);
         transition: width 0.3s;
     }
-    
+
     .nav-link:hover::after {
         width: 100%;
     }
-    
+
     .nav-link:hover {
         color: var(--primary);
     }
-    
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
             transform: translateY(30px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
-    
+
     .animate-fade-in {
         animation: fadeInUp 0.6s ease-out forwards;
     }
-    
+
     .gradient-bg {
         background-color: var(--primary-light);
     }
-    
+
     .feature-badge {
         background-color: var(--primary);
         color: white;
@@ -203,16 +194,23 @@
         font-weight: 500;
         letter-spacing: 0.5px;
     }
-    
+
     .floating {
         animation: floating 6s ease-in-out infinite;
     }
-    
+
     @keyframes floating {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
-    
+
     .trust-badge {
         background: white;
         border: 1px solid #e5e7eb;
@@ -221,12 +219,12 @@
         font-size: 0.875rem;
         color: var(--secondary);
     }
-    
+
     .modern-section {
         position: relative;
         overflow: hidden;
     }
-    
+
     .section-bg-pattern {
         position: absolute;
         top: 0;
@@ -236,13 +234,7 @@
         background: linear-gradient(135deg, var(--primary-light) 0%, transparent 100%);
         z-index: 0;
     }
-    
-    .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-    
+
     .feature-item {
         background: white;
         padding: 2rem;
@@ -250,57 +242,95 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
     }
-    
+
     .feature-item:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0, 102, 204, 0.15);
+        box-shadow: 0 8px 30px rgba(217, 119, 6, 0.15);
+    }
+
+    @media (max-width: 768px) {
+        .service-grid-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature-grid-mobile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            padding: 1.5rem 1rem;
+        }
+
+        .service-card {
+            padding: 1.5rem 1rem;
+        }
+
+        .process-step {
+            padding: 1.5rem 0.5rem;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            width: 2px;
+            height: 50%;
+            background: linear-gradient(180deg, var(--primary-light), transparent);
+        }
     }
 </style>
 
-<body class="bg-gray-50">
+<body class="bg-amber-50">
     <section class="hero-gradient py-20 lg:py-28 modern-section">
         <div class="section-bg-pattern"></div>
         <div class="container mx-auto px-4 max-w-7xl relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-8 border border-blue-200">
-                    <div class="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                    <span class="text-blue-700 text-sm font-medium">TÜRKİYENİN 1 NUMARALI İŞ PLATFORMU</span>
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-8 border border-amber-200">
+                    <div class="w-2 h-2 bg-amber-600 rounded-full mr-2"></div>
+                    <span class="text-amber-700 text-sm font-medium">TÜRKİYENİN 1 NUMARALI İŞ PLATFORMU</span>
                 </div>
-                
+
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                     Gerçek potansiyelini<br>
                     <span class="text-gradient">ortaya çıkar.</span>
                 </h1>
-                
+
                 <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-                    Fahiş vergiler ile savaşmaktan kurtulun. İster iş alın, ister iş verin. EnUfak'ta yeteneklerinizi sergileyin veya ihtiyaçlarınızı en iyi uzmanlarla çözün.
+                    Fahiş vergiler ile savaşmaktan kurtulun. İster iş alın, ister iş verin. EnUfak'ta yeteneklerinizi
+                    sergileyin veya ihtiyaçlarınızı en iyi uzmanlarla çözün.
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                    <a href="/uygulama/kayit-ol/" 
-                       class="btn-primary text-white font-semibold py-4 px-10 rounded-lg text-lg flex items-center justify-center space-x-3 group">
+                    <a href="/uygulama/kayit-ol/"
+                        class="btn-primary text-white font-semibold py-4 px-10 rounded-lg text-lg flex items-center justify-center space-x-3 group">
                         <span>Ücretsiz Başlayın</span>
                         <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                     </a>
-                    
-                    <a href="#hizmetler" 
-                       class="border border-gray-300 text-gray-700 font-semibold py-4 px-10 rounded-lg text-lg hover:border-blue-600 hover:text-blue-600 transition-all flex items-center justify-center space-x-3 group">
+
+                    <a href="#hizmetler"
+                        class="border border-gray-300 text-gray-700 font-semibold py-4 px-10 rounded-lg text-lg hover:border-amber-600 hover:text-amber-600 transition-all flex items-center justify-center space-x-3 group">
                         <i class="fas fa-play-circle group-hover:scale-110 transition-transform"></i>
                         <span>Nasıl Çalışır?</span>
                     </a>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-blue-600 mb-2">7/24</div>
+                        <div class="text-2xl font-bold text-amber-600 mb-2">7/24</div>
                         <div class="text-sm text-gray-600 font-medium">Destek</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-blue-600 mb-2">Aktif</div>
+                        <div class="text-2xl font-bold text-amber-600 mb-2">Aktif</div>
                         <div class="text-sm text-gray-600 font-medium">Doğrulama Sistemleri</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-blue-600 mb-2">4.9/5</div>
+                        <div class="text-2xl font-bold text-amber-600 mb-2">4.9/5</div>
                         <div class="text-sm text-gray-600 font-medium">Müşteri Memnuniyeti</div>
                     </div>
                 </div>
@@ -310,21 +340,21 @@
 
     <section class="py-8 bg-white border-b border-gray-200">
         <div class="container mx-auto px-4 max-w-7xl">
-            <div class="flex flex-wrap justify-center items-center gap-8">
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
                 <div class="trust-badge flex items-center space-x-2">
-                    <i class="fas fa-shield-alt text-blue-600"></i>
+                    <i class="fas fa-shield-alt text-amber-600"></i>
                     <span>Güvenli Topluluk</span>
                 </div>
                 <div class="trust-badge flex items-center space-x-2">
-                    <i class="fas fa-clock text-blue-600"></i>
+                    <i class="fas fa-clock text-amber-600"></i>
                     <span>7/24 Destek</span>
                 </div>
                 <div class="trust-badge flex items-center space-x-2">
-                    <i class="fas fa-check-circle text-blue-600"></i>
+                    <i class="fas fa-check-circle text-amber-600"></i>
                     <span>Doğrulanmış Profiller</span>
                 </div>
                 <div class="trust-badge flex items-center space-x-2">
-                    <i class="fas fa-medal text-blue-600"></i>
+                    <i class="fas fa-medal text-amber-600"></i>
                     <span>Premium Kalite</span>
                 </div>
             </div>
@@ -335,60 +365,74 @@
         <div class="container mx-auto px-4 max-w-7xl">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Neden <span class="text-blue-600">EnUfak?</span>
+                    Neden <span class="text-amber-600">EnUfak?</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Modern iş dünyasına ilk adımını at.
                 </p>
             </div>
 
-            <div class="feature-grid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 feature-grid-mobile">
                 <div class="feature-item text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-bolt text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bolt text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Hızlı Başlangıç</h3>
                     <p class="text-gray-600">5 dakikada profil oluşturun ve hemen iş almaya başlayın</p>
                 </div>
 
                 <div class="feature-item text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-lock text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lock text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Güvenli Topluluk</h3>
                     <p class="text-gray-600">Kimlikleri doğrulanmış profesyoneller ile çalış</p>
                 </div>
 
-                <div class="feature-item text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-globe text-blue-600 text-2xl"></i>
+                <div class="feature-item text-center hidden sm:block">
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-globe text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">7/24 Destek</h3>
-                    <p class="text-gray-600">Karşılaştığın sorunları çözmeye adanmış bir topluluğumuz var, sorun çıkarsa tabii.</p>
+                    <p class="text-gray-600">
+                        Karşılaştığın sorunları çözmeye adanmış bir topluluğumuz var, sorun çıkarsa tabii.
+                    </p>
+                </div>
+
+            </div>
+            <div class="sm:hidden w-full bg-white shadow-xl rounded-xl py-10">
+                <div class="max-w-7xl mx-auto px-4 text-center">
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-globe text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">7/24 Destek</h3>
+                    <p class="text-gray-600">
+                        Karşılaştığın sorunları çözmeye adanmış bir topluluğumuz var, sorun çıkarsa tabii.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-gray-50 modern-section" id="hizmetler">
+    <section class="py-20 bg-amber-50 modern-section" id="hizmetler">
         <div class="container mx-auto px-4 max-w-7xl">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-title">
-                    Popüler <span class="text-blue-600">Hizmetler</span>
+                    Popüler <span class="text-amber-600">Hizmetler</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     En çok talep gören hizmet kategorileri
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 service-grid-mobile">
                 <div class="service-card rounded-lg p-6 text-center">
                     <div class="category-icon mx-auto">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-3">Yazılım & Teknoloji</h3>
                     <p class="text-gray-600 text-sm mb-4">Web geliştirme, mobil uygulamalar, yazılım çözümleri</p>
-                    <div class="text-blue-600 text-sm font-medium">Aktif</div>
+                    <div class="text-amber-600 text-sm font-medium">Aktif</div>
                 </div>
 
                 <div class="service-card rounded-lg p-6 text-center">
@@ -397,7 +441,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-3">Tamir</h3>
                     <p class="text-gray-600 text-sm mb-4">Cihaz tamir ve parça değişimleri</p>
-                    <div class="text-blue-600 text-sm font-medium">Aktif</div>
+                    <div class="text-amber-600 text-sm font-medium">Aktif</div>
                 </div>
 
                 <div class="service-card rounded-lg p-6 text-center">
@@ -406,7 +450,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-3">Eğitim</h3>
                     <p class="text-gray-600 text-sm mb-4">Yeniliklere uyum sağlamaya başlayın</p>
-                    <div class="text-blue-600 text-sm font-medium">Aktif</div>
+                    <div class="text-amber-600 text-sm font-medium">Aktif</div>
                 </div>
 
                 <div class="service-card rounded-lg p-6 text-center">
@@ -415,13 +459,14 @@
                     </div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-3">Sanat</h3>
                     <p class="text-gray-600 text-sm mb-4">Müzik, tasarım, montaj...</p>
-                    <div class="text-blue-600 text-sm font-medium">Aktif</div>
+                    <div class="text-amber-600 text-sm font-medium">Aktif</div>
                 </div>
             </div>
 
             <div class="text-center mt-12">
-                <a href="/uygulama/ara/" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group">
-                    Tüm Kategorileri Görüntüle 
+                <a href="/uygulama/ara/"
+                    class="inline-flex items-center text-amber-600 font-semibold hover:text-amber-700 transition-colors group">
+                    Tüm Kategorileri Görüntüle
                     <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
@@ -433,18 +478,18 @@
         <div class="container mx-auto px-4 max-w-7xl relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 section-title">
-                    Nasıl <span class="text-blue-600">Çalışır?</span>
+                    Nasıl <span class="text-amber-600">Çalışır?</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Profesyonel deneyimine ulaşmak için 4 basit adım
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="process-step">
                     <div class="step-number">1</div>
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-user-plus text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-plus text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Hesap Oluştur</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Ücretsiz kaydolun ve profilinizi oluşturun</p>
@@ -452,26 +497,28 @@
 
                 <div class="process-step">
                     <div class="step-number">2</div>
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-search text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Proje Bul veya Yayınla</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">İş fırsatlarını keşfedin veya projenizi yayınlayın</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">İş fırsatlarını keşfedin veya projenizi yayınlayın
+                    </p>
                 </div>
 
                 <div class="process-step">
                     <div class="step-number">3</div>
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Anlaşma Yap</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Doğru hizmet vereni seçin veya iş teklifleri alın</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">Doğru hizmet vereni seçin veya iş teklifleri alın
+                    </p>
                 </div>
 
                 <div class="process-step">
                     <div class="step-number">4</div>
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-rocket text-blue-600 text-2xl"></i>
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-rocket text-amber-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">İşe Başla</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Artık hazırsınız.</p>
@@ -480,31 +527,32 @@
         </div>
     </section>
 
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+    <section class="py-20 bg-gradient-to-r from-amber-600 to-amber-700 text-white">
         <div class="container mx-auto px-4 max-w-4xl text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">
                 Profesyonel Kariyerinize<br>
-                <span class="text-blue-200">Bugün Başlayın</span>
+                <span class="text-amber-200">Bugün Başlayın</span>
             </h2>
-            <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p class="text-lg text-amber-100 mb-8 max-w-2xl mx-auto">
                 Alanlarında uzman olan kişiler ile çalışabilir, kendi işlerinizi yapabilirsiniz.
             </p>
-            
+
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
                 <a href="/uygulama/kayit-ol/"
-                   class="bg-white text-blue-600 font-semibold py-4 px-10 rounded-lg hover:bg-gray-50 transition-all flex items-center justify-center space-x-3 group text-lg">
+                    class="bg-white text-amber-600 font-semibold py-4 px-10 rounded-lg hover:bg-gray-50 transition-all flex items-center justify-center space-x-3 group text-lg">
                     <i class="fas fa-user-tie group-hover:scale-110 transition-transform"></i>
                     <span>Kayıt Ol</span>
                 </a>
-                
+
                 <a href="/uygulama/giris-yap/"
-                   class="bg-blue-800 text-white font-semibold py-4 px-10 rounded-lg hover:bg-blue-900 transition-all flex items-center justify-center space-x-3 group text-lg">
+                    class="bg-amber-800 text-white font-semibold py-4 px-10 rounded-lg hover:bg-amber-900 transition-all flex items-center justify-center space-x-3 group text-lg">
                     <i class="fas fa-briefcase group-hover:scale-110 transition-transform"></i>
                     <span>Giriş Yap</span>
                 </a>
             </div>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-blue-200">
+
+            <div
+                class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-amber-200">
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-check-circle"></i>
                     <span>Ücretsiz Kayıt</span>
@@ -525,12 +573,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const observerOptions = { 
-                root: null, 
-                rootMargin: '0px', 
-                threshold: 0.1 
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -538,7 +586,7 @@
                     }
                 });
             }, observerOptions);
-            
+
             document.querySelectorAll('.service-card, .feature-item, .process-step').forEach(el => {
                 observer.observe(el);
             });
@@ -561,15 +609,15 @@
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/68c03a4303b24a1925f914ee/1j4ne76mm';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/68c03a4303b24a1925f914ee/1j4ne76mm';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
 </script>
 <!--End of Tawk.to Script-->
 

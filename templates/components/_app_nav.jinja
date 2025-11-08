@@ -183,7 +183,7 @@
 </head>
 <body>
     <header class="antialiased sticky top-0 z-50 ">
-        <nav class="nav-bg px-4 lg:px-6 py-3 fixed w-full top-0 z-50 transition-colors {% if request.path == '/uygulama/kesfet/' %}kesfet-navbar{% endif %} duration-300" id="navbar">
+        <nav class="nav-bg px-4 lg:px-6 fixed w-full top-0 z-50 transition-colors {% if request.path == '/uygulama/kesfet/' %}kesfet-navbar{% endif %} duration-300" id="navbar">
             <div class="flex justify-between items-center">
                 <!-- Logo ve mobil menü butonu -->
                 <div class="flex items-center">
@@ -191,9 +191,10 @@
                     <button id="mobile-menu-button" class="mobile-only mr-3 text-primary focus:outline-none">
                     </button>
                     
-                    <!-- Logo -->
                     <a href="/uygulama/" class="flex items-center">
-                        <img src="{% static 'images/logo.png' %}" class="h-12 w-auto" alt="Logo" />
+                        <img src="{% static 'images/uzunlogo.png' %}"
+                            class="h-20 w-auto transition-transform duration-300 group-hover:scale-105"
+                            alt="EnUfak Logo" />
                     </a>
                 </div>
 

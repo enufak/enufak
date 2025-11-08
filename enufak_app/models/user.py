@@ -52,6 +52,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     tc_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
+    EMAIL_FIELD = "email"
+    ACCOUNT_AUTHENTICATION_METHOD = 'email'
+    ACCOUNT_EMAIL_REQUIRED = True
+
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()

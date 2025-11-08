@@ -36,8 +36,8 @@
     }
 </style>
 
-<section class="relative py-16 md:py-24 bg-fixed bg-cover bg-center" style="padding-top:150px;padding-bottom:150px;background-image: url('https://images.unsplash.com/photo-1613061068451-e2cc9a980325?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');background-size: cover;background-repeat:no-repeat;background-position: center;">
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<section class="relative py-16 md:py-24 bg-fixed bg-cover bg-center" style="padding-top:200px;padding-bottom:200px;background-image: url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGZyZWVsYW5jZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900');background-size: cover;background-repeat:no-repeat;background-position: center;">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
     <div class="relative container mx-auto px-4 md:px-6 text-center">
         {% if not request.user.is_authenticated %}
@@ -513,4 +513,5 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
     </script>
     <!--End of Tawk.to Script-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 {% endblock %}

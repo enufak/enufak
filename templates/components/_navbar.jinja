@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="bg-white shadow-lg border-b border-gray-100">
+<nav class="bg-white shadow-lg border-b border-amber-100">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="/" class="flex items-center group">
@@ -8,14 +8,14 @@
 
             <div class="hidden md:flex items-center space-x-8">
                 {% if request.user.is_authenticated %}
-                    <a href="/uygulama/kesfet/" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center group">
-                        <svg class="w-5 h-5 mr-2 text-blue-500 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/kesfet/" class="nav-link text-gray-700 hover:text-amber-600 font-medium transition duration-300 flex items-center group">
+                        <svg class="w-5 h-5 mr-2 text-amber-500 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         Keşfet
                     </a>
-                    <a href="/uygulama/profil/" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center group">
-                        <svg class="w-5 h-5 mr-2 text-blue-500 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/profil/" class="nav-link text-gray-700 hover:text-amber-600 font-medium transition duration-300 flex items-center group">
+                        <svg class="w-5 h-5 mr-2 text-amber-500 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         Profil
@@ -27,19 +27,19 @@
                         Çıkış
                     </a>
                 {% else %}
-                    <a href="/uygulama/kesfet/" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center group">
-                        <svg class="w-5 h-5 mr-2 text-blue-500 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/kesfet/" class="nav-link text-gray-700 hover:text-amber-600 font-medium transition duration-300 flex items-center group">
+                        <svg class="w-5 h-5 mr-2 text-amber-500 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         Keşfet
                     </a>
-                    <a href="/uygulama/giris-yap/" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition duration-300 flex items-center group">
-                        <svg class="w-5 h-5 mr-2 text-blue-500 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/giris-yap/" class="nav-link text-gray-700 hover:text-amber-600 font-medium transition duration-300 flex items-center group">
+                        <svg class="w-5 h-5 mr-2 text-amber-500 group-hover:text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                         </svg>
                         Giriş Yap
                     </a>
-                    <a href="/uygulama/kayit-ol/" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center group transform hover:scale-105">
+                    <a href="/uygulama/kayit-ol/" class="bg-amber-600 hover:bg-amber-700 text-white font-medium py-2.5 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center group transform hover:scale-105">
                         <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none transition-all duration-300 transform hover:scale-110 p-2 rounded-lg hover:bg-blue-50">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-amber-600 focus:outline-none transition-all duration-300 transform hover:scale-110 p-2 rounded-lg hover:bg-amber-50">
                     <svg id="hamburger-icon" class="h-6 w-6 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -67,11 +67,11 @@
 
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden md:hidden bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300">
         <div class="absolute right-0 top-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out -translate-x-full">
-            <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-white">
+            <div class="flex justify-between items-center p-6 border-b border-amber-100 bg-gradient-to-r from-amber-50 to-white">
                 <a href="/" class="flex items-center group">
                     <img src="{% static 'images/uzunlogo.png' %}" class="h-20 w-auto transition-transform duration-300 group-hover:scale-105" alt="Logo" />
                 </a>
-                <button id="close-menu-button" class="p-2 text-gray-500 hover:text-blue-600 rounded-full hover:bg-blue-50 transition-all duration-200">
+                <button id="close-menu-button" class="p-2 text-gray-500 hover:text-amber-600 rounded-full hover:bg-amber-50 transition-all duration-200">
                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -80,22 +80,22 @@
             
             <div class="p-6 space-y-3">
                 {% if request.user.is_authenticated %}
-                    <a href="/uygulama/kesfet/" class="flex items-center p-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-blue-100">
-                        <svg class="h-5 w-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/kesfet/" class="flex items-center p-4 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-amber-100">
+                        <svg class="h-5 w-5 mr-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <span>Keşfet</span>
-                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-amber-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
                     
-                    <a href="/uygulama/profil/" class="flex items-center p-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-blue-100">
-                        <svg class="h-5 w-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/profil/" class="flex items-center p-4 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-amber-100">
+                        <svg class="h-5 w-5 mr-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         <span>Profil</span>
-                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-amber-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
@@ -110,27 +110,27 @@
                         </svg>
                     </a>
                 {% else %}
-                    <a href="/uygulama/kesfet/" class="flex items-center p-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-blue-100">
-                        <svg class="h-5 w-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/kesfet/" class="flex items-center p-4 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-amber-100">
+                        <svg class="h-5 w-5 mr-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <span>Keşfet</span>
-                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-amber-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
                     
-                    <a href="/uygulama/giris-yap/" class="flex items-center p-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-blue-100">
-                        <svg class="h-5 w-5 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/uygulama/giris-yap/" class="flex items-center p-4 text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all duration-200 font-medium group border border-transparent hover:border-amber-100">
+                        <svg class="h-5 w-5 mr-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                         </svg>
                         <span>Giriş Yap</span>
-                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="h-4 w-4 ml-auto text-gray-400 group-hover:text-amber-500 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
                     
-                    <a href="/uygulama/kayit-ol/" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl mt-4 group transform hover:scale-105">
+                    <a href="/uygulama/kayit-ol/" class="flex items-center justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl mt-4 group transform hover:scale-105">
                         <svg class="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
@@ -142,8 +142,8 @@
                 {% endif %}
             </div>
             
-            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-gray-50 text-center text-sm text-gray-600">
-                <p class="font-medium text-blue-600 mb-1">EnUfak</p>
+            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-amber-100 bg-amber-50 text-center text-sm text-gray-600">
+                <p class="font-medium text-amber-600 mb-1">EnUfak</p>
                 <p>© 2025 Tüm hakları saklıdır.</p>
             </div>
         </div>
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #0066cc, #00b8e6);
+    background: linear-gradient(90deg, #d97706, #eab308);
     transition: width 0.3s ease;
 }
 
