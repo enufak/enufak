@@ -132,27 +132,4 @@
         margin-bottom: 1rem;
     }
 </style>
-
-<!-- JavaScript for Form Enhancement -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // İlk input alanına odaklan
-        const firstInput = document.querySelector('input:not([type="hidden"])');
-        if (firstInput) {
-            firstInput.focus();
-        }
-        
-        // Form gönderim animasyonu
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const submitButton = this.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Oluşturuluyor...';
-                    submitButton.disabled = true;
-                }
-            });
-        }
-    });
-</script>
 {% endblock %}

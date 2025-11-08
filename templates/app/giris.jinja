@@ -168,32 +168,4 @@
     }
 </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const firstInput = document.querySelector('input:not([type="hidden"])');
-        if (firstInput) {
-            firstInput.focus();
-        }
-
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function (e) {
-                const submitButton = this.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Giriş Yapılıyor...';
-                    submitButton.disabled = true;
-                }
-            });
-        }
-
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    form.dispatchEvent(new Event('submit'));
-                }
-            });
-        });
-    });
-</script>
 {% endblock %}
