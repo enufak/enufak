@@ -129,7 +129,7 @@ class IlanEkleForm(forms.ModelForm):
             "ilan_baslik": "İlan Başlığı",
             "ilan_metni": "İlan Açıklaması",
             "konum": "Konum",
-            "is_deneyimi": "İş Deneyimi",
+            "is_deneyimi": "İş Deneyimi (Yıl)",
             'istenilen_ucret': 'İstenilen Ücret (₺)',
             'kategori': 'Kategori',
             'etiketler':'Etiketler'
@@ -150,8 +150,8 @@ class IlanEkleForm(forms.ModelForm):
             }),
             "is_deneyimi": forms.Textarea(attrs={
                 "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",
-                "rows": 3,
-                "placeholder": "İş tecrübelerinizi yazın..."
+                "rows": 1,
+                "placeholder": "Kaç yıldır bu iş ile ilgilendiğinizi yazınız."
             }),
             "istenilen_ucret": forms.NumberInput(attrs={
                 "class": "block w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500",

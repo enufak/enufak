@@ -6,6 +6,8 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
 from autoslug import AutoSlugField
+import os
+from PIL import Image
 
 
 class CustomUserManager(BaseUserManager):
@@ -75,19 +77,22 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         super().save(*args, **kwargs)
 
         if self.avatar:
-            img = Image.open(self.avatar.path)
-            width, height = img.size
+            if os.path.isfile(self.avatar.path):
+                try:
+                    img = Image.open(self.avatar.path)
+                    width, height = img.size
 
-            min_dim = min(width, height)
-            left = (width - min_dim) / 2
-            top = (height - min_dim) / 2
-            right = (width + min_dim) / 2
-            bottom = (height + min_dim) / 2
+                    min_dim = min(width, height)
+                    left = (width - min_dim) / 2
+                    top = (height - min_dim) / 2
+                    right = (width + min_dim) / 2
+                    bottom = (height + min_dim) / 2
 
-            img = img.crop((left, top, right, bottom)) 
-            img = img.resize((300, 300), Image.LANCZOS) 
-
-            img.save(self.avatar.path)
+                    img = img.crop((left, top, right, bottom))
+                    img = img.resize((300, 300), Image.LANCZOS)
+                    img.save(self.avatar.path)
+                except Exception as e:
+                    print(f"Avatar işlenirken hata: {e}")
 
     def get_full_name(self):
         if self.is_name_visible:
