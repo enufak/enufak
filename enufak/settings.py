@@ -39,7 +39,7 @@ DAILY_API_KEY = env('DAILY_API_KEY')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://enufak.com','https://www.enufak.com']
@@ -97,6 +97,7 @@ MIDDLEWARE = [
     'enufak_core.middleware.Force404Middleware',
     'allauth.account.middleware.AccountMiddleware',
     'enufak_app.middlewares.LastSeenMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -178,6 +179,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'assets'
 ]
 STATIC_ROOT = 'static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 class Ticket(models.Model):
     TICKET_TURU = (
+        ('0', 'Kimlik Doğrulaması'),
         ("1", "Teknik Problem"),
         ("2", "Kullanıcı Bildirimi"),
         ('3', 'Ekip'),
@@ -16,6 +17,9 @@ class Ticket(models.Model):
     konu = models.TextField()
     yazar = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at  = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    yetkili_mesaj = models.TextField(blank=True, null=True)
 
 
     class Meta:

@@ -12,7 +12,6 @@ crispy-tailwind = "*"
 pillow = "*"
 uuid = "*"
 shortuuid = "*"
-django-environ = "*"
 django-allauth = "*"
 requests = "*"
 pyjwt = "==2.7.0"
@@ -21,6 +20,8 @@ cryptography = "*"
 django-pwa = "*"
 zeep = "*"
 stream-video = "*"
+django-environ = "*"
+gunicorn = "*"
 
 [dev-packages]
 

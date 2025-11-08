@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def ticket_olustur(request):
     if request.method == "POST":
-        if Ticket.objects.filter(yazar=request.user).exists():
-            messages.error(request, "Zaten bir destek talebi açtınız. İşleme alınana kadar yeni talep açamazsınız.")
+        if Ticket.objects.filter(yazar=request.user, is_active=True).exists():
+            messages.error(request, "Zaten aktif bir talebiniz mevcut. İşleme alınana kadar yeni talep açamazsınız.")
             return redirect("tickets")
         else:
             form = TicketForm(request.POST, request.FILES)
@@ -18,7 +18,7 @@ def ticket_olustur(request):
                 ticket.yazar = request.user  
                 ticket.save()
                 messages.success(request, 'Destek talebiniz başarıyla gönderildi.')
-                return redirect("index")
+                return redirect("app_index")
     else:
         form = TicketForm()
     return render(request, "core/ticket.jinja", {"form": form})

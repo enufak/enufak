@@ -51,7 +51,6 @@ urlpatterns = [
     ),
     path('social/login/', redirect_login),
     path('social/signup/', redirect_signup),
-    path("tc-dogrulama/", tc_dogrulama, name="tc_dogrulama"),
     path('portfolyo/', portfolyo, name='portfolyo'),
     path('portfolyo/ekle/', p_ekle, name='p_ekle'),
     path('portfolyo/sil/<int:id>/', p_sil, name='p_sil'),

@@ -10,4 +10,6 @@ urlpatterns = [
     path(".well-known/assetlinks.json", assetlinks, name="assetlinks"),
     path('kullanim-kosullari/', kullanim_kosullari, name='kullanim_kosullari'),
     path('indir/', indir, name='indir'),
+    path('my-tickets/', my_tickets, name='my_tickets'),
+    path('my-tickets/<int:id>/', ticket_detail, name='ticket_detail'),
 ]

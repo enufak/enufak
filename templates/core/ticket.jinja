@@ -142,60 +142,63 @@
                             <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
                                 <i class="fas fa-check text-blue-500 text-xs"></i>
                             </div>
-                            <span class="text-sm text-gray-600">Görsel eklemek için iletisim@enufak.com'a mail
-                                atın</span>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
-                                <i class="fas fa-check text-blue-500 text-xs"></i>
-                            </div>
                             <span class="text-sm text-gray-600">Talep türünü doğru seçmeye özen gösterin</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- İstatistikler -->
-                <div class="bg-yellow-500 rounded-2xl shadow-xl p-6 text-white">
-                    <h3 class="text-lg font-semibold flex items-center mb-4">
-                        <i class="fas fa-chart-line mr-2"></i>Destek İstatistikleri
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm">Ortalama Yanıt Süresi</span>
-                                <span class="font-semibold">2.4 saat</span>
-                            </div>
-                            <div class="h-2 bg-yellow-400 bg-opacity-30 rounded-full overflow-hidden">
-                                <div class="h-full bg-white rounded-full w-3/4"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm">Çözülme Oranı</span>
-                                <span class="font-semibold">94%</span>
-                            </div>
-                            <div class="h-2 bg-yellow-400 bg-opacity-30 rounded-full overflow-hidden">
-                                <div class="h-full bg-white rounded-full w-11/12"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hızlı Yardım -->
+                {% if request.user.tc_verified %}
+                {% else %}
                 <div class="bg-white rounded-2xl shadow-xl p-6">
                     <h3 class="text-lg font-semibold text-gray-800 flex items-center mb-4">
-                        <i class="fas fa-question-circle text-yellow-500 mr-2"></i>Hızlı Yardım
+                        <i class="fas fa-id-card text-yellow-500 mr-2"></i>Kimlik Doğrulama Adımları
                     </h3>
-                    <p class="text-sm text-gray-600 mb-4">Sıkça sorulan sorulara göz atın</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">NOT: Bu işlem isteğe bağlıdır.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Talep türünü "Kimlik Doğrulaması" olarak seçin.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Gerekli alanları doldurun, kimlik 
+                            <br>kartınızın ön yüzünün resmini <br>
+                            "Fotoğraf Ekle" bölümünden ekleyin.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="fas fa-check text-blue-500 text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Hesabınızın yöneticiler tarafından <br> onaylanmasını bekleyin.</span>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Hızlı Yardım -->
+                <div class="bg-amber-500 rounded-2xl shadow-xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-50 flex items-center mb-4">
+                        <i class="fas fa-question-circle text-white mr-2"></i>Hızlı Yardım
+                    </h3>
+                    <p class="text-sm text-gray-50 mb-4">Sıkça sorulan sorulara göz atın</p>
                     <div class="space-y-2">
                         <a href="/sss/"
-                            class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition">
-                            <span class="text-sm text-gray-700">Hesap ayarlarımı nasıl değiştiririm?</span>
+                            class="flex items-center justify-between p-3 border text-gray-50 text-sm rounded rounded-lg hover:bg-amber-600 hover:text-gray-50 transition">
+                            Hesap ayarlarımı nasıl değiştiririm?
                             <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
                         </a>
                         <a href="/sss/"
-                            class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition">
-                            <span class="text-sm text-gray-700">Şifremi unuttum ne yapmalıyım?</span>
+                            class="flex items-center justify-between border rounded text-gray-50 hover:text-gray-50 text-sm p-3 rounded-lg hover:bg-amber-600 transition">
+                            Şifremi unuttum ne yapmalıyım?
                             <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
                         </a>
                     </div>
