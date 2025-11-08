@@ -391,54 +391,61 @@
 
             <div id="portfolyo" class="tab-content hidden">
                 {% if portfolyo %}
-                {% for p in portfolyo %}
-                <div class="container mx-auto px-4 py-8">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Portfolyo</h2>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="filter-btn px-4 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium transition-all hover:bg-yellow-600 active" data-filter="all">
-                                Tümü
-                            </button>
-                        </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Portfolyo</h2>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <button class="filter-btn px-4 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium transition-all hover:bg-yellow-600 active" data-filter="all">
+                            Tümü
+                        </button>
                     </div>
-
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="portfolio-item web" data-category="web">
-                            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    {% if p.icerik%}
-                                    <img src="{{p.icerik.url}}" 
-                                        alt="Web Projesi" class="w-full h-full object-cover">
-                                    {% else %}
-                                    <img src="{% static 'images/portfolyo.png' %}" 
-                                        alt="Web Projesi" class="w-full h-full object-cover">
+                        {% for p in portfolyo %}
+                        <div class="portfolio-item bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+                            <div class="relative h-48 overflow-hidden">
+                                {% if p.icerik %}
+                                <img src="{{ p.icerik.url }}" 
+                                    alt="{{ p.baslik }}" class="w-full h-full object-cover">
+                                {% else %}
+                                <img src="{% static 'images/portfolyo.png' %}" 
+                                    alt="{{ p.baslik }}" class="w-full h-full object-cover">
+                                {% endif %}
+                                <div class="portfolio-overlay absolute inset-0 bg-yellow-500 bg-opacity-80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                                    <button class="portfolio-view-btn text-white mx-2 transform translate-y-8 transition-transform duration-300" data-portfolio-id="{{ p.id }}">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 15.5v-11a2 2 0 012-2h16a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                    </button>
+                                    {% if p.link %}
+                                    <a href="{{ p.link }}" target="_blank" class="text-white mx-2 transform translate-y-8 transition-transform duration-300">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                    </a>
                                     {% endif %}
-                                    <div class="overlay absolute inset-0 bg-yellow-500 bg-opacity-80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-                                        <a href="#" class="text-white mx-2 transform translate-y-8 transition-transform duration-300">
-                                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 15.5v-11a2 2 0 012-2h16a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z"></path>
-                                            </svg>
-                                        </a>
-                                        <a href="#" class="text-white mx-2 transform translate-y-8 transition-transform duration-300">
-                                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                            </svg>
-                                        </a>
-                                    </div>
                                 </div>
-                                <div class="p-5">
-                                    <h3 class="text-xl font-bold text-gray-800 mt-1">{{p.baslik}}</h3>
-                                    <p class="text-gray-600 mt-3">{{p.aciklama|truncatechars:500}}</p>
-                                    <div class="mt-4 flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"><i class="bi bi-link"></i></span> {{p.link|default:"Belirtilmedi"}}
-                                    </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">{{ p.baslik }}</h3>
+                                <p class="text-gray-600 text-sm mb-4">{{ p.aciklama|truncatechars:150 }}</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                    </svg>
+                                    {% if p.link %}
+                                    <a href="{{ p.link }}" target="_blank" class="text-yellow-600 hover:text-yellow-700 truncate">
+                                        {{ p.link|truncatechars:30 }}
+                                    </a>
+                                    {% else %}
+                                    <span>Bağlantı yok</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
-                {% endfor %}
                 {% else %}
                 <div class="text-center py-12">
                     <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -447,19 +454,8 @@
                             d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                         </path>
                     </svg>
-                    <h3 class="mt-4 text-lg font-medium text-gray-900">Henüz portfolyonuz bulunmuyor</h3>
-                    <p class="mt-2 text-gray-500">Portfolyonuzu genişleterek kendinizi kanıtlayın.</p>
-                    <div class="mt-6">
-                        <a href="/uygulama/portfolyo/"
-                            class="px-5 py-2.5 bg-yellow-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            Portfolyo
-                        </a>
-                    </div>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Henüz portfolyo bulunmuyor</h3>
+                    <p class="mt-2 text-gray-500">Henüz portfolyo oluşturulmadı.</p>
                 </div>
                 {% endif %}
             </div>
