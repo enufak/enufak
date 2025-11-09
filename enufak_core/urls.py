@@ -12,4 +12,5 @@ urlpatterns = [
     path('indir/', indir, name='indir'),
     path('my-tickets/', my_tickets, name='my_tickets'),
     path('my-tickets/<int:id>/', ticket_detail, name='ticket_detail'),
+    path('@<slug:slug>/', go_profile, name='go_profile'),
 ]

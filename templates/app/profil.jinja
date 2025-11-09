@@ -9,25 +9,27 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     {% if request.user.tc_verified == False %}
     <div class="mb-8 p-6 rounded-2xl bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 shadow-sm">
-            <div class="flex items-start">
-                <div class="flex-shrink-0">
-                    <svg class="w-6 h-6 text-yellow-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-1">Kimlik Doğrulaması Yapılmadı</h3>
-                    <p class="text-gray-700">
-                        Platformda güvenilirlik kazanmak için kimlik doğrulaması yapmanızı öneririz. <br>
-                        Aşağıdaki "Kimlik Doğrula" butonuna tıklayarak yeni bir ticket oluşturun, kategori olarak kimlik doğrulaması seçin ve kimlik bilgilerinizi gönderin.
-                        <br>
-                        <strong>NOT:</strong> Bu işlem isteğe bağlıdır.
-                    </p>
-                </div>
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-yellow-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
             </div>
+            <div class="ml-3">
+                <h3 class="text-lg font-semibold text-gray-900 mb-1">Kimlik Doğrulaması Yapılmadı</h3>
+                <p class="text-gray-700">
+                    Platformda güvenilirlik kazanmak için kimlik doğrulaması yapmanızı öneririz. <br>
+                    Aşağıdaki "Kimlik Doğrula" butonuna tıklayarak yeni bir ticket oluşturun, kategori olarak kimlik
+                    doğrulaması seçin ve kimlik bilgilerinizi gönderin.
+                    <br>
+                    <strong>NOT:</strong> Bu işlem isteğe bağlıdır.
+                </p>
+            </div>
+        </div>
     </div>
     {% endif %}
-    
+
     <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-lg overflow-hidden mb-8">
         <div class="md:flex">
             <div class="md:flex-shrink-0 p-8 flex justify-center items-center">
@@ -111,14 +113,32 @@
                         </svg>
                         İlan Oluştur
                     </a>
+                    <button onclick="
+        const url = 'https://enufak.com/@{{ request.user.slug }}';
+        navigator.clipboard.writeText(url).then(() => {
+            const toast = document.createElement('div');
+            toast.textContent = 'Profil bağlantısı kopyalandı';
+            toast.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 opacity-0';
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('opacity-100'));
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        });
+    " class="p-2 border border-gray-300 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-300 flex items-center justify-center bg-white"
+                        title="Profil bağlantısını kopyala" aria-label="Profil bağlantısını kopyala">
+                        <i class="fa-solid fa-share-nodes text-gray-700 text-md"></i>
+                    </button>
+
                     {% if request.user.tc_verified %}
                     {% else %}
                     <a href="/ticket/"
                         class="px-5 py-2.5 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center bg-blue-500 text-white">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5.121 17.804A4 4 0 017 14h10a4 4 0 011.879 3.804M12 11a4 4 0 100-8 4 4 0 000 8z"/>
+                                d="M5.121 17.804A4 4 0 017 14h10a4 4 0 011.879 3.804M12 11a4 4 0 100-8 4 4 0 000 8z" />
                         </svg>
                         Kimlik Doğrula
                     </a>
@@ -168,13 +188,16 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-3xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-all duration-300 max-w-sm">
+        <div
+            class="bg-white rounded-3xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-all duration-300 max-w-sm">
             <div class="flex items-center">
-                <div class="flex-shrink-0 p-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                <div
+                    class="flex-shrink-0 p-4 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zM19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"></path>
+                            d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zM19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2">
+                        </path>
                     </svg>
                 </div>
 
@@ -231,11 +254,11 @@
                 <button id="services-tab" data-tabs-target="#portfolyo" type="button"
                     class="py-4 px-6 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                            </path>
-                        </svg>
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                        </path>
+                    </svg>
                     Portfolyom
                 </button>
             </nav>
@@ -269,11 +292,11 @@
                             İletişim Bilgileri
                         </h3>
                         <p class="text-gray-600">
-                        {% if request.user.iletisim_bilgilerimi_goster %}
+                            {% if request.user.iletisim_bilgilerimi_goster %}
                             {{request.user.email}}
-                        {% else %}
+                            {% else %}
                             {{ request.user.email|slice:":1" }}***@***
-                        {% endif %}
+                            {% endif %}
                         </p>
                         {% if request.user.phone %}
                         <p class="text-gray-600 mt-1">{{request.user.phone}}</p>
@@ -325,7 +348,9 @@
                                 </div>
                             </div>
 
-                            <h3 class="font-bold text-gray-900 text-lg mb-2"><a href="/uygulama/@{{request.user.slug}}/{{ilan.slug}}/">{{ ilan.ilan_baslik }}</a></h3>
+                            <h3 class="font-bold text-gray-900 text-lg mb-2"><a
+                                    href="/uygulama/@{{request.user.slug}}/{{ilan.slug}}/">{{ ilan.ilan_baslik }}</a>
+                            </h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-6">{{ ilan.ilan_metni|truncatechars:600 }}
                             </p>
 
@@ -352,8 +377,9 @@
                             </div>
 
                             <div class="flex items-center justify-between mt-4">
-                                <span class="font-semibold text-green-600 text-lg ucret" data-value="{{ ilan.istenilen_ucret }}">
-    {{ ilan.istenilen_ucret }} ₺</span>
+                                <span class="font-semibold text-green-600 text-lg ucret"
+                                    data-value="{{ ilan.istenilen_ucret }}">
+                                    {{ ilan.istenilen_ucret }} ₺</span>
                                 <div class="flex space-x-2">
                                     <a href="/uygulama/ilan-duzenle/{{ilan.id}}/"
                                         class="px-3 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded-lg transition-colors duration-200">Düzenle</a>
@@ -395,33 +421,46 @@
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Portfolyo</h2>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <button class="filter-btn px-4 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium transition-all hover:bg-yellow-600 active" data-filter="all">
+                        <button
+                            class="filter-btn px-4 py-2 bg-yellow-500 text-white rounded-full text-sm font-medium transition-all hover:bg-yellow-600 active"
+                            data-filter="all">
                             Tümü
                         </button>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {% for p in portfolyo %}
-                        <div class="portfolio-item bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <div
+                            class="portfolio-item bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
                             <div class="relative h-48 overflow-hidden">
                                 {% if p.icerik %}
-                                <img src="{{ p.icerik.url }}" 
-                                    alt="{{ p.baslik }}" class="w-full h-full object-cover">
+                                <img src="{{ p.icerik.url }}" alt="{{ p.baslik }}" class="w-full h-full object-cover">
                                 {% else %}
-                                <img src="{% static 'images/portfolyo.png' %}" 
-                                    alt="{{ p.baslik }}" class="w-full h-full object-cover">
+                                <img src="{% static 'images/portfolyo.png' %}" alt="{{ p.baslik }}"
+                                    class="w-full h-full object-cover">
                                 {% endif %}
-                                <div class="portfolio-overlay absolute inset-0 bg-yellow-500 bg-opacity-80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-                                    <button class="portfolio-view-btn text-white mx-2 transform translate-y-8 transition-transform duration-300" data-portfolio-id="{{ p.id }}">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 15.5v-11a2 2 0 012-2h16a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z"></path>
+                                <div
+                                    class="portfolio-overlay absolute inset-0 bg-yellow-500 bg-opacity-80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                                    <button
+                                        class="portfolio-view-btn text-white mx-2 transform translate-y-8 transition-transform duration-300"
+                                        data-portfolio-id="{{ p.id }}">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2 15.5v-11a2 2 0 012-2h16a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z">
+                                            </path>
                                         </svg>
                                     </button>
                                     {% if p.link %}
-                                    <a href="{{ p.link|ensure_protocol }}" target="_blank" class="text-white mx-2 transform translate-y-8 transition-transform duration-300">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    <a href="{{ p.link|ensure_protocol }}" target="_blank"
+                                        class="text-white mx-2 transform translate-y-8 transition-transform duration-300">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                            </path>
                                         </svg>
                                     </a>
                                     {% endif %}
@@ -432,10 +471,13 @@
                                 <p class="text-gray-600 text-sm mb-4">{{ p.aciklama|truncatechars:150 }}</p>
                                 <div class="flex items-center text-sm text-gray-500">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                                        </path>
                                     </svg>
                                     {% if p.link %}
-                                    <a href="{{ p.link }}" target="_blank" class="text-yellow-600 hover:text-yellow-700 truncate">
+                                    <a href="{{ p.link }}" target="_blank"
+                                        class="text-yellow-600 hover:text-yellow-700 truncate">
                                         {{ p.link|truncatechars:30 }}
                                     </a>
                                     {% else %}
@@ -524,13 +566,13 @@
         });
     });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const ucretElements = document.querySelectorAll(".ucret");
-    ucretElements.forEach(el => {
-        const value = parseInt(el.dataset.value, 10) || 0;
-        el.textContent = value.toLocaleString("tr-TR") + " ₺";
+    document.addEventListener('DOMContentLoaded', function () {
+        const ucretElements = document.querySelectorAll(".ucret");
+        ucretElements.forEach(el => {
+            const value = parseInt(el.dataset.value, 10) || 0;
+            el.textContent = value.toLocaleString("tr-TR") + " ₺";
+        });
     });
-});
 </script>
 
 {% endblock %}

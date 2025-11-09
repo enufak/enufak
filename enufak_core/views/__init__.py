@@ -8,3 +8,4 @@ from .kullanim_kosullari import kullanim_kosullari
 from .indir import indir
 from .my_tickets import my_tickets
 from .ticket_detail import ticket_detail
+from .go_profile import go_profile
