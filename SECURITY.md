@@ -1,21 +1,49 @@
-# Security Policy
+# 🛡️ enufak -- Security Policy
 
-## Supported Versions
+Bu doküman, enufak projesi için güvenlik politikalarını, desteklenen
+sürümleri ve güvenlik açıklarının nasıl raporlanacağını açıklamaktadır.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## 🔒 Desteklenen Sürümler
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+  Sürüm        Destek Durumu
+  ------------ ---------------------
+  **1.2.x**    ✅ (Aktif destek)
+  **1.1.x**    ❌ (Desteklenmiyor)
+  **1.0.x**    ❌ (Desteklenmiyor)
+  **\< 1.0**   ❌ (Desteklenmiyor)
 
-## Reporting a Vulnerability
+## 🐞 Güvenlik Açığı Bildirme
 
-Use this section to tell people how to report a vulnerability.
+Güvenlik açıklarını şu adrese e-posta ile iletebilirsiniz:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+**iletisim@enufak.com**
+
+E-postanızda aşağıdaki bilgiler bulunmalıdır:
+
+-   Açığın kısa açıklaması
+-   Etkilenen sürüm(ler)
+-   Açığın yeniden üretim adımları
+-   Olası etki (yetki yükseltme, veri sızıntısı, DoS vb.)
+-   Varsa PoC (Proof of Concept)
+
+## ⏱️ Yanıt Süreleri
+
+-   **24--72 saat içinde** ilk onay veya yanıt
+-   Doğrulanmış açıklar için **3--7 gün içinde** geri bildirim
+-   Kritik açıklar için **acil öncelikli çözüm / patch planı**
+
+## ✔️ Açık Onaylanırsa Ne Olur?
+
+-   Çözüm için bir zaman planı paylaşılır.
+-   Gerekiyorsa yeni sürüm veya hotfix yayımlanır.
+-   Çözüm sağlanana kadar açık kamuya açıklanmaz.
+
+## ❌ Açık Reddedilirse Ne Olur?
+
+-   Red gerekçesi detaylı şekilde bildirilir.
+-   Yanlış anlaşılma varsa yeniden değerlendirilir.
+
+## 🙏 Sorumlu Açıklama
+
+enufak projesinin güvenliğini artırmaya yardımcı olduğunuz için teşekkür
+ederiz.
