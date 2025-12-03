@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'enufak_blog',
     'enufak_app',
     'enufak_mesaj',
+    'enufak_proje',
 
     #
     'django_recaptcha',

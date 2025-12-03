@@ -31,6 +31,7 @@ urlpatterns = [
     path('blog/', include('enufak_blog.urls')),
     path('uygulama/', include('enufak_app.urls')),
     path('mesajlar/', include('enufak_mesaj.urls')),
+    path('proje/', include('enufak_proje.urls')),
 
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path('uygulama/social/', include('allauth.urls')),
