@@ -1,0 +1,36 @@
+{% load static %}
+<li class="chat-list-item flex items-center p-4 border-b border-amber-100 hover:bg-gradient-to-r hover:from-amber-50 hover:to-yellow-50 cursor-pointer transition-all duration-300 group"
+    onclick="sohbetAc({{ dm.id }})"
+    data-isim="{{ user.get_full_name|lower }}"
+    data-kullaniciadi="{{ user.username|lower }}">
+    <div class="relative flex-shrink-0">
+        <div class="relative">
+            <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/blank-profile.jpg' %}{% endif %}" 
+                 class="w-14 h-14 rounded-full object-cover border-3 border-amber-200 shadow-md group-hover:border-amber-300 transition-all duration-300" 
+                 alt="{{ user.get_full_name }}">
+            {% if user.is_online %}
+            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="ml-4 flex-1 min-w-0">
+        <div class="flex justify-between items-center mb-1">
+            <p class="text-sm font-bold text-amber-900 truncate">{{ user.get_full_name }}</p>
+            <span class="text-xs font-medium text-amber-600">{{ dm.last_message_time|date:"H:i"|default:dm.created_at|date:"H:i" }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+            <p class="text-xs text-amber-700 truncate font-medium">
+                {% if dm.last_message %}
+                    {{ dm.last_message|truncatechars:25 }}
+                {% else %}
+                    <span class="text-amber-500">Sohbete başlayın...</span>
+                {% endif %}
+            </p>
+            {% if dm.unread_count > 0 %}
+            <span class="bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[24px] h-6 flex items-center justify-center shadow-sm">
+                {{ dm.unread_count }}
+            </span>
+            {% endif %}
+        </div>
+    </div>
+</li>

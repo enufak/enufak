@@ -26,6 +26,7 @@ def dm_messages_longpoll(request, id):
                     'sender': m.sender.get_full_name(),
                     'text': m.text,
                     'created_at': m.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                    'okunma': m.okunma
                 } for m in new_messages
             ]
             return JsonResponse(data, safe=False)
